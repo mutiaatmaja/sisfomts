@@ -12,6 +12,8 @@ return new class extends Migration {
     {
         Schema::create('pendidik_tendiks', function (Blueprint $table) {
             $table->id();
+            $table->uuid('uuid')->unique();
+            $table->string('nuptk')->unique();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('nama');
             $table->string('nip')->nullable();

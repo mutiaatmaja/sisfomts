@@ -16,6 +16,7 @@
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
     <link href="layouts/src/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="layouts/src/assets/css/light/components/modal.css" rel="stylesheet" type="text/css" />
     <link href="layouts/modern-light-menu/css/light/plugins.css" rel="stylesheet" type="text/css" />
     <link href="layouts/modern-light-menu/css/dark/plugins.css" rel="stylesheet" type="text/css" />
     <!-- END GLOBAL MANDATORY STYLES -->
@@ -24,6 +25,22 @@
     <link href="layouts/src/plugins/src/apex/apexcharts.css" rel="stylesheet" type="text/css">
     <link href="layouts/src/assets/css/light/dashboard/dash_1.css" rel="stylesheet" type="text/css" />
     <link href="layouts/src/assets/css/dark/dashboard/dash_1.css" rel="stylesheet" type="text/css" />
+    <!--  BEGIN CUSTOM STYLE FILE  -->
+    <link href="layouts/src/assets/css/light/scrollspyNav.css" rel="stylesheet" type="text/css" />
+    <link href="layouts/src/assets/css/light/components/carousel.css" rel="stylesheet" type="text/css">
+    <link href="layouts/src/assets/css/light/components/modal.css" rel="stylesheet" type="text/css" />
+    <link href="layouts/src/assets/css/light/components/tabs.css" rel="stylesheet" type="text/css">
+
+    <link href="layouts/src/assets/css/dark/scrollspyNav.css" rel="stylesheet" type="text/css" />
+    <link href="layouts/src/assets/css/dark/components/carousel.css" rel="stylesheet" type="text/css">
+    <link href="layouts/src/assets/css/dark/components/modal.css" rel="stylesheet" type="text/css" />
+    <link href="layouts/src/assets/css/dark/components/tabs.css" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="layouts/src/plugins/src/filepond/filepond.min.css">
+    <link rel="stylesheet" href="layouts/src/plugins/src/filepond/FilePondPluginImagePreview.min.css">
+    <link href="layouts/src/plugins/css/light/filepond/custom-filepond.css" rel="stylesheet" type="text/css" />
+    <link href="layouts/src/plugins/css/dark/filepond/custom-filepond.css" rel="stylesheet" type="text/css" />
+    <!--  END CUSTOM STYLE FILE  -->
     <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
 
 </head>
@@ -861,6 +878,8 @@
     <script src="layouts/src/plugins/src/apex/apexcharts.min.js"></script>
     <script src="layouts/src/assets/js/dashboard/dash_1.js"></script>
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
+    @include('sweetalert::alert')
+
 
 </body>
 

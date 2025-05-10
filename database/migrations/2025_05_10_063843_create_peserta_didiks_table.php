@@ -12,6 +12,7 @@ return new class extends Migration {
     {
         Schema::create('peserta_didiks', function (Blueprint $table) {
             $table->id();
+            $table->uuid('uuid')->unique();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('kelas_id')->constrained('kelas')->cascadeOnDelete();
             $table->string('nisn')->unique();

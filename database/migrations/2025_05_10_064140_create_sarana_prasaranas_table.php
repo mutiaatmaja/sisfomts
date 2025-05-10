@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->string('nama');
             $table->string('jenis');
             $table->integer('jumlah');
+            $table->enum('status', ['Baik', 'Rusak Ringan', 'Rusak Berat']);
             $table->timestamps();
         });
     }
