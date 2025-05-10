@@ -1,7 +1,4 @@
 <div class="header-container container-xxl">
-    @guest
-        <h2>Selamat Datang</h2>
-    @else
         <header class="header navbar navbar-expand-sm expand-header">
 
             <a href="javascript:void(0);" class="sidebarCollapse">
@@ -352,6 +349,6 @@
                 </li>
             </ul>
         </header>
-    @endguest
+
 
 </div>

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <div class="row layout-top-spacing">
-        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 mb-4">
+        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
             <a href="app-blog-post.html" class="card style-2 mb-md-0 mb-4">
                 <img src="../src/assets/img/informasisekolah.png" class="card-img-top" alt="...">
                 {{-- <div class="card-body px-0 pb-0">
@@ -16,7 +16,7 @@
             </div> --}}
             </a>
         </div>
-        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 mb-4">
+        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
             <a href="app-blog-post.html" class="card style-2 mb-md-0 mb-4">
                 <img src="../src/assets/img/absen_siswa.png" class="card-img-top" alt="...">
                 {{-- <div class="card-body px-0 pb-0">
@@ -31,7 +31,7 @@
             </div> --}}
             </a>
         </div>
-        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 mb-4">
+        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
             <a href="app-blog-post.html" class="card style-2 mb-md-0 mb-4">
                 <img src="../src/assets/img/peserta_didik.png" class="card-img-top" alt="...">
                 {{-- <div class="card-body px-0 pb-0">
@@ -46,7 +46,7 @@
             </div> --}}
             </a>
         </div>
-        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 mb-4">
+        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
             <a href="app-blog-post.html" class="card style-2 mb-md-0 mb-4">
                 <img src="../src/assets/img/alumni.png" class="card-img-top" alt="...">
                 {{-- <div class="card-body px-0 pb-0">
@@ -61,7 +61,7 @@
             </div> --}}
             </a>
         </div>
-        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 mb-4">
+        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
             <a href="app-blog-post.html" class="card style-2 mb-md-0 mb-4">
                 <img src="../src/assets/img/gurudantendik.png" class="card-img-top" alt="...">
                 {{-- <div class="card-body px-0 pb-0">
@@ -76,7 +76,7 @@
             </div> --}}
             </a>
         </div>
-        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 mb-4">
+        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
             <a href="app-blog-post.html" class="card style-2 mb-md-0 mb-4">
                 <img src="../src/assets/img/sarpras.png" class="card-img-top" alt="...">
                 {{-- <div class="card-body px-0 pb-0">
@@ -91,7 +91,7 @@
             </div> --}}
             </a>
         </div>
-        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 mb-4">
+        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
             <a href="app-blog-post.html" class="card style-2 mb-md-0 mb-4">
                 <img src="../src/assets/img/prestasi.png" class="card-img-top" alt="...">
                 {{-- <div class="card-body px-0 pb-0">
@@ -110,7 +110,7 @@
 
 
         {{--
-    <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 mb-4">
+    <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
         <a href="app-blog-post.html" class="card style-2 mb-md-0 mb-4">
             <img src="../src/assets/img/grid-blog-style-1.jpg" class="card-img-top" alt="...">
             <div class="card-body px-0 pb-0">
@@ -126,7 +126,7 @@
         </a>
     </div>
 
-    <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 mb-4">
+    <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
         <a href="app-blog-post.html" class="card style-2 mb-md-0 mb-4">
             <img src="../src/assets/img/grid-blog-style-3.jpg" class="card-img-top" alt="...">
             <div class="card-body px-0 pb-0">
@@ -142,7 +142,7 @@
         </a>
     </div>
 
-    <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 mb-4">
+    <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
         <a href="app-blog-post.html" class="card style-2 mb-md-0 mb-4">
             <img src="../src/assets/img/list-blog-style-3.jpg" class="card-img-top" alt="...">
             <div class="card-body px-0 pb-0">
@@ -158,7 +158,7 @@
         </a>
     </div>
 
-    <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 mb-4">
+    <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
         <a href="app-blog-post.html" class="card style-2 mb-md-0 mb-4">
             <img src="../src/assets/img/grid-blog-style-5.jpg" class="card-img-top" alt="...">
             <div class="card-body px-0 pb-0">
@@ -174,7 +174,7 @@
         </a>
     </div>
 
-    <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 mb-4">
+    <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
         <a href="app-blog-post.html" class="card style-2 mb-md-0 mb-4">
             <img src="../src/assets/img/masonry-blog-style-3.jpg" class="card-img-top" alt="...">
             <div class="card-body px-0 pb-0">
@@ -190,7 +190,7 @@
         </a>
     </div>
 
-    <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 mb-4">
+    <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
         <a href="app-blog-post.html" class="card style-2 mb-md-0 mb-4">
             <img src="../src/assets/img/grid-blog-style-4.jpg" class="card-img-top" alt="...">
             <div class="card-body px-0 pb-0">
@@ -206,7 +206,7 @@
         </a>
     </div>
 
-    <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 mb-4">
+    <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
         <a href="app-blog-post.html" class="card style-2 mb-md-0 mb-4">
             <img src="../src/assets/img/masonry-blog-style-4.jpg" class="card-img-top" alt="...">
             <div class="card-body px-0 pb-0">
