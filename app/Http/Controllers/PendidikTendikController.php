@@ -11,7 +11,10 @@ class PendidikTendikController extends Controller
 {
     public function index()
     {
-        return view('pendidik-tendik.index');
+        // Get all PendidikTendik records
+        $pendidikTendiks = PendidikTendik::all();
+        // Pass the data to the view
+        return view('pendidik-tendik.index', compact('pendidikTendiks'));
     }
     public function import(Request $request)
     {

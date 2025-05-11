@@ -9,6 +9,7 @@
         <div class="row mb-2">
             <div class="col-12">
                 <a href="/" class="btn btn-primary mr-2">Kembali</a>
+                <a href="/kelas/create" class="btn btn-secondary mr-2">Tambah Kelas</a>
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                     data-bs-target="#tambahPendidikTendik">
@@ -68,89 +69,32 @@
                 <div class="widget-content widget-content-area">
 
                     <div class="table-responsive">
-                        <table class="table table-bordered" id="tablePendidikTendik" style="width:100%">
+                        <table class="table table-bordered" id="tableKelas" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th scope="col">Nama</th>
-                                    <th scope="col">NIP</th>
-                                    <th scope="col">NUPTK</th>
+                                    <th scope="col">Nama Kelas</th>
+                                    <th scope="col">Wali Kelas</th>
+                                    <th scope="col">Anggota Kelas</th>
                                     <th class="text-center" scope="col"></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {{-- populasikan data dari database --}}
-                                @foreach ($pendidikTendiks as $pendidikTendik)
+                                @foreach ($kelas as $k)
                                     <tr>
+                                        <td>{{ $k->nama_kelas }}</td>
+                                        <td>{{ $k->wali_kelas->user->name ?? '' }}</td>
                                         <td>
-                                            <div class="media">
-                                                <div class="avatar me-2">
-                                                    <img alt="avatar" src="../src/assets/img/profile-7.jpg"
-                                                        class="rounded-circle" />
-                                                </div>
-                                                <div class="media-body align-self-center">
-                                                    <h6 class="mb-0">{{ $pendidikTendik->user->name }}</h6>
-                                                    <span>{{ $pendidikTendik->user->email }}</span>
-                                                </div>
-                                            </div>
+                                            {{ $k->anggota_rombels->count() }} Anggota
                                         </td>
-                                        <td>
-                                            <p class="mb-0">{{ $pendidikTendik->nip }}</p>
-                                            <span class="text-success">{{ $pendidikTendik->nip ? 'ASN' : 'NON-ASN' }}</span>
-                                        </td>
-                                        <td>
-                                            <p class="mb-0">{{ $pendidikTendik->nuptk }}</p>
-                                            <span class="text-success">Management</span>
-                                        </td>
-                                        {{-- <td class="text-center">
-                                        <span class="badge badge-light-success">Online</span>
-                                    </td> --}}
                                         <td class="text-center">
-                                            <div class="action-btns">
-                                                <a href="javascript:void(0);" class="action-btn btn-view bs-tooltip me-2"
-                                                    data-toggle="tooltip" data-placement="top" title="View">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                        class="feather feather-eye">
-                                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                                        <circle cx="12" cy="12" r="3"></circle>
-                                                    </svg>
-                                                </a>
-                                                <a href="javascript:void(0);" class="action-btn btn-edit bs-tooltip me-2"
-                                                    data-toggle="tooltip" data-placement="top" title="Edit">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                        class="feather feather-edit-2">
-                                                        <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z">
-                                                        </path>
-                                                    </svg>
-                                                </a>
-                                                <a href="javascript:void(0);" class="action-btn btn-delete bs-tooltip"
-                                                    data-toggle="tooltip" data-placement="top" title="Delete">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                        class="feather feather-trash-2">
-                                                        <polyline points="3 6 5 6 21 6"></polyline>
-                                                        <path
-                                                            d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
-                                                        </path>
-                                                        <line x1="10" y1="11" x2="10"
-                                                            y2="17">
-                                                        </line>
-                                                        <line x1="14" y1="11" x2="14"
-                                                            y2="17">
-                                                        </line>
-                                                    </svg>
-                                                </a>
-                                            </div>
+                                            <a href="/kelas/{{ $k->id }}/edit" class="btn btn-primary">Edit</a>
+                                            <form action="/kelas/{{ $k->id }}" method="POST" class="d-inline">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="button" class="btn btn-danger confirm-delete">Hapus</button>
+                                            </form>
                                         </td>
-                                    </tr>
                                 @endforeach
-
-
-
                             </tbody>
                         </table>
                     </div>
@@ -179,7 +123,7 @@
 
         <script>
             $(document).ready(function() {
-                $('#tablePendidikTendik').DataTable({
+                $('#tableKelas').DataTable({
                     dom: 'Bfrtip', // B = Buttons
                     buttons: [{
                             extend: 'excelHtml5',
@@ -197,6 +141,25 @@
                             className: 'btn btn-secondary'
                         }
                     ]
+                });
+            });
+        </script>
+        <script>
+            $(document).on('click', 'button.confirm-delete', function() {
+                Swal.fire({
+                    title: 'Yakin untuk menghapus?',
+                    text: "Data yang dihapus akan hilang selamanya!",
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ya, hapus saja !',
+                    cancelButtonText: 'Batalkan'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $(this).parent('form').trigger('submit')
+                    } else if (result.isDenied) {
+                        Swal.fire('dibatalkan', '', 'info')
+                    }
                 });
             });
         </script>

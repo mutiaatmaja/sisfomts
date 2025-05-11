@@ -102,7 +102,7 @@
                         <div class="notification-scroll">
                             <div class="dropdown-item">
                                 <div class="media server-log">
-                                    <img src="src/assets/img/profile-16.jpg" class="img-fluid me-2" alt="avatar">
+                                    <img src="{{asset('src/assets/img/profile-16.jpg') }}" class="img-fluid me-2" alt="avatar">
                                     <div class="media-body">
                                         <div class="data-info">
                                             <h6 class="">Kara Young</h6>
@@ -126,7 +126,7 @@
 
                             <div class="dropdown-item">
                                 <div class="media ">
-                                    <img src="src/assets/img/profile-15.jpg" class="img-fluid me-2" alt="avatar">
+                                    <img src="{{asset('src/assets/img/profile-15.jpg') }}" class="img-fluid me-2" alt="avatar">
                                     <div class="media-body">
                                         <div class="data-info">
                                             <h6 class="">Daisy Anderson</h6>
@@ -150,7 +150,7 @@
 
                             <div class="dropdown-item">
                                 <div class="media file-upload">
-                                    <img src="src/assets/img/profile-21.jpg" class="img-fluid me-2" alt="avatar">
+                                    <img src="{{asset('src/assets/img/profile-21.jpg') }}" class="img-fluid me-2" alt="avatar">
                                     <div class="media-body">
                                         <div class="data-info">
                                             <h6 class="">Oscar Garner</h6>
@@ -283,7 +283,7 @@
                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <div class="avatar-container">
                             <div class="avatar avatar-sm avatar-indicators avatar-online">
-                                <img alt="avatar" src="src/assets/img/profile-30.png" class="rounded-circle">
+                                <img alt="avatar" src="{{asset('src/assets/img/profile-30.png') }}" class="rounded-circle">
                             </div>
                         </div>
                     </a>
