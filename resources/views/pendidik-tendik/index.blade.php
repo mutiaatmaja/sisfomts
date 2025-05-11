@@ -45,8 +45,12 @@
                             </form>
                             <div class="modal-footer">
                                 <button class="btn btn-light-dark" data-bs-dismiss="modal">Batal</button>
-                                <button type="button" onclick="document.getElementById('imporFormPendidikTendik').submit()"
-                                    class="btn btn-primary">Kirim</button>
+                                <button type="button" id="btnKirimPendidik" onclick="submitImporPendidikTendik()"
+                                    class="btn btn-primary d-flex align-items-center gap-2">
+                                    <span id="btnText">Kirim</span>
+                                    <div id="spinner" class="spinner-border spinner-border-sm d-none" role="status"
+                                        aria-hidden="true"></div>
+                                </button>
                             </div>
 
                         </div>
@@ -199,6 +203,21 @@
                     ]
                 });
             });
+        </script>
+        <script>
+            function submitImporPendidikTendik() {
+                const btn = document.getElementById('btnKirimPendidik');
+                const spinner = document.getElementById('spinner');
+                const text = document.getElementById('btnText');
+
+                // Nonaktifkan tombol dan tampilkan spinner
+                btn.disabled = true;
+                spinner.classList.remove('d-none');
+                text.textContent = "Mengirim...";
+
+                // Submit form
+                document.getElementById('imporFormPendidikTendik').submit();
+            }
         </script>
     @endpush
 @endsection

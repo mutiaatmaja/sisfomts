@@ -195,7 +195,7 @@
             <div class="card-body px-0 pb-0">
                 <h5 class="card-title mb-3">9 Reasons why sugar is bad for your health</h5>
                 <div class="media mt-4 mb-0 pt-1">
-                    <img src="{{asset('src/assets/img/profile-19.jpg') }}" class="card-media-image me-3" alt="">
+                    <img src="{{asset('src/assets/img/profile-19.png') }}" class="card-media-image me-3" alt="">
                     <div class="media-body">
                         <h4 class="media-heading mb-1">Oscar Garner</h4>
                         <p class="media-text">25 May</p>
@@ -245,7 +245,7 @@
 
                     <div class="media">
                         <div class="w-img">
-                            <img src="{{asset('src/assets/img/profile-19.jpg') }}" alt="avatar">
+                            <img src="{{asset('src/assets/img/profile-19.png') }}" alt="avatar">
                         </div>
                         <div class="media-body">
                             <h6>Visi Sekolah</h6>
@@ -265,7 +265,7 @@
 
                     <div class="media">
                         <div class="w-img">
-                            <img src="{{asset('src/assets/img/profile-19.jpg') }}" alt="avatar">
+                            <img src="{{asset('src/assets/img/profile-19.png') }}" alt="avatar">
                         </div>
                         <div class="media-body">
                             <h6>Misi Sekolah</h6>

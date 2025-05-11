@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
         // Create admin user
         $adminUser = User::create([
             'name' => 'Admin',
+            'uuid' => fake()->uuid(),
             'email' => 'admin@example.com',
             'password' => bcrypt('password'),
         ]);
@@ -32,6 +33,7 @@ class DatabaseSeeder extends Seeder
         // Create sample guru (teacher)
         $guruUser = User::create([
             'name' => 'Guru Sample',
+            'uuid' => fake()->uuid(),
             'email' => 'guru@example.com',
             'password' => bcrypt('password'),
         ]);
@@ -47,6 +49,7 @@ class DatabaseSeeder extends Seeder
 
         // Create sample siswa (student)
         $siswaUser = User::create([
+            'uuid' => fake()->uuid(),
             'name' => 'Siswa Sample',
             'email' => 'siswa@example.com',
             'password' => bcrypt('password'),

@@ -24,22 +24,51 @@ class PendidikTendikImport implements ToCollection, WithHeadingRow
     public function collection(Collection $collection)
     {
         foreach ($collection as $row) {
+            // Cek atau buat user berdasarkan email
+            $user = User::firstOrNew(['email' => $row['email']]);
 
-            $uuid = Str::uuid();
-            $user = User::updateOrCreate(
-                ['email' => $row['email']],
-                [
-                    'name' => $row['nama'],
-                    'password' => bcrypt($row['password']), // Set a default password
-                ]
-            )->addRole('guru');
-            PendidikTendik::create([
-                'uuid' => $uuid,
-                'nuptk' => $row['nuptk'],
-                'nip' => $row['nip'],
-                'user_id' => $user->id,
+            if (!$user->exists) {
+                $user->uuid = (string) Str::uuid(); // UUID hanya untuk user baru
+            }
+
+            $user->fill([
+                'name' => $row['nama'],
+                'password' => bcrypt($row['password']),
+                'nik' => $row['nik'],
+                'jenis_kelamin' => $row['jenis_kelamin'],
+                'no_hp' => $row['no_hp'],
+                'alamat' => $row['alamat'],
+                'tempat_lahir' => $row['tempat_lahir'],
+                'tanggal_lahir' => $row['tanggal_lahir'],
             ]);
+            $user->save();
+            $user->syncRoles(['guru']);
+
+            // Cek duplikat NIP/NUPTK oleh user lain
+            $nip = $row['nip'] ? preg_replace('/[^0-9]/', '', $row['nip']) : null;
+            $nuptk = $row['nuptk'] ?? null;
+
+            $nipExists = $nip ? PendidikTendik::where('nip', $nip)->where('user_id', '!=', $user->id)->exists() : false;
+
+            $nuptkExists = $nuptk ? PendidikTendik::where('nuptk', $nuptk)->where('user_id', '!=', $user->id)->exists() : false;
+
+            if ($nipExists || $nuptkExists) {
+                // Duplikat ditemukan, skip baris ini
+                continue;
+            }
+
+            // Ambil atau buat PendidikTendik berdasarkan user_id
+            $pendidik = PendidikTendik::firstOrNew(['user_id' => $user->id]);
+
+            if (!$pendidik->exists) {
+                $pendidik->uuid = (string) Str::uuid(); // UUID hanya untuk entri baru
+            }
+
+            $pendidik->fill([
+                'nip' => $nip,
+                'nuptk' => $nuptk,
+            ]);
+            $pendidik->save();
         }
     }
 }
-
