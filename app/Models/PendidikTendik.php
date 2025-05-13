@@ -12,6 +12,8 @@ class PendidikTendik extends Model
         'nuptk',
         'nip',
         'user_id',
+        'nrg',
+        'npwp'
     ];
 
     //buat relasi ke user

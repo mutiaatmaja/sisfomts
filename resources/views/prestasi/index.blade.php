@@ -9,54 +9,54 @@
         <div class="row mb-2">
             <div class="col-12">
                 <a href="/" class="btn btn-primary mr-2">Kembali</a>
-                <a href="/kelas" class="btn btn-secondary mr-2">Rombongan Belajar</a>
+                <a href="/prestasi/create" class="btn btn-secondary mr-2">Tambah Prestasi</a>
                 @role('admin')
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#imporPesertaDidik">
-                        Import Data
-                    </button>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                    data-bs-target="#tambahPrestasi">
+                    Import Data
+                </button>
 
-                    <!-- Modal -->
-                    <div class="modal fade" id="imporPesertaDidik" tabindex="-1" role="dialog"
-                        aria-labelledby="imporPesertaDidik" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="imporPesertaDidik">Pendidik dan Tenaga Pendidik</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                                        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
-                                            <line x1="18" y1="6" x2="6" y2="18"></line>
-                                            <line x1="6" y1="6" x2="18" y2="18"></line>
-                                        </svg>
-                                    </button>
-                                </div>
-                                <form id="imporFormPesertaDidik" method="POST"
-                                    action="{{ route('admin.peserta-didik.import') }}" enctype="multipart/form-data">
-                                    @csrf
-                                    <div class="modal-body">
-                                        <h4 class="modal-heading mb-4 mt-2">Import Data</h4>
-                                        <p class="modal-text">Pilih file yang akan di Import ke sistem. Gunakan format <a
-                                                href="#" class="text-bold text-primary">Impor Pendidik dan Tenaga
-                                                Kependidikan</a>, agar data yang dimasukkan sesuai</p>
-                                        <input type="file" class="form-control" name="file" id="formFile" />
-
-                                    </div>
-                                </form>
-                                <div class="modal-footer">
-                                    <button class="btn btn-light-dark" data-bs-dismiss="modal">Batal</button>
-                                    <button type="button" id="btnKirimSiswa" onclick="submitImporPendidikTendik()"
-                                        class="btn btn-primary d-flex align-items-center gap-2">
-                                        <span id="btnText">Kirim</span>
-                                        <div id="spinner" class="spinner-border spinner-border-sm d-none" role="status"
-                                            aria-hidden="true"></div>
-                                    </button>
-                                </div>
-
+                <!-- Modal -->
+                <div class="modal fade" id="tambahPrestasi" tabindex="-1" role="dialog"
+                    aria-labelledby="tambahPrestasiTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="tambahPrestasiTitle">Pendidik dan Tenaga Pendidik</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
+                                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                                    </svg>
+                                </button>
                             </div>
+                            <form id="imporFormPrestasi" method="POST"
+                                action="{{ route('admin.pendidik-tendik.import') }}" enctype="multipart/form-data">
+                                @csrf
+                                <div class="modal-body">
+                                    <h4 class="modal-heading mb-4 mt-2">Import Data</h4>
+                                    <p class="modal-text">Pilih file yang akan di Import ke sistem. Gunakan format <a
+                                            href="#" class="text-bold text-primary">Impor Prestasi</a>, agar data yang dimasukkan sesuai</p>
+                                    <input type="file" class="form-control" name="file" id="formFile" />
+
+                                </div>
+                            </form>
+                            <div class="modal-footer">
+                                <button class="btn btn-light-dark" data-bs-dismiss="modal">Batal</button>
+                                <button type="button" id="btnKirimPendidik" onclick="submitImporPrestasi()"
+                                    class="btn btn-primary d-flex align-items-center gap-2">
+                                    <span id="btnText">Kirim</span>
+                                    <div id="spinner" class="spinner-border spinner-border-sm d-none" role="status"
+                                        aria-hidden="true"></div>
+                                </button>
+                            </div>
+
                         </div>
                     </div>
+                </div>
                 @endrole
             </div>
 
@@ -74,18 +74,20 @@
                 <div class="widget-content widget-content-area">
 
                     <div class="table-responsive">
-                        <table class="table table-bordered" id="tablepesertaDidik" style="width:100%">
+                        <table class="table table-bordered" id="tablePrestasi" style="width:100%">
                             <thead>
                                 <tr>
                                     <th scope="col">Nama</th>
-                                    <th scope="col">NIS</th>
-                                    <th scope="col">NISN</th>
-                                    <th scope="col">Kelas</th>
+                                    <th scope="col">NIP</th>
+                                    <th scope="col">NUPTK</th>
+                                    @role('admin')
                                     <th class="text-center" scope="col"></th>
+                                    @endrole
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($pesertaDidiks as $pesertaDidik)
+                                {{-- populasikan data dari database --}}
+                                @foreach ($semuaPrestasi as $prestasi)
                                     <tr>
                                         <td>
                                             <div class="media">
@@ -94,27 +96,23 @@
                                                         class="rounded-circle" />
                                                 </div>
                                                 <div class="media-body align-self-center">
-                                                    <h6 class="mb-0">{{ $pesertaDidik->user->name }}</h6>
-                                                    <span>{{ $pesertaDidik->user->email }}</span>
+                                                    <h6 class="mb-0">{{ $prestasi->user->name }}</h6>
+                                                    <span>{{ $prestasi->user->email }}</span>
                                                 </div>
                                             </div>
                                         </td>
                                         <td>
-                                            <p class="mb-0">{{ $pesertaDidik->nis }}</p>
-                                            <span class="text-success">{{ $pesertaDidik->nis_lokal }}</span>
+                                            <p class="mb-0">{{ $prestasi->nip }}</p>
+                                            <span class="text-success">{{ $prestasi->nip ? 'ASN' : 'NON-ASN' }}</span>
                                         </td>
                                         <td>
-                                            <p class="mb-0">{{ $pesertaDidik->nisn }}</p>
+                                            <p class="mb-0">{{ $prestasi->nuptk }}</p>
                                             <span class="text-success">Management</span>
                                         </td>
-                                        <td>
-                                            <p class="mb-0">{{ $pesertaDidik->kelas->nama_kelas }}</p>
-                                            <span
-                                                class="text-success">{{ $pesertaDidik->kelas->wali_kelas->user->name }}</span>
-                                        </td>
                                         {{-- <td class="text-center">
-                                    <span class="badge badge-light-success">Online</span>
-                                    </td> --}}
+                                        <span class="badge badge-light-success">Online</span>
+                                        </td> --}}
+                                        @role('admin')
                                         <td class="text-center">
                                             <div class="action-btns">
                                                 <a href="javascript:void(0);" class="action-btn btn-view bs-tooltip me-2"
@@ -157,8 +155,10 @@
                                                 </a>
                                             </div>
                                         </td>
+                                        @endrole
                                     </tr>
                                 @endforeach
+
 
 
                             </tbody>
@@ -189,7 +189,7 @@
 
         <script>
             $(document).ready(function() {
-                $('#tablepesertaDidik').DataTable({
+                $('#tablePrestasi').DataTable({
                     dom: 'Bfrtip', // B = Buttons
                     buttons: [{
                             extend: 'excelHtml5',
@@ -211,8 +211,8 @@
             });
         </script>
         <script>
-            function submitImporPendidikTendik() {
-                const btn = document.getElementById('btnKirimSiswa');
+            function submitImporPrestasi() {
+                const btn = document.getElementById('btnKirimPendidik');
                 const spinner = document.getElementById('spinner');
                 const text = document.getElementById('btnText');
 
@@ -222,7 +222,7 @@
                 text.textContent = "Mengirim...";
 
                 // Submit form
-                document.getElementById('imporFormPesertaDidik').submit();
+                document.getElementById('imporFormPrestasi').submit();
             }
         </script>
     @endpush

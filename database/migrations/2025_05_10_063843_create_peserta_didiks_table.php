@@ -14,8 +14,9 @@ return new class extends Migration {
             $table->id();
             $table->uuid('uuid')->unique();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->string('nisn')->unique();
-            $table->string('nama');
+            $table->string('nisn')->nullable();
+            $table->string('nis')->nullable();
+            $table->string('nis_lokal')->nullable();
             $table->timestamps();
         });
     }

@@ -27,12 +27,14 @@ class SiswaImport implements ToCollection, WithHeadingRow
     public function collection(Collection $collection)
     {
         foreach ($collection as $row) {
-            // 1. Handle User (seperti guru)
+
+            // 1. Handle User berdasarkan email
             $user = User::firstOrNew(['email' => $row['email']]);
 
             if (!$user->exists) {
                 $user->uuid = (string) Str::uuid();
             }
+            $alamat = preg_replace("/\r\n|\r|\n/", ', ', $row['alamat']);
 
             $user->fill([
                 'name' => $row['nama'],
@@ -40,22 +42,17 @@ class SiswaImport implements ToCollection, WithHeadingRow
                 'nik' => $row['nik'],
                 'jenis_kelamin' => $row['jenis_kelamin'],
                 'no_hp' => $row['no_hp'],
-                'alamat' => $row['alamat'],
+                'alamat' => $alamat,
                 'tempat_lahir' => $row['tempat_lahir'],
                 'tanggal_lahir' => $row['tanggal_lahir'],
-                'foto' => $row['foto'],
+
             ]);
 
             $user->save();
-            $user->addRole('siswa');
+            $user->syncRoles(['siswa']);
 
-            // 2. Handle Siswa berdasarkan NISN
-            if (empty($row['nisn'])) {
-                // Skip jika NISN kosong
-                continue;
-            }
 
-            $siswa = Siswa::firstOrNew(['nisn' => $row['nisn']]);
+            $siswa = Siswa::firstOrNew(['user_id' => $user->id]);
 
             if (!$siswa->exists) {
                 $siswa->uuid = (string) Str::uuid();
@@ -64,12 +61,14 @@ class SiswaImport implements ToCollection, WithHeadingRow
             $siswa->fill([
                 'user_id' => $user->id,
                 'nisn' => $row['nisn'],
-                'nis' => $row['nis'], // kalau kamu punya NIS biasa juga
+                'nis' => $row['nis'],
+                'nis_lokal' => $row['nis_lokal'],
+
             ]);
 
             $siswa->save();
             // 3. Masukkan ke kelas lewat anggota_rombel
-            $kelas = Kelas::where('nama', $row['nama_kelas'])->first();
+            $kelas = Kelas::where('nama_kelas', $row['nama_kelas'])->first();
 
             if ($kelas) {
                 // Cek apakah siswa sudah terdaftar di kelas ini

@@ -65,8 +65,11 @@ class PendidikTendikImport implements ToCollection, WithHeadingRow
             }
 
             $pendidik->fill([
-                'nip' => $nip,
-                'nuptk' => $nuptk,
+                'nip' => $nip ?? null,
+                'nuptk' => $nuptk ?? null,
+                'nrg' => $row['nrg'] ?? null,
+                'npwp' => $row['npwp'] ?? null,
+                'user_id' => $user->id,
             ]);
             $pendidik->save();
         }

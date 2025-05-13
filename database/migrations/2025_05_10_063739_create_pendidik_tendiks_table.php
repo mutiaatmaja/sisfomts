@@ -13,10 +13,11 @@ return new class extends Migration {
         Schema::create('pendidik_tendiks', function (Blueprint $table) {
             $table->id();
             $table->uuid('uuid')->unique();
-            $table->string('nuptk')->nullable()->unique();
-            $table->string('nip')->nullable()->unique();
+            $table->string('nuptk')->nullable();
+            $table->string('nip')->nullable();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-
+            $table->string('nrg')->nullable();
+            $table->string('npwp')->nullable();
             $table->timestamps();
         });
     }

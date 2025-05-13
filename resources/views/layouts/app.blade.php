@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<!-- Mirrored from designreset.com/cork/html/modern-light-menu/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 May 2025 05:23:09 GMT -->
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
     <title>SiSFO </title>
-    <link rel="icon" type="image/x-icon" href="https://designreset.com/cork/html/src/assets/img/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('src/assets/img/profile-7.png') }}" />
     <link href="{{ asset('layouts/modern-light-menu/css/light/loader.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('layouts/modern-light-menu/css/dark/loader.css')}}" rel="stylesheet" type="text/css" />
     <script src="{{ asset('layouts/modern-light-menu/loader.js')}}"></script>
@@ -136,6 +133,5 @@
 
 </body>
 
-<!-- Mirrored from designreset.com/cork/html/modern-light-menu/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 May 2025 05:23:47 GMT -->
 
 </html>

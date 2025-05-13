@@ -14,7 +14,11 @@ return new class extends Migration
         Schema::create('prestasis', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->text('deskripsi');
+            $table->string('jenjang')->nullable();
+            $table->string('prestasi')->nullable();
+            $table->string('peringkat')->nullable();
+            $table->date('tanggal')->nullable();
+            $table->text('deskripsi')->nullable();
             $table->foreignId('peserta_didik_id')->nullable()->constrained('peserta_didiks')->nullOnDelete();
             $table->timestamps();
         });

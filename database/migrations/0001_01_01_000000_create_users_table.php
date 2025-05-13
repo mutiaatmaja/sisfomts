@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('nik')->unique()->nullable();
+            $table->string('nik')->nullable();
             $table->enum('jenis_kelamin', ['L', 'P'])->nullable();
             $table->string('no_hp')->nullable();
             $table->string('alamat')->nullable();

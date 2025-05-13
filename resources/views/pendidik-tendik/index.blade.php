@@ -9,6 +9,7 @@
         <div class="row mb-2">
             <div class="col-12">
                 <a href="/" class="btn btn-primary mr-2">Kembali</a>
+                @role('admin')
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                     data-bs-target="#tambahPendidikTendik">
@@ -56,6 +57,7 @@
                         </div>
                     </div>
                 </div>
+                @endrole
             </div>
 
         </div>
@@ -78,7 +80,9 @@
                                     <th scope="col">Nama</th>
                                     <th scope="col">NIP</th>
                                     <th scope="col">NUPTK</th>
+                                    @role('admin')
                                     <th class="text-center" scope="col"></th>
+                                    @endrole
                                 </tr>
                             </thead>
                             <tbody>
@@ -88,7 +92,7 @@
                                         <td>
                                             <div class="media">
                                                 <div class="avatar me-2">
-                                                    <img alt="avatar" src="../src/assets/img/profile-7.jpg"
+                                                    <img alt="avatar" src="../src/assets/img/profile-7.png"
                                                         class="rounded-circle" />
                                                 </div>
                                                 <div class="media-body align-self-center">
@@ -107,7 +111,8 @@
                                         </td>
                                         {{-- <td class="text-center">
                                         <span class="badge badge-light-success">Online</span>
-                                    </td> --}}
+                                        </td> --}}
+                                        @role('admin')
                                         <td class="text-center">
                                             <div class="action-btns">
                                                 <a href="javascript:void(0);" class="action-btn btn-view bs-tooltip me-2"
@@ -150,6 +155,7 @@
                                                 </a>
                                             </div>
                                         </td>
+                                        @endrole
                                     </tr>
                                 @endforeach
 

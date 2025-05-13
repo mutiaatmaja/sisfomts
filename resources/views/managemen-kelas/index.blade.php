@@ -9,50 +9,10 @@
         <div class="row mb-2">
             <div class="col-12">
                 <a href="/" class="btn btn-primary mr-2">Kembali</a>
+                @role('admin')
                 <a href="/kelas/create" class="btn btn-secondary mr-2">Tambah Kelas</a>
+                @endrole
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                    data-bs-target="#tambahPendidikTendik">
-                    Import Data
-                </button>
-
-                <!-- Modal -->
-                <div class="modal fade" id="tambahPendidikTendik" tabindex="-1" role="dialog"
-                    aria-labelledby="tambahPendidikTendikTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="tambahPendidikTendikTitle">Pendidik dan Tenaga Pendidik</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
-                                        <line x1="18" y1="6" x2="6" y2="18"></line>
-                                        <line x1="6" y1="6" x2="18" y2="18"></line>
-                                    </svg>
-                                </button>
-                            </div>
-                            <form id="imporFormPendidikTendik" method="POST"
-                                action="{{ route('admin.pendidik-tendik.import') }}" enctype="multipart/form-data">
-                                @csrf
-                                <div class="modal-body">
-                                    <h4 class="modal-heading mb-4 mt-2">Import Data</h4>
-                                    <p class="modal-text">Pilih file yang akan di Import ke sistem. Gunakan format <a
-                                            href="#" class="text-bold text-primary">Impor Pendidik dan Tenaga
-                                            Kependidikan</a>, agar data yang dimasukkan sesuai</p>
-                                    <input type="file" class="form-control" name="file" id="formFile" />
-
-                                </div>
-                            </form>
-                            <div class="modal-footer">
-                                <button class="btn btn-light-dark" data-bs-dismiss="modal">Batal</button>
-                                <button type="button" onclick="document.getElementById('imporFormPendidikTendik').submit()"
-                                    class="btn btn-primary">Kirim</button>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
             </div>
 
         </div>
@@ -75,7 +35,9 @@
                                     <th scope="col">Nama Kelas</th>
                                     <th scope="col">Wali Kelas</th>
                                     <th scope="col">Anggota Kelas</th>
+                                    @role('admin')
                                     <th class="text-center" scope="col"></th>
+                                    @endrole
                                 </tr>
                             </thead>
                             <tbody>
@@ -86,6 +48,7 @@
                                         <td>
                                             {{ $k->anggota_rombels->count() }} Anggota
                                         </td>
+                                        @role('admin')
                                         <td class="text-center">
                                             <a href="/kelas/{{ $k->id }}/edit" class="btn btn-primary">Edit</a>
                                             <form action="/kelas/{{ $k->id }}" method="POST" class="d-inline">
@@ -94,6 +57,7 @@
                                                 <button type="button" class="btn btn-danger confirm-delete">Hapus</button>
                                             </form>
                                         </td>
+                                        @endrole
                                 @endforeach
                             </tbody>
                         </table>
