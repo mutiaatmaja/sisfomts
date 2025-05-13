@@ -8,9 +8,10 @@ class Prestasi extends Model
 {
     //fillable
     protected $fillable = [
-        'nama',
+
         'jenjang',
         'prestasi',
+        'tingkat',
         'peringkat',
         'tanggal',
         'deskripsi',
@@ -19,5 +20,10 @@ class Prestasi extends Model
     public function pesertaDidik()
     {
         return $this->belongsTo(PesertaDidik::class);
+    }
+    //trough ke user
+    public function user()
+    {
+        return $this->hasOneThrough(User::class, PesertaDidik::class, 'id', 'id', 'peserta_didik_id', 'user_id');
     }
 }

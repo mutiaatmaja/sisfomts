@@ -17,6 +17,12 @@ Route::redirect('/home', '/');
 //Pendidik-tendik
 Route::prefix('pendidik-tendik')->group(function () {
     Route::get('/', [PendidikTendikController::class, 'index'])->name('pendidik-tendik.index');
+    Route::get('/create', [PendidikTendikController::class, 'create'])->name('pendidik-tendik.create');
+    Route::post('/store', [PendidikTendikController::class, 'store'])->name('pendidik-tendik.store');
+    Route::get('/{pendidik}/edit', [PendidikTendikController::class, 'edit'])->name('pendidik-tendik.edit');
+    Route::put('/{pendidik}', [PendidikTendikController::class, 'update'])->name('pendidik-tendik.update');
+    Route::delete('/{pendidik}', [PendidikTendikController::class, 'destroy'])->name('pendidik-tendik.destroy');
+    Route::get('/{pendidik}/show', [PendidikTendikController::class, 'show'])->name('pendidik-tendik.show');
 
 });
 //pesertadidik
@@ -51,5 +57,8 @@ Route::prefix('admin')->name('admin.')->middleware(['role:admin'])->group(functi
     });
     Route::prefix('peserta-didik')->group(function () {
         Route::post('import', [SiswaController::class, 'import'])->name('peserta-didik.import');
+    });
+    Route::prefix('prestasi')->group(function () {
+        Route::post('import', [PrestasiController::class, 'import'])->name('prestasi.import');
     });
 });

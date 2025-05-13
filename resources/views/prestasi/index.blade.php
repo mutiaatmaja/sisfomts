@@ -23,7 +23,7 @@
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="tambahPrestasiTitle">Pendidik dan Tenaga Pendidik</h5>
+                                <h5 class="modal-title" id="tambahPrestasiTitle">Prestasi</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                                     <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -34,7 +34,7 @@
                                 </button>
                             </div>
                             <form id="imporFormPrestasi" method="POST"
-                                action="{{ route('admin.pendidik-tendik.import') }}" enctype="multipart/form-data">
+                                action="{{ route('admin.prestasi.import') }}" enctype="multipart/form-data">
                                 @csrf
                                 <div class="modal-body">
                                     <h4 class="modal-heading mb-4 mt-2">Import Data</h4>
@@ -77,9 +77,10 @@
                         <table class="table table-bordered" id="tablePrestasi" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th scope="col">Nama</th>
-                                    <th scope="col">NIP</th>
-                                    <th scope="col">NUPTK</th>
+                                    <th scope="col">Peserta Didik</th>
+                                    <th scope="col">Prestasi</th>
+                                    <th scope="col">Juara</th>
+                                    <th scope="col">Tanggal</th>
                                     @role('admin')
                                     <th class="text-center" scope="col"></th>
                                     @endrole
@@ -97,17 +98,20 @@
                                                 </div>
                                                 <div class="media-body align-self-center">
                                                     <h6 class="mb-0">{{ $prestasi->user->name }}</h6>
-                                                    <span>{{ $prestasi->user->email }}</span>
+                                                    <span>{{ $prestasi->pesertaDidik->nisn }}</span>
                                                 </div>
                                             </div>
                                         </td>
                                         <td>
-                                            <p class="mb-0">{{ $prestasi->nip }}</p>
-                                            <span class="text-success">{{ $prestasi->nip ? 'ASN' : 'NON-ASN' }}</span>
+                                            <p class="mb-0">{{ $prestasi->prestasi }}</p>
+                                            <span class="text-success">Jenjang {{ $prestasi->jenjang }}</span>
                                         </td>
                                         <td>
-                                            <p class="mb-0">{{ $prestasi->nuptk }}</p>
-                                            <span class="text-success">Management</span>
+                                            <p class="mb-0">{{ $prestasi->peringkat }}</p>
+                                            <span class="text-success">{{ $prestasi->tingkat }}</span>
+                                        </td>
+                                        <td>
+                                            <p class="mb-0">{{ \Carbon\Carbon::parse($prestasi->tanggal)->locale('id')->isoFormat('D MMMM Y') }}</p>
                                         </td>
                                         {{-- <td class="text-center">
                                         <span class="badge badge-light-success">Online</span>
@@ -115,7 +119,7 @@
                                         @role('admin')
                                         <td class="text-center">
                                             <div class="action-btns">
-                                                <a href="javascript:void(0);" class="action-btn btn-view bs-tooltip me-2"
+                                                {{-- <a href="javascript:void(0);" class="action-btn btn-view bs-tooltip me-2"
                                                     data-toggle="tooltip" data-placement="top" title="View">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                         viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -124,8 +128,8 @@
                                                         <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                                         <circle cx="12" cy="12" r="3"></circle>
                                                     </svg>
-                                                </a>
-                                                <a href="javascript:void(0);" class="action-btn btn-edit bs-tooltip me-2"
+                                                </a> --}}
+                                                <a href="{{ route('prestasi.edit', $prestasi->id) }}" class="action-btn btn-edit bs-tooltip me-2"
                                                     data-toggle="tooltip" data-placement="top" title="Edit">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                         viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -135,24 +139,25 @@
                                                         </path>
                                                     </svg>
                                                 </a>
-                                                <a href="javascript:void(0);" class="action-btn btn-delete bs-tooltip"
-                                                    data-toggle="tooltip" data-placement="top" title="Delete">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                        class="feather feather-trash-2">
-                                                        <polyline points="3 6 5 6 21 6"></polyline>
-                                                        <path
-                                                            d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
-                                                        </path>
-                                                        <line x1="10" y1="11" x2="10"
-                                                            y2="17">
-                                                        </line>
-                                                        <line x1="14" y1="11" x2="14"
-                                                            y2="17">
-                                                        </line>
-                                                    </svg>
-                                                </a>
+                                                <form action="{{ route('prestasi.destroy', $prestasi->id) }}" method="POST" class="d-inline">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="action-btn btn-delete bs-tooltip border-0 bg-transparent"
+                                                        data-toggle="tooltip" data-placement="top" title="Delete"
+                                                        onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                            class="feather feather-trash-2">
+                                                            <polyline points="3 6 5 6 21 6"></polyline>
+                                                            <path
+                                                                d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                                            </path>
+                                                            <line x1="10" y1="11" x2="10" y2="17"></line>
+                                                            <line x1="14" y1="11" x2="14" y2="17"></line>
+                                                        </svg>
+                                                    </button>
+                                                </form>
                                             </div>
                                         </td>
                                         @endrole

@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Prestasi;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\Admin\PrestasiImport;
+use App\Models\PesertaDidik;
+use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Validator;
 
 class PrestasiController extends Controller
 {
@@ -36,7 +39,9 @@ class PrestasiController extends Controller
      */
     public function create()
     {
-        //
+        //semua siswa
+        $pesertaDidiks = PesertaDidik::all();
+        return view('prestasi.create', compact('pesertaDidiks'));
     }
 
     /**
@@ -44,7 +49,21 @@ class PrestasiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validasi input
+        $validated = $request->validate([
+            'jenjang' => 'nullable|string|max:255',
+            'prestasi' => 'nullable|string|max:255',
+            'tingkat' => 'nullable|string|max:255',
+            'peringkat' => 'nullable|string|max:255',
+            'tanggal' => 'nullable|date',
+            'deskripsi' => 'nullable|string',
+            'peserta_didik_id' => 'nullable|exists:peserta_didiks,id',
+        ]);
+
+        // Simpan data
+        Prestasi::create($validated);
+
+        return redirect()->route('prestasi.index')->with('success', 'Prestasi berhasil disimpan.');
     }
 
     /**
@@ -58,24 +77,47 @@ class PrestasiController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
-    }
+        $prestasi = Prestasi::findOrFail($id);
+        $pesertaDidiks = PesertaDidik::with('user')->get();
 
+        return view('prestasi.edit', compact('prestasi', 'pesertaDidiks'));
+    }
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+    public function update(Request $request, $id)
+{
+    $prestasi = Prestasi::findOrFail($id);
+
+    $validated = $request->validate([
+        'jenjang' => 'nullable|string|max:255',
+        'prestasi' => 'nullable|string|max:255',
+        'tingkat' => 'nullable|string|max:255',
+        'peringkat' => 'nullable|string|max:255',
+        'tanggal' => 'nullable|date',
+        'deskripsi' => 'nullable|string',
+        'peserta_didik_id' => 'nullable|exists:peserta_didiks,id',
+    ]);
+
+    $prestasi->update($validated);
+
+    return redirect()->route('prestasi.index')->with('success', 'Data prestasi berhasil diperbarui.');
+}
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        //
+        //hapus prestasi
+        $prestasi = Prestasi::findOrFail($id);
+        $prestasi->delete();
+        //pake alert
+
+
+        Alert::toast('Berhasil menghapus Prestasi', 'success');
+        return redirect()->route('prestasi.index')->with('success', 'Prestasi berhasil dihapus.');
     }
 }
