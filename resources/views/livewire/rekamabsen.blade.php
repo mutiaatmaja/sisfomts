@@ -84,7 +84,7 @@
                                     <td>{{ $absen->peserta_didik->user->name }}</td>
                                     <td>{{ $absen->peserta_didik->nisn }}</td>
                                     <td>{{ $absen->peserta_didik->kelas->nama_kelas }}</td>
-                                    <td>{{ $absen->tanggal }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($absen->tanggal)->format('H:i') }}</td>
                                     <td class="text-center">
                                         @if ($absen->keterangan == 'terlambat')
                                             <span class="badge badge-light-danger">TERLAMBAT</span>
