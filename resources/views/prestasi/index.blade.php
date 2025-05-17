@@ -9,8 +9,9 @@
         <div class="row mb-2">
             <div class="col-12">
                 <a href="/" class="btn btn-primary mr-2">Kembali</a>
-                <a href="/prestasi/create" class="btn btn-secondary mr-2">Tambah Prestasi</a>
+
                 @role('admin')
+                <a href="/prestasi/create" class="btn btn-secondary mr-2">Tambah Prestasi</a>
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                     data-bs-target="#tambahPrestasi">

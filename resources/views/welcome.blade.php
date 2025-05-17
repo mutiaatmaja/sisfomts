@@ -3,7 +3,7 @@
     <div class="row layout-top-spacing">
         <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
             <a href="app-blog-post.html" class="card style-2 mb-md-0 mb-4">
-                <img src="{{asset('src/assets/img/informasisekolah.png') }}" class="card-img-top" alt="...">
+                <img src="{{ asset('src/assets/img/informasisekolah.png') }}" class="card-img-top" alt="...">
                 {{-- <div class="card-body px-0 pb-0">
                 <h5 class="card-title mb-3">14 Tips to improve your photography</h5>
                 <div class="media mt-4 mb-0 pt-1">
@@ -17,8 +17,8 @@
             </a>
         </div>
         <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
-            <a href="app-blog-post.html" class="card style-2 mb-md-0 mb-4">
-                <img src="{{asset('src/assets/img/absen_siswa.png') }}" class="card-img-top" alt="...">
+            <a href="{{ route('absen.index') }}" class="card style-2 mb-md-0 mb-4">
+                <img src="{{ asset('src/assets/img/absen_siswa.png') }}" class="card-img-top" alt="...">
                 {{-- <div class="card-body px-0 pb-0">
                 <h5 class="card-title mb-3">14 Tips to improve your photography</h5>
                 <div class="media mt-4 mb-0 pt-1">
@@ -33,7 +33,7 @@
         </div>
         <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
             <a href="/kelas" class="card style-2 mb-md-0 mb-4">
-                <img src="{{asset('src/assets/img/kelas.png') }}" class="card-img-top" alt="...">
+                <img src="{{ asset('src/assets/img/kelas.png') }}" class="card-img-top" alt="...">
                 {{-- <div class="card-body px-0 pb-0">
                 <h5 class="card-title mb-3">14 Tips to improve your photography</h5>
                 <div class="media mt-4 mb-0 pt-1">
@@ -48,7 +48,7 @@
         </div>
         <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
             <a href="/peserta-didik" class="card style-2 mb-md-0 mb-4">
-                <img src="{{asset('src/assets/img/peserta_didik.png') }}" class="card-img-top" alt="...">
+                <img src="{{ asset('src/assets/img/peserta_didik.png') }}" class="card-img-top" alt="...">
                 {{-- <div class="card-body px-0 pb-0">
                 <h5 class="card-title mb-3">14 Tips to improve your photography</h5>
                 <div class="media mt-4 mb-0 pt-1">
@@ -61,24 +61,26 @@
             </div> --}}
             </a>
         </div>
+{{--
         <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
             <a href="app-blog-post.html" class="card style-2 mb-md-0 mb-4">
-                <img src="{{asset('src/assets/img/alumni.png') }}" class="card-img-top" alt="...">
-                {{-- <div class="card-body px-0 pb-0">
-                <h5 class="card-title mb-3">14 Tips to improve your photography</h5>
-                <div class="media mt-4 mb-0 pt-1">
-                    <img src="{{asset('src/assets/img/profile-5.jpg') }}" class="card-media-image me-3" alt="">
-                    <div class="media-body">
-                        <h4 class="media-heading mb-1">Shaun Park</h4>
-                        <p class="media-text">01 May</p>
+                <img src="{{ asset('src/assets/img/alumni.png') }}" class="card-img-top" alt="...">
+                <div class="card-body px-0 pb-0">
+                    <h5 class="card-title mb-3">14 Tips to improve your photography</h5>
+                    <div class="media mt-4 mb-0 pt-1">
+                        <img src="{{ asset('src/assets/img/profile-5.jpg') }}" class="card-media-image me-3" alt="">
+                        <div class="media-body">
+                            <h4 class="media-heading mb-1">Shaun Park</h4>
+                            <p class="media-text">01 May</p>
+                        </div>
                     </div>
                 </div>
-            </div> --}}
             </a>
         </div>
+         --}}
         <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
             <a href="/pendidik-tendik" class="card style-2 mb-md-0 mb-4">
-                <img src="{{asset('src/assets/img/gurudantendik.png') }}" class="card-img-top" alt="...">
+                <img src="{{ asset('src/assets/img/gurudantendik.png') }}" class="card-img-top" alt="...">
                 {{-- <div class="card-body px-0 pb-0">
                 <h5 class="card-title mb-3">14 Tips to improve your photography</h5>
                 <div class="media mt-4 mb-0 pt-1">
@@ -91,10 +93,10 @@
             </div> --}}
             </a>
         </div>
-        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
+        {{-- <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
             <a href="/peserta-didik" class="card style-2 mb-md-0 mb-4">
-                <img src="{{asset('src/assets/img/sarpras.png') }}" class="card-img-top" alt="...">
-                {{-- <div class="card-body px-0 pb-0">
+                <img src="{{ asset('src/assets/img/sarpras.png') }}" class="card-img-top" alt="...">
+                <div class="card-body px-0 pb-0">
                 <h5 class="card-title mb-3">14 Tips to improve your photography</h5>
                 <div class="media mt-4 mb-0 pt-1">
                     <img src="{{asset('src/assets/img/profile-5.jpg') }}" class="card-media-image me-3" alt="">
@@ -103,12 +105,12 @@
                         <p class="media-text">01 May</p>
                     </div>
                 </div>
-            </div> --}}
+            </div>
             </a>
-        </div>
+        </div> --}}
         <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
             <a href="{{ url('/prestasi') }}" class="card style-2 mb-md-0 mb-4">
-                <img src="{{asset('src/assets/img/prestasi.png') }}" class="card-img-top" alt="...">
+                <img src="{{ asset('src/assets/img/prestasi.png') }}" class="card-img-top" alt="...">
                 {{-- <div class="card-body px-0 pb-0">
                 <h5 class="card-title mb-3">14 Tips to improve your photography</h5>
                 <div class="media mt-4 mb-0 pt-1">
@@ -245,7 +247,7 @@
 
                     <div class="media">
                         <div class="w-img">
-                            <img src="{{asset('src/assets/img/profile-19.png') }}" alt="avatar">
+                            <img src="{{ asset('src/assets/img/profile-19.png') }}" alt="avatar">
                         </div>
                         <div class="media-body">
                             <h6>Visi Sekolah</h6>
@@ -265,7 +267,7 @@
 
                     <div class="media">
                         <div class="w-img">
-                            <img src="{{asset('src/assets/img/profile-19.png') }}" alt="avatar">
+                            <img src="{{ asset('src/assets/img/profile-19.png') }}" alt="avatar">
                         </div>
                         <div class="media-body">
                             <h6>Misi Sekolah</h6>

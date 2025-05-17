@@ -9,9 +9,10 @@
         <div class="row mb-2">
             <div class="col-12">
                 <a href="/" class="btn btn-primary mr-2">Kembali</a>
+
+                @role('admin')
                 <a href="{{ route('pendidik-tendik.create') }}" class="btn btn-secondary mr-2">Tambah Pendidik
                     dan Tenaga Pendidik</a>
-                @role('admin')
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                     data-bs-target="#tambahPendidikTendik">

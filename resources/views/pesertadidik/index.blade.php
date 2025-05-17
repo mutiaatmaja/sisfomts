@@ -9,7 +9,9 @@
         <div class="row mb-2">
             <div class="col-12">
                 <a href="/" class="btn btn-primary mr-2">Kembali</a>
+                @role('admin')
                 <a href="/peserta-didik/create" class="btn btn-secondary mr-2">Tambah Peserta Didik</a>
+                @endrole
                 <a href="/kelas" class="btn btn-warning mr-2">Rombongan Belajar</a>
                 @role('admin')
                     <!-- Button trigger modal -->
@@ -128,6 +130,7 @@
                                                         <circle cx="12" cy="12" r="3"></circle>
                                                     </svg>
                                                 </a>
+                                                @role('admin')
                                                 <a href="{{ route('pesertadidik.edit', $pesertaDidik->uuid) }}" class="action-btn btn-edit bs-tooltip me-2"
                                                     data-toggle="tooltip" data-placement="top" title="Edit">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -157,6 +160,7 @@
                                                         </svg>
                                                     </button>
                                                 </form>
+                                                @endrole
                                             </div>
                                         </td>
                                     </tr>

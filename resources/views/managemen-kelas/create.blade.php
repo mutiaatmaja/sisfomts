@@ -1,9 +1,9 @@
 @extends('layouts.app')
 @section('content')
     @push('styles')
-        <link rel="stylesheet" type="text/css" href="{{ asset('layouts/src/plugins/src/tomSelect/tom-select.default.min.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ asset('layouts/src/plugins/css/light/tomSelect/custom-tomSelect.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ asset('layouts/src/plugins/css/dark/tomSelect/custom-tomSelect.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('html/src/plugins/src/tomSelect/tom-select.default.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('html/src/plugins/css/light/tomSelect/custom-tomSelect.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('html/src/plugins/css/dark/tomSelect/custom-tomSelect.css') }}">
     @endpush
 
     <div class="row layout-top-spacing">
@@ -63,8 +63,8 @@
 
     @push('js')
         <!-- BEGIN PAGE LEVEL SCRIPTS -->
-        <script src="{{ asset('layouts/src/assets/js/scrollspyNav.js') }}"></script>
-        <script src="{{ asset('layouts/src/plugins/src/tomSelect/tom-select.base.js') }}"></script>
+        <script src="{{ asset('html/src/assets/js/scrollspyNav.js') }}"></script>
+        <script src="{{ asset('html/src/plugins/src/tomSelect/tom-select.base.js') }}"></script>
         <script>
             new TomSelect("#wali_kelas_id", {
                 create: false,

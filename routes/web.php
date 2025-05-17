@@ -5,6 +5,8 @@ use App\Http\Controllers\PendidikTendikController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\ManagemenKelasController;
 use App\Http\Controllers\PrestasiController;
+use App\Http\Controllers\InforsekolahController;
+use App\Http\Controllers\AbsenController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -17,22 +19,22 @@ Route::redirect('/home', '/');
 //Pendidik-tendik
 Route::prefix('pendidik-tendik')->group(function () {
     Route::get('/', [PendidikTendikController::class, 'index'])->name('pendidik-tendik.index');
-    Route::get('/create', [PendidikTendikController::class, 'create'])->name('pendidik-tendik.create');
-    Route::post('/store', [PendidikTendikController::class, 'store'])->name('pendidik-tendik.store');
-    Route::get('/{pendidik}/edit', [PendidikTendikController::class, 'edit'])->name('pendidik-tendik.edit');
-    Route::put('/{pendidik}', [PendidikTendikController::class, 'update'])->name('pendidik-tendik.update');
-    Route::delete('/{pendidik}', [PendidikTendikController::class, 'destroy'])->name('pendidik-tendik.destroy');
-    Route::get('/{pendidik}/show', [PendidikTendikController::class, 'show'])->name('pendidik-tendik.show');
+    Route::get('/create', [PendidikTendikController::class, 'create'])->middleware(['role:admin'])->name('pendidik-tendik.create');
+    Route::post('/store', [PendidikTendikController::class, 'store'])->middleware(['role:admin'])->name('pendidik-tendik.store');
+    Route::get('/{pendidik}/edit', [PendidikTendikController::class, 'edit'])->middleware(['role:admin'])->name('pendidik-tendik.edit');
+    Route::put('/{pendidik}', [PendidikTendikController::class, 'update'])->middleware(['role:admin'])->name('pendidik-tendik.update');
+    Route::delete('/{pendidik}', [PendidikTendikController::class, 'destroy'])->middleware(['role:admin'])->name('pendidik-tendik.destroy');
+    Route::get('/{pendidik}/show', [PendidikTendikController::class, 'show'])->middleware(['role:admin'])->name('pendidik-tendik.show');
 
 });
 //pesertadidik
 Route::prefix('peserta-didik')->group(function () {
     Route::get('/', [SiswaController::class, 'index'])->name('pesertadidik.index');
-    Route::get('/create', [SiswaController::class, 'create'])->name('pesertadidik.create');
-    Route::post('/store', [SiswaController::class, 'store'])->name('pesertadidik.store');
-    Route::get('/{siswa}/edit', [SiswaController::class, 'edit'])->name('pesertadidik.edit');
-    Route::put('/{siswa}', [SiswaController::class, 'update'])->name('pesertadidik.update');
-    Route::delete('/{siswa}', [SiswaController::class, 'destroy'])->name('pesertadidik.destroy');
+    Route::get('/create', [SiswaController::class, 'create'])->middleware(['role:admin'])->name('pesertadidik.create');
+    Route::post('/store', [SiswaController::class, 'store'])->middleware(['role:admin'])->name('pesertadidik.store');
+    Route::get('/{siswa}/edit', [SiswaController::class, 'edit'])->middleware(['role:admin'])->name('pesertadidik.edit');
+    Route::put('/{siswa}', [SiswaController::class, 'update'])->middleware(['role:admin'])->name('pesertadidik.update');
+    Route::delete('/{siswa}', [SiswaController::class, 'destroy'])->middleware(['role:admin'])->name('pesertadidik.destroy');
 });
 //managemen kelas
 Route::prefix('kelas')->group(function () {
@@ -45,11 +47,23 @@ Route::prefix('kelas')->group(function () {
 });
 Route::prefix('prestasi')->group(function () {
     Route::get('/', [PrestasiController::class, 'index'])->name('prestasi.index');
-    Route::get('/create', [PrestasiController::class, 'create'])->name('prestasi.create');
-    Route::post('/store', [PrestasiController::class, 'store'])->name('prestasi.store');
-    Route::get('/{prestasi}/edit', [PrestasiController::class, 'edit'])->name('prestasi.edit');
-    Route::put('/{prestasi}', [PrestasiController::class, 'update'])->name('prestasi.update');
-    Route::delete('/{prestasi}', [PrestasiController::class, 'destroy'])->name('prestasi.destroy');
+    Route::get('/create', [PrestasiController::class, 'create'])->middleware(['role:admin'])->name('prestasi.create');
+    Route::post('/store', [PrestasiController::class, 'store'])->middleware(['role:admin'])->name('prestasi.store');
+    Route::get('/{prestasi}/edit', [PrestasiController::class, 'edit'])->middleware(['role:admin'])->name('prestasi.edit');
+    Route::put('/{prestasi}', [PrestasiController::class, 'update'])->middleware(['role:admin'])->name('prestasi.update');
+    Route::delete('/{prestasi}', [PrestasiController::class, 'destroy'])->middleware(['role:admin'])->name('prestasi.destroy');
+});
+Route::prefix('informasi-sekolah')->group(function () {
+    Route::get('/', [InforsekolahController::class, 'index'])->name('informasi-sekolah.index');
+    Route::get('/create', [InforsekolahController::class, 'create'])->middleware(['role:admin'])->name('informasi-sekolah.create');
+    Route::post('/store', [InforsekolahController::class, 'store'])->middleware(['role:admin'])->name('informasi-sekolah.store');
+    Route::get('/{inforsekolah}/edit', [InforsekolahController::class, 'edit'])->middleware(['role:admin'])->name('informasi-sekolah.edit');
+    Route::put('/{inforsekolah}', [InforsekolahController::class, 'update'])->middleware(['role:admin'])->name('informasi-sekolah.update');
+    Route::delete('/{inforsekolah}', [InforsekolahController::class, 'destroy'])->middleware(['role:admin'])->name('informasi-sekolah.destroy');
+});
+Route::prefix('absen')->group(function () {
+    Route::get('/', [AbsenController::class, 'index'])->name('absen.index');
+    Route::get('/rekam', [AbsenController::class, 'rekam'])->name('absen.rekam');
 });
 Route::prefix('admin')->name('admin.')->middleware(['role:admin'])->group(function () {
     Route::prefix('pendidik-tendik')->group(function () {

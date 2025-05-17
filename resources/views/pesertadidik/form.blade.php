@@ -17,7 +17,7 @@
                 <div class="widget-header">
                     <div class="row">
                         <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                            <h4>Tambah Peserta Didik</h4>
+                            <h4>{{ isset($pesertaDidik) ? "Perbarui data ".$pesertaDidik->user->name : "Tambah Peserta Didik" }}</h4>
                         </div>
                     </div>
                 </div>
