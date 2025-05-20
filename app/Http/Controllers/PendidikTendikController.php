@@ -147,6 +147,7 @@ class PendidikTendikController extends Controller
 
     public function destroy(Request $request)
     {
+
         // Validate the request
         $request->validate([
             'uuid' => 'required|exists:pendidik_tendiks,uuid',

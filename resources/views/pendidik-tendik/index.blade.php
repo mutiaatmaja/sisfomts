@@ -142,6 +142,7 @@
                                                 <form action="{{ route('pendidik-tendik.destroy', $pendidikTendik->uuid) }}" method="POST" class="d-inline">
                                                     @csrf
                                                     @method('DELETE')
+                                                    <input type="hidden" name="uuid" value="{{ $pendidikTendik->uuid }}">
                                                     <button type="submit" class="action-btn btn-delete bs-tooltip border-0 bg-transparent"
                                                         data-toggle="tooltip" data-placement="top" title="Delete"
                                                         onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
