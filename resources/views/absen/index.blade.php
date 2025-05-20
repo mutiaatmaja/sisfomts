@@ -9,7 +9,9 @@
         <div class="row mb-2">
             <div class="col-12">
                 <a href="/" class="btn btn-primary mr-2">Kembali</a>
+                @role('admin')
                 <a href="{{ route('absen.rekam') }}" class="btn btn-secondary mr-2">Rekam</a>
+                @endrole
             </div>
 
         </div>

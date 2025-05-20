@@ -61,7 +61,7 @@
             </div> --}}
             </a>
         </div>
-{{--
+        {{--
         <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
             <a href="app-blog-post.html" class="card style-2 mb-md-0 mb-4">
                 <img src="{{ asset('src/assets/img/alumni.png') }}" class="card-img-top" alt="...">
@@ -127,118 +127,118 @@
 
 
         {{--
-    <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
-        <a href="app-blog-post.html" class="card style-2 mb-md-0 mb-4">
-            <img src="{{asset('src/assets/img/grid-blog-style-1.jpg') }}" class="card-img-top" alt="...">
-            <div class="card-body px-0 pb-0">
-                <h5 class="card-title mb-3">The ideal work from home office setup</h5>
-                <div class="media mt-4 mb-0 pt-1">
-                    <img src="{{asset('src/assets/img/profile-2.jpg') }}" class="card-media-image me-3" alt="">
-                    <div class="media-body">
-                        <h4 class="media-heading mb-1">Vanessa Kirby</h4>
-                        <p class="media-text">02 May</p>
+        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
+            <a href="app-blog-post.html" class="card style-2 mb-md-0 mb-4">
+                <img src="{{asset('src/assets/img/grid-blog-style-1.jpg') }}" class="card-img-top" alt="...">
+                <div class="card-body px-0 pb-0">
+                    <h5 class="card-title mb-3">The ideal work from home office setup</h5>
+                    <div class="media mt-4 mb-0 pt-1">
+                        <img src="{{asset('src/assets/img/profile-2.jpg') }}" class="card-media-image me-3" alt="">
+                        <div class="media-body">
+                            <h4 class="media-heading mb-1">Vanessa Kirby</h4>
+                            <p class="media-text">02 May</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </a>
-    </div>
+            </a>
+        </div>
 
-    <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
-        <a href="app-blog-post.html" class="card style-2 mb-md-0 mb-4">
-            <img src="{{asset('src/assets/img/grid-blog-style-3.jpg') }}" class="card-img-top" alt="...">
-            <div class="card-body px-0 pb-0">
-                <h5 class="card-title mb-3">Top haunted houses in Great Britain</h5>
-                <div class="media mt-4 mb-0 pt-1">
-                    <img src="{{asset('src/assets/img/profile-16.jpg') }}" class="card-media-image me-3" alt="">
-                    <div class="media-body">
-                        <h4 class="media-heading mb-1">Kelly Young</h4>
-                        <p class="media-text">10 May</p>
+        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
+            <a href="app-blog-post.html" class="card style-2 mb-md-0 mb-4">
+                <img src="{{asset('src/assets/img/grid-blog-style-3.jpg') }}" class="card-img-top" alt="...">
+                <div class="card-body px-0 pb-0">
+                    <h5 class="card-title mb-3">Top haunted houses in Great Britain</h5>
+                    <div class="media mt-4 mb-0 pt-1">
+                        <img src="{{asset('src/assets/img/profile-16.jpg') }}" class="card-media-image me-3" alt="">
+                        <div class="media-body">
+                            <h4 class="media-heading mb-1">Kelly Young</h4>
+                            <p class="media-text">10 May</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </a>
-    </div>
+            </a>
+        </div>
 
-    <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
-        <a href="app-blog-post.html" class="card style-2 mb-md-0 mb-4">
-            <img src="{{asset('src/assets/img/list-blog-style-3.jpg') }}" class="card-img-top" alt="...">
-            <div class="card-body px-0 pb-0">
-                <h5 class="card-title mb-3">29 Most Beautiful Places in the World</h5>
-                <div class="media mt-4 mb-0 pt-1">
-                    <img src="{{asset('src/assets/img/profile-32.jpg') }}" class="card-media-image me-3" alt="">
-                    <div class="media-body">
-                        <h4 class="media-heading mb-1">Xavier</h4>
-                        <p class="media-text">14 May</p>
+        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
+            <a href="app-blog-post.html" class="card style-2 mb-md-0 mb-4">
+                <img src="{{asset('src/assets/img/list-blog-style-3.jpg') }}" class="card-img-top" alt="...">
+                <div class="card-body px-0 pb-0">
+                    <h5 class="card-title mb-3">29 Most Beautiful Places in the World</h5>
+                    <div class="media mt-4 mb-0 pt-1">
+                        <img src="{{asset('src/assets/img/profile-32.jpg') }}" class="card-media-image me-3" alt="">
+                        <div class="media-body">
+                            <h4 class="media-heading mb-1">Xavier</h4>
+                            <p class="media-text">14 May</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </a>
-    </div>
+            </a>
+        </div>
 
-    <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
-        <a href="app-blog-post.html" class="card style-2 mb-md-0 mb-4">
-            <img src="{{asset('src/assets/img/grid-blog-style-5.jpg') }}" class="card-img-top" alt="...">
-            <div class="card-body px-0 pb-0">
-                <h5 class="card-title mb-3">21 Habits of highly productive people</h5>
-                <div class="media mt-4 mb-0 pt-1">
-                    <img src="{{asset('src/assets/img/profile-2.jpg') }}" class="card-media-image me-3" alt="">
-                    <div class="media-body">
-                        <h4 class="media-heading mb-1">Vanessa Kirby</h4>
-                        <p class="media-text">19 May</p>
+        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
+            <a href="app-blog-post.html" class="card style-2 mb-md-0 mb-4">
+                <img src="{{asset('src/assets/img/grid-blog-style-5.jpg') }}" class="card-img-top" alt="...">
+                <div class="card-body px-0 pb-0">
+                    <h5 class="card-title mb-3">21 Habits of highly productive people</h5>
+                    <div class="media mt-4 mb-0 pt-1">
+                        <img src="{{asset('src/assets/img/profile-2.jpg') }}" class="card-media-image me-3" alt="">
+                        <div class="media-body">
+                            <h4 class="media-heading mb-1">Vanessa Kirby</h4>
+                            <p class="media-text">19 May</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </a>
-    </div>
+            </a>
+        </div>
 
-    <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
-        <a href="app-blog-post.html" class="card style-2 mb-md-0 mb-4">
-            <img src="{{asset('src/assets/img/masonry-blog-style-3.jpg') }}" class="card-img-top" alt="...">
-            <div class="card-body px-0 pb-0">
-                <h5 class="card-title mb-3">9 Reasons why sugar is bad for your health</h5>
-                <div class="media mt-4 mb-0 pt-1">
-                    <img src="{{asset('src/assets/img/profile-19.png') }}" class="card-media-image me-3" alt="">
-                    <div class="media-body">
-                        <h4 class="media-heading mb-1">Oscar Garner</h4>
-                        <p class="media-text">25 May</p>
+        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
+            <a href="app-blog-post.html" class="card style-2 mb-md-0 mb-4">
+                <img src="{{asset('src/assets/img/masonry-blog-style-3.jpg') }}" class="card-img-top" alt="...">
+                <div class="card-body px-0 pb-0">
+                    <h5 class="card-title mb-3">9 Reasons why sugar is bad for your health</h5>
+                    <div class="media mt-4 mb-0 pt-1">
+                        <img src="{{asset('src/assets/img/profile-19.png') }}" class="card-media-image me-3" alt="">
+                        <div class="media-body">
+                            <h4 class="media-heading mb-1">Oscar Garner</h4>
+                            <p class="media-text">25 May</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </a>
-    </div>
+            </a>
+        </div>
 
-    <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
-        <a href="app-blog-post.html" class="card style-2 mb-md-0 mb-4">
-            <img src="{{asset('src/assets/img/grid-blog-style-4.jpg') }}" class="card-img-top" alt="...">
-            <div class="card-body px-0 pb-0">
-                <h5 class="card-title mb-3">7 Effective ways to instantly look more faishonable</h5>
-                <div class="media mt-4 mb-0 pt-1">
-                    <img src="{{asset('src/assets/img/profile-32.jpg') }}" class="card-media-image me-3" alt="">
-                    <div class="media-body">
-                        <h4 class="media-heading mb-1">Xavier</h4>
-                        <p class="media-text">27 May</p>
+        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
+            <a href="app-blog-post.html" class="card style-2 mb-md-0 mb-4">
+                <img src="{{asset('src/assets/img/grid-blog-style-4.jpg') }}" class="card-img-top" alt="...">
+                <div class="card-body px-0 pb-0">
+                    <h5 class="card-title mb-3">7 Effective ways to instantly look more faishonable</h5>
+                    <div class="media mt-4 mb-0 pt-1">
+                        <img src="{{asset('src/assets/img/profile-32.jpg') }}" class="card-media-image me-3" alt="">
+                        <div class="media-body">
+                            <h4 class="media-heading mb-1">Xavier</h4>
+                            <p class="media-text">27 May</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </a>
-    </div>
+            </a>
+        </div>
 
-    <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
-        <a href="app-blog-post.html" class="card style-2 mb-md-0 mb-4">
-            <img src="{{asset('src/assets/img/masonry-blog-style-4.jpg') }}" class="card-img-top" alt="...">
-            <div class="card-body px-0 pb-0">
-                <h5 class="card-title mb-3">How to plan a trip in 7 easy steps</h5>
-                <div class="media mt-4 mb-0 pt-1">
-                    <img src="{{asset('src/assets/img/profile-9.jpg') }}" class="card-media-image me-3" alt="">
-                    <div class="media-body">
-                        <h4 class="media-heading mb-1">Daisy Anderson</h4>
-                        <p class="media-text">31 May</p>
+        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
+            <a href="app-blog-post.html" class="card style-2 mb-md-0 mb-4">
+                <img src="{{asset('src/assets/img/masonry-blog-style-4.jpg') }}" class="card-img-top" alt="...">
+                <div class="card-body px-0 pb-0">
+                    <h5 class="card-title mb-3">How to plan a trip in 7 easy steps</h5>
+                    <div class="media mt-4 mb-0 pt-1">
+                        <img src="{{asset('src/assets/img/profile-9.jpg') }}" class="card-media-image me-3" alt="">
+                        <div class="media-body">
+                            <h4 class="media-heading mb-1">Daisy Anderson</h4>
+                            <p class="media-text">31 May</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </a>
-    </div>
- --}}
+            </a>
+        </div>
+    --}}
     </div>
     <div class="row layout-top-spacing">
         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 layout-spacing">
