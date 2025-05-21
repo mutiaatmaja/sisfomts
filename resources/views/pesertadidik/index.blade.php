@@ -108,7 +108,7 @@
                                         </td>
                                         <td>
                                             <p class="mb-0">{{ $pesertaDidik->nisn }}</p>
-                                            <span class="text-success">Management</span>
+                                            <span class="text-success">Siswa</span>
                                         </td>
                                         <td>
                                             <p class="mb-0">{{ $pesertaDidik->kelas->nama_kelas }}</p>
