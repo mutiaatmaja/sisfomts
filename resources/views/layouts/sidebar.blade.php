@@ -70,7 +70,7 @@
             @endguest
 
 
-            @role('admin')
+            @role('admin-backend')
                 <li class="menu menu-heading">
                     <div class="heading">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -161,7 +161,7 @@
                     </div>
                 </a>
             </li>
-            <li class="menu {{ request()->is('peserta-didik/*') ? 'active' : '' }}">
+            <li class="menu {{ request()->is('peserta-didik*') ? 'active' : '' }}">
                 <a href="/peserta-didik" aria-expanded="false" class="dropdown-toggle">
                     <div class="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -176,7 +176,7 @@
                     </div>
                 </a>
             </li>
-            <li class="menu {{ request()->is('absensi-siswa/*') ? 'active' : '' }}">
+            <li class="menu {{ request()->is('absen*') ? 'active' : '' }}">
                 <a href="{{ route('absen.index') }}" aria-expanded="false" class="dropdown-toggle">
                     <div class="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -192,7 +192,7 @@
                     </div>
                 </a>
             </li>
-            <li class="menu {{ request()->is('kelas/*') ? 'active' : '' }}">
+            <li class="menu {{ request()->is('kelas*') ? 'active' : '' }}">
                 <a href="/kelas" aria-expanded="false" class="dropdown-toggle">
                     <div class="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -207,7 +207,7 @@
                     </div>
                 </a>
             </li>
-            <li class="menu {{ request()->is('pendidik-tendik/*') ? 'active' : '' }}">
+            <li class="menu {{ request()->is('pendidik-tendik*') ? 'active' : '' }}">
                 <a href="/pendidik-tendik" aria-expanded="false" class="dropdown-toggle">
                     <div class="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
