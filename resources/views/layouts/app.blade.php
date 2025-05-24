@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
     <title>Sistem Informasi Mts </title>
-    <link rel="icon" type="image/x-icon" href="https://designreset.com/cork/html/src/assets/img/favicon.ico"/>
+    <link rel="icon" type="image/x-icon" href="{{ asset('gambarutama/logomts.png') }}"/>
     <link href="{{ asset('html/layouts/modern-light-menu/css/light/loader.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('html/layouts/modern-light-menu/css/dark/loader.css') }}" rel="stylesheet" type="text/css" />
     <script src="{{ asset('html/layouts/modern-light-menu/loader.js') }}"></script>
@@ -987,7 +987,7 @@
 
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
     {{-- <script src="{{asset('html/src/plugins/src/apex/apexcharts.min.js') }}"></script> --}}
-    <script src="{{asset('html/src/assets/js/dashboard/dash_1.js') }}"></script>
+    {{-- <script src="{{asset('html/src/assets/js/dashboard/dash_1.js') }}"></script> --}}
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
     @include('sweetalert::alert')
     @stack('js')

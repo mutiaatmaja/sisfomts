@@ -24,11 +24,13 @@ var App = function() {
 
     var categoryScroll = {
         scrollCat: function() {
-            var sidebarWrapper = document.querySelectorAll('.sidebar-wrapper li.active')[0];
+            var sidebarWrapper = document.querySelector('.sidebar-wrapper li.active');
+            if (!sidebarWrapper) return;
+
             var sidebarWrapperTop = sidebarWrapper.offsetTop - 12;
             setTimeout(() => {
                 const scroll = document.querySelector('.menu-categories');
-                scroll.scrollTop = sidebarWrapperTop;
+                if (scroll) scroll.scrollTop = sidebarWrapperTop;
             }, 50);
         }
     }
