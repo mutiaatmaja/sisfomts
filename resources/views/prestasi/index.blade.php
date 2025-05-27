@@ -40,7 +40,7 @@
                                 <div class="modal-body">
                                     <h4 class="modal-heading mb-4 mt-2">Import Data</h4>
                                     <p class="modal-text">Pilih file yang akan di Import ke sistem. Gunakan format <a
-                                            href="#" class="text-bold text-primary">Impor Prestasi</a>, agar data yang dimasukkan sesuai</p>
+                                            href="{{ public_path('docs/prestasi.xlsx') }}" class="text-bold text-primary">Impor Prestasi</a>, agar data yang dimasukkan sesuai</p>
                                     <input type="file" class="form-control" name="file" id="formFile" />
 
                                 </div>

@@ -25,7 +25,7 @@
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="imporPesertaDidik">Pendidik dan Tenaga Pendidik</h5>
+                                    <h5 class="modal-title" id="imporPesertaDidik">Peserta Didik</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                                         <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -41,8 +41,7 @@
                                     <div class="modal-body">
                                         <h4 class="modal-heading mb-4 mt-2">Import Data</h4>
                                         <p class="modal-text">Pilih file yang akan di Import ke sistem. Gunakan format <a
-                                                href="#" class="text-bold text-primary">Impor Pendidik dan Tenaga
-                                                Kependidikan</a>, agar data yang dimasukkan sesuai</p>
+                                                href="{{ public_path('docs/siswa.xlsx') }}" class="text-bold text-primary">Impor Peserta Didikn</a>, agar data yang dimasukkan sesuai</p>
                                         <input type="file" class="form-control" name="file" id="formFile" />
 
                                     </div>
