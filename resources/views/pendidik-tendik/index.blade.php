@@ -41,7 +41,7 @@
                                 <div class="modal-body">
                                     <h4 class="modal-heading mb-4 mt-2">Import Data</h4>
                                     <p class="modal-text">Pilih file yang akan di Import ke sistem. Gunakan format <a
-                                            href="#" class="text-bold text-primary">Impor Pendidik dan Tenaga
+                                            href="{{ asset('docs/guru.xlsx') }}" class="text-bold text-primary">Impor Pendidik dan Tenaga
                                             Kependidikan</a>, agar data yang dimasukkan sesuai</p>
                                     <input type="file" class="form-control" name="file" id="formFile" />
 
