@@ -944,15 +944,13 @@
         <div id="content" class="main-content">
             <div class="layout-px-spacing">
 
-                <div class="middle-content container-xxl p-0">
+                {{-- <div class="middle-content container-xxl p-0"> --}}
                     @isset($slot)
                         {{ $slot }}
                     @endisset
                     @yield('content')
 
-
-
-                </div>
+                {{-- </div> --}}
 
             </div>
             <!--  BEGIN FOOTER  -->

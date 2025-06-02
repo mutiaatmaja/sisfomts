@@ -104,7 +104,7 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <p class="mb-0">{{ $prestasi->prestasi }}</p>
+                                            <p class="mb-0 text-wrap">{{ $prestasi->prestasi }}</p>
                                             <span class="text-success">Jenjang {{ $prestasi->jenjang }}</span>
                                         </td>
                                         <td>
