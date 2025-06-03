@@ -233,6 +233,103 @@
                     </div>
                 </a>
             </li>
+            <li class="menu {{ request()->is('zona-integritas') ? 'active' : '' }}">
+                <a href="/zona-integritas" aria-expanded="false" class="dropdown-toggle">
+                    <div class="">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" class="feather feather-square">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                        </svg>
+                        <span>Suara Madrasah</span>
+                    </div>
+                </a>
+            </li>
+            <li class="menu {{ request()->is('aplikasi-kemenag') ? 'active' : '' }}">
+                <a href="/aplikasi-kemenag" aria-expanded="false" class="dropdown-toggle">
+                    <div class="">
+                        <img src="{{ asset('gambarutama/depag.png') }}" alt="Suara Madrasah"
+                            style="width: 24px; height: 24px; margin-right: 8px;">
+                        <span>Aplikasi Kemenag</span>
+                    </div>
+                </a>
+            </li>
+            <li class="menu menu-heading">
+                <div class="heading">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="feather feather-minus">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                    <span>Layanan</span>
+                </div>
+            </li>
+            <li class="menu {{ request()->is('akademik') ? 'active' : '' }}">
+                <a href="/akademik" aria-expanded="false" class="dropdown-toggle">
+                    <div class="">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" class="feather feather-trello">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                            <rect x="7" y="7" width="3" height="9"></rect>
+                            <rect x="14" y="7" width="3" height="5"></rect>
+                        </svg>
+                        <span> Akademik</span>
+                    </div>
+                </a>
+            </li>
+            <li class="menu {{ request()->is('administratif*') ? 'active' : '' }}">
+                <a href="#administratif" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <div class="">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" class="feather feather-users">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                            <circle cx="9" cy="7" r="4" />
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                        </svg>
+                        <span> Administratif</span>
+                    </div>
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" class="feather feather-chevron-right">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </div>
+                </a>
+                <ul class="collapse submenu list-unstyled {{ request()->is('administratif*') ? 'show' : '' }}"
+                    id="administratif" data-bs-parent="#accordionExample">
+                    <li class="{{ request()->is('administratif/peserta-didik') ? 'active' : '' }}"">
+                        <a href="/administratif/peserta-didik"> SPMB </a>
+                    </li>
+                    <li class="{{ request()->is('administratif/kelas') ? 'active' : '' }}"">
+                        <a href="/administratif/kelas"> Formulir Online </a>
+                    </li>
+                    <li class="{{ request()->is('administratif/absen') ? 'active' : '' }}"">
+                        <a href="/administratif/absen"> Angket Layanan </a>
+                    </li>
+                    <li class="{{ request()->is('administratif/prestasi') ? 'active' : '' }}"">
+                        <a href="/administratif/prestasi"> Layanan Terpadu </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="menu {{ request()->is('/') ? 'active' : '' }}">
+                <a href="/" aria-expanded="false" class="dropdown-toggle">
+                    <div class="">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" class="feather feather-terminal">
+                            <polyline points="4 17 10 11 4 5"></polyline>
+                            <line x1="12" y1="19" x2="20" y2="19"></line>
+                        </svg>
+                        <span>Aplikasi Lain</span>
+                    </div>
+                </a>
+            </li>
+
+
 
             {{--
                 <li class="menu {{ request()->is('alumni-sekolah/*') ? 'active' : '' }}">
