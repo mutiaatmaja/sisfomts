@@ -8,6 +8,9 @@ use App\Http\Controllers\PrestasiController;
 use App\Http\Controllers\InforsekolahController;
 use App\Http\Controllers\AbsenController;
 use App\Http\Controllers\ZonaIntegritasController;
+use App\Http\Controllers\ApskemenagController;
+use App\Http\Controllers\AkademikController;
+use App\Http\Controllers\ApslainController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -128,6 +131,16 @@ Route::prefix('informasi-sekolah')->group(function () {
 Route::prefix('zona-integritas')->group(function () {
     Route::get('/', [ZonaIntegritasController::class, 'index'])->name('zona-integritas.index');
 });
+Route::prefix('aplikasi-kemenag')->group(function () {
+    Route::get('/', [ApskemenagController::class, 'index'])->name('apskemenag.index');
+});
+Route::prefix('akademik')->group(function () {
+    Route::get('/', [AkademikController::class, 'index'])->name('akademik.index');
+});
+Route::prefix('aplikasi-lain')->group(function () {
+    Route::get('/', [ApslainController::class, 'index'])->name('apslain.index');
+});
+
 
 Route::prefix('admin')
     ->name('admin.')

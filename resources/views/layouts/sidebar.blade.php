@@ -192,6 +192,12 @@
                     <li class="{{ request()->is('kesiswaan/prestasi') ? 'active' : '' }}"">
                         <a href="/kesiswaan/prestasi"> Prestasi </a>
                     </li>
+                    <li class="{{ request()->is('kesiswaan/osis') ? 'active' : '' }}"">
+                        <a href="/kesiswaan/osis"> OSIS </a>
+                    </li>
+                    <li class="{{ request()->is('kesiswaan/kelulusan') ? 'active' : '' }}"">
+                        <a href="/kesiswaan/kelulusan"> Pengumuman Kelulusan </a>
+                    </li>
                 </ul>
             </li>
             <li class="menu {{ request()->is('kepegawaian*') ? 'active' : '' }}">
@@ -301,22 +307,22 @@
                 </a>
                 <ul class="collapse submenu list-unstyled {{ request()->is('administratif*') ? 'show' : '' }}"
                     id="administratif" data-bs-parent="#accordionExample">
-                    <li class="{{ request()->is('administratif/peserta-didik') ? 'active' : '' }}"">
-                        <a href="/administratif/peserta-didik"> SPMB </a>
+                    <li class="{{ request()->is('administratif/spmb') ? 'active' : '' }}"">
+                        <a href="/administratif/spmb"> SPMB </a>
                     </li>
-                    <li class="{{ request()->is('administratif/kelas') ? 'active' : '' }}"">
-                        <a href="/administratif/kelas"> Formulir Online </a>
+                    <li class="{{ request()->is('administratif/formulir') ? 'active' : '' }}"">
+                        <a href="/administratif/formulir"> Formulir Online </a>
                     </li>
-                    <li class="{{ request()->is('administratif/absen') ? 'active' : '' }}"">
-                        <a href="/administratif/absen"> Angket Layanan </a>
+                    <li class="{{ request()->is('administratif/angket') ? 'active' : '' }}"">
+                        <a href="/administratif/angket"> Angket Layanan </a>
                     </li>
-                    <li class="{{ request()->is('administratif/prestasi') ? 'active' : '' }}"">
-                        <a href="/administratif/prestasi"> Layanan Terpadu </a>
+                    <li class="{{ request()->is('administratif/terpadu') ? 'active' : '' }}"">
+                        <a href="/administratif/terpadu"> Layanan Terpadu </a>
                     </li>
                 </ul>
             </li>
-            <li class="menu {{ request()->is('/') ? 'active' : '' }}">
-                <a href="/" aria-expanded="false" class="dropdown-toggle">
+            <li class="menu {{ request()->is('aplikasi-lain') ? 'active' : '' }}">
+                <a href="/aplikasi-lain" aria-expanded="false" class="dropdown-toggle">
                     <div class="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
