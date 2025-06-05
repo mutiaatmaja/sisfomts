@@ -7,7 +7,7 @@ use App\Http\Controllers\ManagemenKelasController;
 use App\Http\Controllers\PrestasiController;
 use App\Http\Controllers\InforsekolahController;
 use App\Http\Controllers\AbsenController;
-use App\Http\Controllers\ZonaIntegritasController;
+use App\Http\Controllers\ZonaintegritasController;
 use App\Http\Controllers\ApskemenagController;
 use App\Http\Controllers\AkademikController;
 use App\Http\Controllers\ApslainController;
