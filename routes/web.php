@@ -53,6 +53,8 @@ Route::prefix('kesiswaan')->group(function () {
         Route::get('/create', [SiswaController::class, 'create'])
             ->middleware(['role:admin'])
             ->name('pesertadidik.create');
+        Route::get('/{siswa}/show', [SiswaController::class, 'show'])
+            ->name('pesertadidik.show');
         Route::post('/store', [SiswaController::class, 'store'])
             ->middleware(['role:admin'])
             ->name('pesertadidik.store');

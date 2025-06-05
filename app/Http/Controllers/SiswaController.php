@@ -12,6 +12,7 @@ use App\Models\AnggotaRombel;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Storage;
 
 class SiswaController extends Controller
 {
@@ -110,6 +111,7 @@ class SiswaController extends Controller
     public function update(Request $request, $id)
     {
 
+
         $pesertaDidik = PesertaDidik::where('uuid', $id)->firstOrFail();
         $user = User::where('id', $pesertaDidik->user_id)->first();
         $request->validate([
@@ -125,6 +127,20 @@ class SiswaController extends Controller
         $user->alamat = $request->alamat;
         $user->tempat_lahir = $request->tempat_lahir;
         $user->tanggal_lahir = $request->tanggal_lahir;
+
+        // Handle foto upload
+        if ($request->hasFile('foto')) {
+            // Hapus foto lama jika ada
+            if ($user->foto && Storage::disk('public')->exists($user->foto)) {
+                Storage::disk('public')->delete($user->foto);
+            }
+            $fotoFile = $request->file('foto');
+            $extension = $fotoFile->getClientOriginalExtension(); // Dapatkan ekstensi file
+            $filename = $pesertaDidik->uuid . '.' . $extension; // Gunakan uuid sebagai nama file
+            $fotoPath = $fotoFile->storeAs('foto_siswa', $filename, 'public');
+            $user->foto = $fotoPath;
+            // Jika ingin menyimpan ekstensi saja, bisa: $user->foto_ext = $extension;
+        }
         $user->save();
         $pesertaDidik->nisn = $request->nisn;
         $pesertaDidik->nis = $request->nis;
@@ -149,6 +165,13 @@ class SiswaController extends Controller
         Alert::success('Success', 'Data peserta didik berhasil dihapus.');
 
         return redirect()->route('pesertadidik.index')->with('success', 'Peserta Didik deleted successfully.');
+    }
+    public function show($uuid)
+    {
+        // Find the PesertaDidik by UUID
+        $pesertaDidik = PesertaDidik::where('uuid', $uuid)->firstOrFail();
+        // Show the details of the PesertaDidik
+        return view('pesertadidik.show', compact('pesertaDidik'));
     }
     public function import(Request $request)
     {
