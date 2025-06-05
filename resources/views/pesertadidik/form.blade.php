@@ -51,6 +51,10 @@
                                     alt="Foto Peserta Didik" class="rounded mb-2" width="240" height="240"
                                     style="object-fit:cover;">
                                 <div class="mb-2 w-100">
+                                    <select id="cameraSelector" class="form-control mb-2">
+                                        <option value="user">Kamera Depan</option>
+                                        <option value="environment">Kamera Belakang</option>
+                                    </select>
                                     <input type="file" class="form-control-file @error('foto') is-invalid @enderror"
                                         id="foto" name="foto" accept="image/*" style="display:none;"
                                         onchange="previewFoto(event)">
@@ -267,23 +271,28 @@
                             const preview = document.getElementById('preview-foto');
                             const btnCapture = document.getElementById('btn-capture');
                             const btnCancel = document.getElementById('btn-cancel-capture');
-                            // Tampilkan video
+                            const selectedCamera = document.getElementById('cameraSelector').value;
+
                             video.style.display = 'block';
                             btnCapture.style.display = 'block';
                             btnCancel.style.display = 'block';
                             preview.style.display = 'none';
                             canvas.style.display = 'none';
 
-                            // Mulai kamera dengan ukuran sedang (240x240)
+                            // Mulai kamera
                             if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
                                 navigator.mediaDevices.getUserMedia({
                                     video: {
+                                        facingMode: selectedCamera,
                                         width: 240,
                                         height: 240
                                     }
                                 }).then(function(stream) {
                                     video.srcObject = stream;
                                     video.play();
+                                }).catch(function(err) {
+                                    console.error("Gagal akses kamera:", err);
+                                    alert("Tidak bisa mengakses kamera. Coba izinkan dari browser.");
                                 });
                             }
                         }
@@ -293,21 +302,23 @@
                             const canvas = document.getElementById('canvas-capture');
                             const preview = document.getElementById('preview-foto');
                             const context = canvas.getContext('2d');
+
                             context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
                             // Stop kamera
                             if (video.srcObject) {
                                 video.srcObject.getTracks().forEach(track => track.stop());
                             }
+
                             // Tampilkan hasil
-                            canvas.style.display = 'none';
                             preview.src = canvas.toDataURL('image/png');
                             preview.style.display = 'block';
                             video.style.display = 'none';
+                            canvas.style.display = 'none';
                             document.getElementById('btn-capture').style.display = 'none';
                             document.getElementById('btn-cancel-capture').style.display = 'none';
 
-                            // Simpan data ke input file (opsional, jika ingin upload hasil capture)
-                            // Konversi dataURL ke file dan set ke input file
+                            // Konversi ke file dan set ke input file
                             dataURLtoFile(canvas.toDataURL('image/png'), 'capture.png').then(function(file) {
                                 let dataTransfer = new DataTransfer();
                                 dataTransfer.items.add(file);
@@ -319,11 +330,13 @@
                             const video = document.getElementById('video-capture');
                             const preview = document.getElementById('preview-foto');
                             const canvas = document.getElementById('canvas-capture');
+
                             video.style.display = 'none';
-                            document.getElementById('btn-capture').style.display = 'none';
-                            document.getElementById('btn-cancel-capture').style.display = 'none';
                             preview.style.display = 'block';
                             canvas.style.display = 'none';
+                            document.getElementById('btn-capture').style.display = 'none';
+                            document.getElementById('btn-cancel-capture').style.display = 'none';
+
                             // Stop kamera
                             if (video.srcObject) {
                                 video.srcObject.getTracks().forEach(track => track.stop());
@@ -339,6 +352,7 @@
                                 }));
                         }
                     </script>
+
 
 
 
