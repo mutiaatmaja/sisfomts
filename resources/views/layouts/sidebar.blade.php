@@ -180,7 +180,7 @@
                 </a>
                 <ul class="collapse submenu list-unstyled {{ request()->is('kesiswaan*') ? 'show' : '' }}"
                     id="kesiswaan" data-bs-parent="#accordionExample">
-                    <li class="{{ request()->is('kesiswaan/peserta-didik') ? 'active' : '' }}"">
+                    <li class="{{ request()->is('kesiswaan/peserta-didik*') ? 'active' : '' }}"">
                         <a href="/kesiswaan/peserta-didik"> Peserta Didik </a>
                     </li>
                     <li class="{{ request()->is('kesiswaan/kelas') ? 'active' : '' }}"">
