@@ -10,7 +10,7 @@
             <div class="col-12">
                 <a href="/" class="btn btn-primary mr-2">Kembali</a>
                 @role('admin')
-                <a href="/peserta-didik/create" class="btn btn-secondary mr-2">Tambah Peserta Didik</a>
+                    <a href="/peserta-didik/create" class="btn btn-secondary mr-2">Tambah Peserta Didik</a>
                 @endrole
                 <a href="/kelas" class="btn btn-warning mr-2">Rombongan Belajar</a>
                 @role('admin')
@@ -41,7 +41,8 @@
                                     <div class="modal-body">
                                         <h4 class="modal-heading mb-4 mt-2">Import Data</h4>
                                         <p class="modal-text">Pilih file yang akan di Import ke sistem. Gunakan format <a
-                                                href="{{ asset('docs/siswa.xlsx') }}" class="text-bold text-primary">Impor Peserta Didik</a>, agar data yang dimasukkan sesuai</p>
+                                                href="{{ asset('docs/siswa.xlsx') }}" class="text-bold text-primary">Impor
+                                                Peserta Didik</a>, agar data yang dimasukkan sesuai</p>
                                         <input type="file" class="form-control" name="file" id="formFile" />
 
                                     </div>
@@ -92,8 +93,14 @@
                                         <td>
                                             <div class="media">
                                                 <div class="avatar me-2">
-                                                    <img alt="avatar" src="{{ $pesertaDidik->user->foto ? asset('storage/' . $pesertaDidik->user->foto) : asset('src/assets/img/profile-7.png') }}"
+                                                    <img alt="avatar"
+                                                        src="{{ $pesertaDidik->user->foto
+                                                            ? asset('storage/' . $pesertaDidik->user->foto) .
+                                                                '?v=' .
+                                                                filemtime(storage_path('app/public/' . $pesertaDidik->user->foto))
+                                                            : asset('src/assets/img/profile-7.png') }}"
                                                         class="rounded-circle" />
+
                                                 </div>
                                                 <div class="media-body align-self-center">
                                                     <h6 class="mb-0">{{ $pesertaDidik->user->name }}</h6>
@@ -119,8 +126,9 @@
                                     </td> --}}
                                         <td class="text-center">
                                             <div class="action-btns">
-                                                <a href="{{ route('pesertadidik.show', ['siswa' => $pesertaDidik->uuid]) }}" class="action-btn btn-view bs-tooltip me-2"
-                                                    data-toggle="tooltip" data-placement="top" title="View">
+                                                <a href="{{ route('pesertadidik.show', ['siswa' => $pesertaDidik->uuid]) }}"
+                                                    class="action-btn btn-view bs-tooltip me-2" data-toggle="tooltip"
+                                                    data-placement="top" title="View">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                         viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -130,36 +138,40 @@
                                                     </svg>
                                                 </a>
                                                 @role('admin')
-
-                                                <a href="{{ route('pesertadidik.edit', $pesertaDidik->uuid) }}" class="action-btn btn-edit bs-tooltip me-2"
-                                                    data-toggle="tooltip" data-placement="top" title="Edit">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                        class="feather feather-edit-2">
-                                                        <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z">
-                                                        </path>
-                                                    </svg>
-                                                </a>
-                                                <form action="{{ route('pesertadidik.destroy', $pesertaDidik->uuid) }}" method="POST" class="d-inline">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="action-btn btn-delete bs-tooltip border-0 bg-transparent"
-                                                        data-toggle="tooltip" data-placement="top" title="Delete"
-                                                        onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+                                                    <a href="{{ route('pesertadidik.edit', $pesertaDidik->uuid) }}"
+                                                        class="action-btn btn-edit bs-tooltip me-2" data-toggle="tooltip"
+                                                        data-placement="top" title="Edit">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                             viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                            class="feather feather-trash-2">
-                                                            <polyline points="3 6 5 6 21 6"></polyline>
-                                                            <path
-                                                                d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                                            class="feather feather-edit-2">
+                                                            <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z">
                                                             </path>
-                                                            <line x1="10" y1="11" x2="10" y2="17"></line>
-                                                            <line x1="14" y1="11" x2="14" y2="17"></line>
                                                         </svg>
-                                                    </button>
-                                                </form>
+                                                    </a>
+                                                    <form action="{{ route('pesertadidik.destroy', $pesertaDidik->uuid) }}"
+                                                        method="POST" class="d-inline">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit"
+                                                            class="action-btn btn-delete bs-tooltip border-0 bg-transparent"
+                                                            data-toggle="tooltip" data-placement="top" title="Delete"
+                                                            onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                height="24" viewBox="0 0 24 24" fill="none"
+                                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                                stroke-linejoin="round" class="feather feather-trash-2">
+                                                                <polyline points="3 6 5 6 21 6"></polyline>
+                                                                <path
+                                                                    d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                                                </path>
+                                                                <line x1="10" y1="11" x2="10"
+                                                                    y2="17"></line>
+                                                                <line x1="14" y1="11" x2="14"
+                                                                    y2="17"></line>
+                                                            </svg>
+                                                        </button>
+                                                    </form>
                                                 @endrole
                                             </div>
                                         </td>
