@@ -92,7 +92,7 @@
                                         <td>
                                             <div class="media">
                                                 <div class="avatar me-2">
-                                                    <img alt="avatar" src="../src/assets/img/profile-7.png"
+                                                    <img alt="avatar" src="{{ $pesertaDidik->user->foto ? asset('storage/' . $pesertaDidik->user->foto) : asset('src/assets/img/profile-7.png') }}"
                                                         class="rounded-circle" />
                                                 </div>
                                                 <div class="media-body align-self-center">

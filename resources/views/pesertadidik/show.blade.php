@@ -8,7 +8,8 @@
                         @php
                             $foto = $pesertaDidik->user->foto ?? null;
                         @endphp
-                        <img src="{{ $foto ? asset('storage/' . $foto) : 'https://bootdey.com/img/Content/avatar/avatar7.png' }}" alt="Admin" class="rounded-circle" width="150">
+                        <img src="{{ $foto ? asset('storage/' . $foto) . '?v=' . filemtime(storage_path('app/public/' . $foto)) : 'https://bootdey.com/img/Content/avatar/avatar7.png' }}" alt="Admin" class="rounded-circle" width="150">
+
                         <div class="mt-3">
                             <h4>{{ $pesertaDidik->user->name }} </h4>
                             <p class="text-secondary mb-1">{{ $pesertaDidik->nisn }}</p>

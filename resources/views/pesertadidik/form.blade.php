@@ -44,7 +44,7 @@
                                 @php
                                     $foto = $pesertaDidik->user->foto ?? null;
                                 @endphp
-                                <img id="preview-foto" src="{{ $foto ? asset('storage/' . $foto) : 'https://bootdey.com/img/Content/avatar/avatar7.png' }}" alt="Foto Peserta Didik" class="rounded mb-2" width="240" height="240" style="object-fit:cover;">
+                                <img id="preview-foto" src="{{ $foto ? asset('storage/' . $foto) . '?v=' . filemtime(storage_path('app/public/' . $foto))  : 'https://bootdey.com/img/Content/avatar/avatar7.png' }}" alt="Foto Peserta Didik" class="rounded mb-2" width="240" height="240" style="object-fit:cover;">
                                 <div class="mb-2 w-100">
                                     <input type="file" class="form-control-file @error('foto') is-invalid @enderror" id="foto" name="foto" accept="image/*" style="display:none;" onchange="previewFoto(event)">
                                     <button type="button" class="btn btn-secondary btn-block mb-1" onclick="document.getElementById('foto').click();">
