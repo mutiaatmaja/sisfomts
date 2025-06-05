@@ -129,7 +129,7 @@ Route::prefix('informasi-sekolah')->group(function () {
 });
 
 Route::prefix('zona-integritas')->group(function () {
-    Route::get('/', [ZonaIntegritasController::class, 'index'])->name('zona-integritas.index');
+    Route::get('/', [ZonaintegritasController::class, 'index'])->name('zona-integritas.index');
 });
 Route::prefix('aplikasi-kemenag')->group(function () {
     Route::get('/', [ApskemenagController::class, 'index'])->name('apskemenag.index');
