@@ -10,9 +10,9 @@
             <div class="col-12">
                 <a href="/" class="btn btn-primary mr-2">Kembali</a>
                 @role('admin')
-                    <a href="/peserta-didik/create" class="btn btn-secondary mr-2">Tambah Peserta Didik</a>
+                    <a href="{{ route('pesertadidik.create') }}" class="btn btn-secondary mr-2">Tambah Peserta Didik</a>
                 @endrole
-                <a href="/kelas" class="btn btn-warning mr-2">Rombongan Belajar</a>
+                <a href="{{ route('kelas.index')}}" class="btn btn-warning mr-2">Rombongan Belajar</a>
                 @role('admin')
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#imporPesertaDidik">
@@ -156,7 +156,7 @@
                                                         <button type="submit"
                                                             class="action-btn btn-delete bs-tooltip border-0 bg-transparent"
                                                             data-toggle="tooltip" data-placement="top" title="Delete"
-                                                            onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+                                                            onclick="confirmDelete(event)">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="24"
                                                                 height="24" viewBox="0 0 24 24" fill="none"
                                                                 stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -172,6 +172,8 @@
                                                             </svg>
                                                         </button>
                                                     </form>
+
+
                                                 @endrole
                                             </div>
                                         </td>
@@ -203,8 +205,37 @@
 
         <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
         <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+        <script>
+            function confirmDelete(event) {
+                event.preventDefault();
+                const form = event.target.closest('form');
 
+                Swal.fire({
+                    title: 'Apakah Anda yakin?',
+                    text: "Data yang dihapus tidak dapat dikembalikan!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ya, hapus!',
+                    cancelButtonText: 'Batal'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            title: 'Menghapus...',
+                            text: 'Mohon tunggu sebentar',
+                            allowOutsideClick: false,
+                            didOpen: () => {
+                                Swal.showLoading();
+                            }
+                        });
+                        form.submit();
+                    }
+                });
+            }
+        </script>
         <script>
             $(document).ready(function() {
                 $('#tablepesertaDidik').DataTable({

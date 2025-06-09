@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use App\Models\Absensi as Absen;
 use Livewire\Attributes\On;
 use Illuminate\Support\Str;
+use Jantinnerezo\LivewireAlert\Facades\LivewireAlert;
 
 class Rekamabsen extends Component
 {
@@ -28,9 +29,8 @@ class Rekamabsen extends Component
 
             if ($sudahAbsen) {
                 $this->pesan .= ' — Siswa sudah absen hari ini.';
-
-            }else {
-
+                LivewireAlert::title('Sudah')->text($siswa->user->name.'-Siswa sudah absen hari ini.')->info()->toast()->position('top-end')->show();
+            } else {
                 // Hitung apakah terlambat
                 $waktuTerlambat = Carbon::createFromTime(7, 15); // Jam 07:15
                 $status = 'hadir';
@@ -50,12 +50,16 @@ class Rekamabsen extends Component
                 ]);
 
                 $this->pesan .= ' — Absen berhasil disimpan.';
+                LivewireAlert::title('Berhasil!')->text($siswa->user->name.'-Sukses Absen.')->success()->toast()->position('top-end')->show();
             }
         } else {
             $this->pesan = 'NISN tidak ditemukan.';
         }
         $this->nisn = '';
-        $this->dispatch('fokuskan-input');
+        // $this->dispatch('fokuskan-input');
+        // $this->dispatch('post-created');
+
+
     }
     public function render()
     {

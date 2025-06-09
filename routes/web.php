@@ -53,8 +53,7 @@ Route::prefix('kesiswaan')->group(function () {
         Route::get('/create', [SiswaController::class, 'create'])
             ->middleware(['role:admin'])
             ->name('pesertadidik.create');
-        Route::get('/{siswa}/show', [SiswaController::class, 'show'])
-            ->name('pesertadidik.show');
+        Route::get('/{siswa}/show', [SiswaController::class, 'show'])->name('pesertadidik.show');
         Route::post('/store', [SiswaController::class, 'store'])
             ->middleware(['role:admin'])
             ->name('pesertadidik.store');
@@ -108,8 +107,13 @@ Route::prefix('kesiswaan')->group(function () {
         Route::get('/rekam', [AbsenController::class, 'rekam'])
             ->middleware(['role:admin'])
             ->name('absen.rekam');
+        Route::get('/rekam2', [AbsenController::class, 'rekam2'])
+            ->middleware(['role:admin'])
+            ->name('absen.rekam2');
+        Route::post('/rekam2proses', [AbsenController::class, 'rekam2proses'])->name('absen.rekam2proses');
     });
 });
+Route::get('/absen/data', [AbsenController::class, 'data'])->name('absen.data');
 
 Route::prefix('informasi-sekolah')->group(function () {
     Route::get('/', [InforsekolahController::class, 'index'])->name('informasi-sekolah.index');
@@ -142,7 +146,6 @@ Route::prefix('akademik')->group(function () {
 Route::prefix('aplikasi-lain')->group(function () {
     Route::get('/', [ApslainController::class, 'index'])->name('apslain.index');
 });
-
 
 Route::prefix('admin')
     ->name('admin.')

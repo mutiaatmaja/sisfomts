@@ -11,6 +11,7 @@
                 <a href="/" class="btn btn-primary mr-2">Kembali</a>
                 @role('admin')
                     <a href="{{ route('absen.rekam') }}" class="btn btn-secondary mr-2">Rekam</a>
+                    <a href="{{ route('absen.rekam2') }}" class="btn btn-secondary mr-2">Rekam-AJAX</a>
                 @endrole
             </div>
 

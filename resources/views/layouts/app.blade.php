@@ -3,6 +3,7 @@
 
 <!-- Mirrored from designreset.com/cork/html/modern-light-menu/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 May 2025 05:23:09 GMT -->
 <head>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">

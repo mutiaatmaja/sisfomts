@@ -65,6 +65,7 @@ class SiswaController extends Controller
                 'tempat_lahir' => $validated['tempat_lahir'] ?? null,
                 'tanggal_lahir' => $validated['tanggal_lahir'] ?? null,
             ]);
+
             $user->save();
             $user->syncRoles(['siswa']);
 
@@ -86,6 +87,24 @@ class SiswaController extends Controller
                 ]);
             }
 
+            // Handle foto upload
+            if ($request->hasFile('foto')) {
+                // Hapus foto lama jika ada
+                if ($user->foto && Storage::disk('public')->exists($user->foto)) {
+                    Storage::disk('public')->delete($user->foto);
+                }
+                $fotoFile = $request->file('foto');
+                $extension = $fotoFile->getClientOriginalExtension(); // Dapatkan ekstensi file
+                $filename = $pesertaDidik->uuid . '.' . $extension; // Gunakan uuid sebagai nama file
+                $filenamebackup = $pesertaDidik->nisn . '_'.$user->name.'_.' . $extension; // Backup file
+                $fotoPath = $fotoFile->storeAs('foto_siswa', $filename, 'public');
+                $fotoPathbackup = $fotoFile->storeAs('foto_siswa_nisn', $filenamebackup, 'public');
+                $user->foto = $fotoPath;
+                // Jika ingin menyimpan ekstensi saja, bisa: $user->foto_ext = $extension;
+                $user->save();
+            }
+
+
             DB::commit();
             Alert::success('Success', 'Data peserta didik berhasil ditambahkan.');
             return redirect()->route('pesertadidik.index')->with('success', 'Data peserta didik berhasil ditambahkan.');
@@ -94,7 +113,7 @@ class SiswaController extends Controller
             report($e);
             return back()
                 ->withErrors([
-                    'error' => 'Terjadi kesalahan saat menyimpan data: ' . $e->getMessage()
+                    'error' => 'Terjadi kesalahan saat menyimpan data: ' . $e->getMessage(),
                 ])
                 ->withInput();
         }
@@ -110,8 +129,6 @@ class SiswaController extends Controller
     }
     public function update(Request $request, $id)
     {
-
-
         $pesertaDidik = PesertaDidik::where('uuid', $id)->firstOrFail();
         $user = User::where('id', $pesertaDidik->user_id)->first();
         $request->validate([
@@ -137,7 +154,9 @@ class SiswaController extends Controller
             $fotoFile = $request->file('foto');
             $extension = $fotoFile->getClientOriginalExtension(); // Dapatkan ekstensi file
             $filename = $pesertaDidik->uuid . '.' . $extension; // Gunakan uuid sebagai nama file
+            $filenamebackup = $pesertaDidik->nisn . '_'.$user->name.'_.' . $extension; // Backup file
             $fotoPath = $fotoFile->storeAs('foto_siswa', $filename, 'public');
+            $fotoPathbackup = $fotoFile->storeAs('foto_siswa_nisn', $filenamebackup, 'public');
             $user->foto = $fotoPath;
             // Jika ingin menyimpan ekstensi saja, bisa: $user->foto_ext = $extension;
         }
