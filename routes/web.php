@@ -12,6 +12,12 @@ use App\Http\Controllers\ApskemenagController;
 use App\Http\Controllers\AkademikController;
 use App\Http\Controllers\ApslainController;
 use App\Http\Controllers\SuaramadrasahController;
+use App\Http\Controllers\Angketlayanan as AngketlayananController;
+use App\Http\Controllers\Formulironline as FormulironlineController;
+use App\Http\Controllers\SpmbController;
+use App\Http\Controllers\Layananterpadu as LayananTerpaduController;
+use App\Http\Controllers\OsisController;
+use App\Http\Controllers\KelulusanController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -61,6 +67,7 @@ Route::prefix('suara-madrasah')->group(function () {
         ->middleware(['role:admin'])
         ->name('suara-madrasah.destroy');
 });
+
 //pesertadidik
 Route::prefix('kesiswaan')->group(function () {
     Route::prefix('peserta-didik')->group(function () {
@@ -127,6 +134,14 @@ Route::prefix('kesiswaan')->group(function () {
             ->name('absen.rekam2');
         Route::post('/rekam2proses', [AbsenController::class, 'rekam2proses'])->name('absen.rekam2proses');
     });
+
+    Route::prefix('osis')->group(function () {
+        Route::get('/', [OsisController::class, 'index'])->name('kesiswaan.osis.index');
+    });
+
+    Route::prefix('kelulusan')->group(function () {
+        Route::get('/', [KelulusanController::class, 'index'])->name('kesiswaan.kelulusan.index');
+    });
 });
 Route::get('/absen/data', [AbsenController::class, 'data'])->name('absen.data');
 
@@ -160,6 +175,118 @@ Route::prefix('akademik')->group(function () {
 });
 Route::prefix('aplikasi-lain')->group(function () {
     Route::get('/', [ApslainController::class, 'index'])->name('apslain.index');
+});
+Route::prefix('administratif')->name('administratif.')->group(function () {
+    Route::prefix('angket-layanan')->group(function () {
+        Route::get('/', [AngketlayananController::class, 'index'])->name('angket-layanan.index');
+        Route::post('/store', [AngketlayananController::class, 'store'])->name('angket-layanan.store');
+        Route::get('/semua-laporan', [AngketlayananController::class, 'semuaLaporan'])
+            ->middleware(['role:admin'])
+            ->name('angket-layanan.semua-laporan');
+        Route::get('/{angket}/show', [AngketlayananController::class, 'show'])
+            ->middleware(['role:admin'])
+            ->name('angket-layanan.show');
+        Route::delete('/{angket}', [AngketlayananController::class, 'destroy'])
+            ->middleware(['role:admin'])
+            ->name('angket-layanan.destroy');
+    });
+
+    Route::prefix('formulir-online')->group(function () {
+        Route::get('/', [FormulironlineController::class, 'index'])->name('formulir-online.index');
+        Route::post('/store', [FormulironlineController::class, 'store'])->name('formulir-online.store');
+        Route::get('/semua-laporan', [FormulironlineController::class, 'semuaLaporan'])
+            ->middleware(['role:admin'])
+            ->name('formulir-online.semua-laporan');
+        Route::get('/{formulir}/show', [FormulironlineController::class, 'show'])
+            ->middleware(['role:admin'])
+            ->name('formulir-online.show');
+        Route::delete('/{formulir}', [FormulironlineController::class, 'destroy'])
+            ->middleware(['role:admin'])
+            ->name('formulir-online.destroy');
+    });
+
+    Route::prefix('spmb')->group(function () {
+        Route::get('/', [SpmbController::class, 'index'])->name('spmb.index');
+        Route::post('/store', [SpmbController::class, 'store'])->name('spmb.store');
+        Route::get('/semua-laporan', [SpmbController::class, 'semuaLaporan'])
+            ->middleware(['role:admin'])
+            ->name('spmb.semua-laporan');
+        Route::get('/{spmb}/show', [SpmbController::class, 'show'])
+            ->middleware(['role:admin'])
+            ->name('spmb.show');
+        Route::delete('/{spmb}', [SpmbController::class, 'destroy'])
+            ->middleware(['role:admin'])
+            ->name('spmb.destroy');
+    });
+
+    Route::prefix('layanan-terpadu')->group(function () {
+        Route::get('/', [LayananTerpaduController::class, 'index'])->name('layanan-terpadu.index');
+        Route::post('/store', [LayananTerpaduController::class, 'store'])->name('layanan-terpadu.store');
+        Route::get('/semua-laporan', [LayananTerpaduController::class, 'semuaLaporan'])
+            ->middleware(['role:admin'])
+            ->name('layanan-terpadu.semua-laporan');
+        Route::get('/{layanan}/show', [LayananTerpaduController::class, 'show'])
+            ->middleware(['role:admin'])
+            ->name('layanan-terpadu.show');
+        Route::delete('/{layanan}', [LayananTerpaduController::class, 'destroy'])
+            ->middleware(['role:admin'])
+            ->name('layanan-terpadu.destroy');
+    });
+});
+Route::prefix('angket-layanan')->group(function () {
+    Route::get('/', [AngketlayananController::class, 'index'])->name('angket-layanan.index');
+    Route::post('/store', [AngketlayananController::class, 'store'])->name('angket-layanan.store');
+    Route::get('/semua-laporan', [AngketlayananController::class, 'semuaLaporan'])
+        ->middleware(['role:admin'])
+        ->name('angket-layanan.semua-laporan');
+    Route::get('/{angket}/show', [AngketlayananController::class, 'show'])
+        ->middleware(['role:admin'])
+        ->name('angket-layanan.show');
+    Route::delete('/{angket}', [AngketlayananController::class, 'destroy'])
+        ->middleware(['role:admin'])
+        ->name('angket-layanan.destroy');
+});
+
+Route::prefix('formulir-online')->group(function () {
+    Route::get('/', [FormulironlineController::class, 'index'])->name('formulir-online.index');
+    Route::post('/store', [FormulironlineController::class, 'store'])->name('formulir-online.store');
+    Route::get('/semua-laporan', [FormulironlineController::class, 'semuaLaporan'])
+        ->middleware(['role:admin'])
+        ->name('formulir-online.semua-laporan');
+    Route::get('/{formulir}/show', [FormulironlineController::class, 'show'])
+        ->middleware(['role:admin'])
+        ->name('formulir-online.show');
+    Route::delete('/{formulir}', [FormulironlineController::class, 'destroy'])
+        ->middleware(['role:admin'])
+        ->name('formulir-online.destroy');
+});
+
+Route::prefix('spmb')->group(function () {
+    Route::get('/', [SpmbController::class, 'index'])->name('spmb.index');
+    Route::post('/store', [SpmbController::class, 'store'])->name('spmb.store');
+    Route::get('/semua-laporan', [SpmbController::class, 'semuaLaporan'])
+        ->middleware(['role:admin'])
+        ->name('spmb.semua-laporan');
+    Route::get('/{spmb}/show', [SpmbController::class, 'show'])
+        ->middleware(['role:admin'])
+        ->name('spmb.show');
+    Route::delete('/{spmb}', [SpmbController::class, 'destroy'])
+        ->middleware(['role:admin'])
+        ->name('spmb.destroy');
+});
+
+Route::prefix('layanan-terpadu')->group(function () {
+    Route::get('/', [LayananTerpaduController::class, 'index'])->name('layanan-terpadu.index');
+    Route::post('/store', [LayananTerpaduController::class, 'store'])->name('layanan-terpadu.store');
+    Route::get('/semua-laporan', [LayananTerpaduController::class, 'semuaLaporan'])
+        ->middleware(['role:admin'])
+        ->name('layanan-terpadu.semua-laporan');
+    Route::get('/{layanan}/show', [LayananTerpaduController::class, 'show'])
+        ->middleware(['role:admin'])
+        ->name('layanan-terpadu.show');
+    Route::delete('/{layanan}', [LayananTerpaduController::class, 'destroy'])
+        ->middleware(['role:admin'])
+        ->name('layanan-terpadu.destroy');
 });
 
 Route::prefix('admin')

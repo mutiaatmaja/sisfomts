@@ -307,17 +307,17 @@
                 </a>
                 <ul class="collapse submenu list-unstyled {{ request()->is('administratif*') ? 'show' : '' }}"
                     id="administratif" data-bs-parent="#accordionExample">
-                    <li class="{{ request()->is('administratif/spmb') ? 'active' : '' }}"">
-                        <a href="/administratif/spmb"> SPMB </a>
+                    <li class="{{ request()->is('administratif/spmb') ? 'active' : '' }}">
+                        <a href="{{ route('administratif.spmb.index') }}"> SPMB </a>
                     </li>
-                    <li class="{{ request()->is('administratif/formulir') ? 'active' : '' }}"">
-                        <a href="/administratif/formulir"> Formulir Online </a>
+                    <li class="{{ request()->is('administratif/formulir-online') ? 'active' : '' }}">
+                        <a href="{{ route('administratif.formulir-online.index') }}"> Formulir Online </a>
                     </li>
-                    <li class="{{ request()->is('administratif/angket') ? 'active' : '' }}"">
-                        <a href="/administratif/angket"> Angket Layanan </a>
+                    <li class="{{ request()->is('administratif/angket-layanan') ? 'active' : '' }}">
+                        <a href="{{ route('administratif.angket-layanan.index') }}"> Angket Layanan </a>
                     </li>
-                    <li class="{{ request()->is('administratif/terpadu') ? 'active' : '' }}"">
-                        <a href="/administratif/terpadu"> Layanan Terpadu </a>
+                    <li class="{{ request()->is('administratif/layanan-terpadu') ? 'active' : '' }}">
+                        <a href="{{ route('administratif.layanan-terpadu.index') }}"> Layanan Terpadu </a>
                     </li>
                 </ul>
             </li>

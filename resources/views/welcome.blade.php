@@ -2,7 +2,7 @@
 @section('content')
     <div class="row layout-top-spacing">
 
-        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
+        <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-4 col-4 mb-3">
             <a href="{{ route('informasi-sekolah.index') }}" class="card style-2 mb-md-0 mb-4">
                 <img src="{{ asset('gambarutama/trans/informasisekolah.png') }}" class="card-img-top" alt="...">
                 {{-- <div class="card-body px-0 pb-0">
@@ -17,7 +17,7 @@
             </div> --}}
             </a>
         </div>
-        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
+        <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-4 col-4 mb-3">
             <a href="{{ route('absen.index') }}" class="card style-2 mb-md-0 mb-4">
                 <img src="{{ asset('gambarutama/trans/absen_siswa.png') }}" class="card-img-top" alt="...">
                 {{-- <div class="card-body px-0 pb-0">
@@ -32,7 +32,7 @@
             </div> --}}
             </a>
         </div>
-        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
+        <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-4 col-4 mb-3">
             <a href="/kelas" class="card style-2 mb-md-0 mb-4">
                 <img src="{{ asset('gambarutama/trans/kelas.png') }}" class="card-img-top" alt="...">
                 {{-- <div class="card-body px-0 pb-0">
@@ -47,7 +47,7 @@
             </div> --}}
             </a>
         </div>
-        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
+        <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-4 col-4 mb-3">
             <a href="/peserta-didik" class="card style-2 mb-md-0 mb-4">
                 <img src="{{ asset('gambarutama/trans/peserta_didik.png') }}" class="card-img-top" alt="...">
                 {{-- <div class="card-body px-0 pb-0">
@@ -63,7 +63,7 @@
             </a>
         </div>
         {{--
-        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
+        <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-4 col-4 mb-3">
             <a href="app-blog-post.html" class="card style-2 mb-md-0 mb-4">
                 <img src="{{ asset('gambarutama/trans/alumni.png') }}" class="card-img-top" alt="...">
                 <div class="card-body px-0 pb-0">
@@ -79,7 +79,7 @@
             </a>
         </div>
          --}}
-        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
+        <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-4 col-4 mb-3">
             <a href="/pendidik-tendik" class="card style-2 mb-md-0 mb-4">
                 <img src="{{ asset('gambarutama/trans/gurudantendik.png') }}" class="card-img-top" alt="...">
                 {{-- <div class="card-body px-0 pb-0">
@@ -94,7 +94,7 @@
             </div> --}}
             </a>
         </div>
-        {{-- <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
+        {{-- <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-4 col-4 mb-3">
             <a href="/peserta-didik" class="card style-2 mb-md-0 mb-4">
                 <img src="{{ asset('gambarutama/trans/sarpras.png') }}" class="card-img-top" alt="...">
                 <div class="card-body px-0 pb-0">
@@ -109,7 +109,7 @@
             </div>
             </a>
         </div> --}}
-        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
+        <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-4 col-4 mb-3">
             <a href="{{ url('/prestasi') }}" class="card style-2 mb-md-0 mb-4">
                 <img src="{{ asset('gambarutama/trans/prestasi.png') }}" class="card-img-top" alt="...">
                 {{-- <div class="card-body px-0 pb-0">
@@ -128,7 +128,7 @@
 
 
         {{--
-        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
+        <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-4 col-4 mb-3">
             <a href="app-blog-post.html" class="card style-2 mb-md-0 mb-4">
                 <img src="{{asset('gambarutama/trans/grid-blog-style-1.jpg') }}" class="card-img-top" alt="...">
                 <div class="card-body px-0 pb-0">
@@ -144,7 +144,7 @@
             </a>
         </div>
 
-        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
+        <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-4 col-4 mb-3">
             <a href="app-blog-post.html" class="card style-2 mb-md-0 mb-4">
                 <img src="{{asset('gambarutama/trans/grid-blog-style-3.jpg') }}" class="card-img-top" alt="...">
                 <div class="card-body px-0 pb-0">
@@ -160,7 +160,7 @@
             </a>
         </div>
 
-        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
+        <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-4 col-4 mb-3">
             <a href="app-blog-post.html" class="card style-2 mb-md-0 mb-4">
                 <img src="{{asset('gambarutama/trans/list-blog-style-3.jpg') }}" class="card-img-top" alt="...">
                 <div class="card-body px-0 pb-0">
@@ -176,7 +176,7 @@
             </a>
         </div>
 
-        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
+        <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-4 col-4 mb-3">
             <a href="app-blog-post.html" class="card style-2 mb-md-0 mb-4">
                 <img src="{{asset('gambarutama/trans/grid-blog-style-5.jpg') }}" class="card-img-top" alt="...">
                 <div class="card-body px-0 pb-0">
@@ -192,7 +192,7 @@
             </a>
         </div>
 
-        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
+        <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-4 col-4 mb-3">
             <a href="app-blog-post.html" class="card style-2 mb-md-0 mb-4">
                 <img src="{{asset('gambarutama/trans/masonry-blog-style-3.jpg') }}" class="card-img-top" alt="...">
                 <div class="card-body px-0 pb-0">
@@ -208,7 +208,7 @@
             </a>
         </div>
 
-        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
+        <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-4 col-4 mb-3">
             <a href="app-blog-post.html" class="card style-2 mb-md-0 mb-4">
                 <img src="{{asset('gambarutama/trans/grid-blog-style-4.jpg') }}" class="card-img-top" alt="...">
                 <div class="card-body px-0 pb-0">
@@ -224,7 +224,7 @@
             </a>
         </div>
 
-        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
+        <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-4 col-4 mb-3">
             <a href="app-blog-post.html" class="card style-2 mb-md-0 mb-4">
                 <img src="{{asset('gambarutama/trans/masonry-blog-style-4.jpg') }}" class="card-img-top" alt="...">
                 <div class="card-body px-0 pb-0">
