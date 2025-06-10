@@ -11,6 +11,7 @@ use App\Http\Controllers\ZonaintegritasController;
 use App\Http\Controllers\ApskemenagController;
 use App\Http\Controllers\AkademikController;
 use App\Http\Controllers\ApslainController;
+use App\Http\Controllers\SuaramadrasahController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -46,6 +47,20 @@ Route::prefix('kepegawaian')->group(function () {
     });
 });
 
+Route::prefix('suara-madrasah')->group(function () {
+    Route::get('/', [SuaramadrasahController::class, 'index'])->name('suara-madrasah.index');
+    Route::post('/store', [SuaramadrasahController::class, 'store'])->name('suara-madrasah.store');
+    Route::get('/semua-lapopran', [SuaramadrasahController::class, 'semuaLaporan'])
+        ->middleware(['role:admin'])
+        ->name('suara-madrasah.semua-laporan');
+    Route::get('/{aduan}/show', [SuaramadrasahController::class, 'show'])
+        ->middleware(['role:admin'])
+        ->name('suara-madrasah.show');
+
+    Route::delete('/{aduan}', [SuaramadrasahController::class, 'destroy'])
+        ->middleware(['role:admin'])
+        ->name('suara-madrasah.destroy');
+});
 //pesertadidik
 Route::prefix('kesiswaan')->group(function () {
     Route::prefix('peserta-didik')->group(function () {
