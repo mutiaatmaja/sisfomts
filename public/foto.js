@@ -33,8 +33,8 @@ function ambilGambar() {
         navigator.mediaDevices.getUserMedia({
             video: {
                 facingMode: selectedCamera,
-                width: 240,
-                height: 240
+                width: 340,
+                height: 340
             }
         })
         .then(function(stream) {
