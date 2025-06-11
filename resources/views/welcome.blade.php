@@ -3,7 +3,7 @@
     <div class="row layout-top-spacing">
 
         <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-4 col-4 mb-3">
-            <a href="{{ route('informasi-sekolah.index') }}" class="card style-2 mb-md-0 mb-4">
+            <a href="{{ route('informasi-sekolah.index') }}" class="card mb-md-0 mb-4">
                 <img src="{{ asset('gambarutama/trans/informasisekolah.png') }}" class="card-img-top" alt="...">
                 {{-- <div class="card-body px-0 pb-0">
                 <h5 class="card-title mb-3">14 Tips to improve your photography</h5>
@@ -18,7 +18,7 @@
             </a>
         </div>
         <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-4 col-4 mb-3">
-            <a href="{{ route('absen.index') }}" class="card style-2 mb-md-0 mb-4">
+            <a href="{{ route('absen.index') }}" class="card mb-md-0 mb-4">
                 <img src="{{ asset('gambarutama/trans/absen_siswa.png') }}" class="card-img-top" alt="...">
                 {{-- <div class="card-body px-0 pb-0">
                 <h5 class="card-title mb-3">14 Tips to improve your photography</h5>
@@ -33,7 +33,7 @@
             </a>
         </div>
         <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-4 col-4 mb-3">
-            <a href="/kelas" class="card style-2 mb-md-0 mb-4">
+            <a href="/kelas" class="card mb-md-0 mb-4">
                 <img src="{{ asset('gambarutama/trans/kelas.png') }}" class="card-img-top" alt="...">
                 {{-- <div class="card-body px-0 pb-0">
                 <h5 class="card-title mb-3">14 Tips to improve your photography</h5>
@@ -48,7 +48,7 @@
             </a>
         </div>
         <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-4 col-4 mb-3">
-            <a href="/peserta-didik" class="card style-2 mb-md-0 mb-4">
+            <a href="/peserta-didik" class="card mb-md-0 mb-4">
                 <img src="{{ asset('gambarutama/trans/peserta_didik.png') }}" class="card-img-top" alt="...">
                 {{-- <div class="card-body px-0 pb-0">
                 <h5 class="card-title mb-3">14 Tips to improve your photography</h5>
@@ -64,7 +64,7 @@
         </div>
         {{--
         <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-4 col-4 mb-3">
-            <a href="app-blog-post.html" class="card style-2 mb-md-0 mb-4">
+            <a href="app-blog-post.html" class="card mb-md-0 mb-4">
                 <img src="{{ asset('gambarutama/trans/alumni.png') }}" class="card-img-top" alt="...">
                 <div class="card-body px-0 pb-0">
                     <h5 class="card-title mb-3">14 Tips to improve your photography</h5>
@@ -80,7 +80,7 @@
         </div>
          --}}
         <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-4 col-4 mb-3">
-            <a href="/pendidik-tendik" class="card style-2 mb-md-0 mb-4">
+            <a href="/pendidik-tendik" class="card mb-md-0 mb-4">
                 <img src="{{ asset('gambarutama/trans/gurudantendik.png') }}" class="card-img-top" alt="...">
                 {{-- <div class="card-body px-0 pb-0">
                 <h5 class="card-title mb-3">14 Tips to improve your photography</h5>
@@ -95,7 +95,7 @@
             </a>
         </div>
         {{-- <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-4 col-4 mb-3">
-            <a href="/peserta-didik" class="card style-2 mb-md-0 mb-4">
+            <a href="/peserta-didik" class="card mb-md-0 mb-4">
                 <img src="{{ asset('gambarutama/trans/sarpras.png') }}" class="card-img-top" alt="...">
                 <div class="card-body px-0 pb-0">
                 <h5 class="card-title mb-3">14 Tips to improve your photography</h5>
@@ -110,7 +110,7 @@
             </a>
         </div> --}}
         <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-4 col-4 mb-3">
-            <a href="{{ url('/prestasi') }}" class="card style-2 mb-md-0 mb-4">
+            <a href="{{ url('/prestasi') }}" class="card mb-md-0 mb-4">
                 <img src="{{ asset('gambarutama/trans/prestasi.png') }}" class="card-img-top" alt="...">
                 {{-- <div class="card-body px-0 pb-0">
                 <h5 class="card-title mb-3">14 Tips to improve your photography</h5>
@@ -129,7 +129,7 @@
 
         {{--
         <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-4 col-4 mb-3">
-            <a href="app-blog-post.html" class="card style-2 mb-md-0 mb-4">
+            <a href="app-blog-post.html" class="card mb-md-0 mb-4">
                 <img src="{{asset('gambarutama/trans/grid-blog-style-1.jpg') }}" class="card-img-top" alt="...">
                 <div class="card-body px-0 pb-0">
                     <h5 class="card-title mb-3">The ideal work from home office setup</h5>
@@ -145,7 +145,7 @@
         </div>
 
         <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-4 col-4 mb-3">
-            <a href="app-blog-post.html" class="card style-2 mb-md-0 mb-4">
+            <a href="app-blog-post.html" class="card mb-md-0 mb-4">
                 <img src="{{asset('gambarutama/trans/grid-blog-style-3.jpg') }}" class="card-img-top" alt="...">
                 <div class="card-body px-0 pb-0">
                     <h5 class="card-title mb-3">Top haunted houses in Great Britain</h5>
@@ -161,7 +161,7 @@
         </div>
 
         <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-4 col-4 mb-3">
-            <a href="app-blog-post.html" class="card style-2 mb-md-0 mb-4">
+            <a href="app-blog-post.html" class="card mb-md-0 mb-4">
                 <img src="{{asset('gambarutama/trans/list-blog-style-3.jpg') }}" class="card-img-top" alt="...">
                 <div class="card-body px-0 pb-0">
                     <h5 class="card-title mb-3">29 Most Beautiful Places in the World</h5>
@@ -177,7 +177,7 @@
         </div>
 
         <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-4 col-4 mb-3">
-            <a href="app-blog-post.html" class="card style-2 mb-md-0 mb-4">
+            <a href="app-blog-post.html" class="card mb-md-0 mb-4">
                 <img src="{{asset('gambarutama/trans/grid-blog-style-5.jpg') }}" class="card-img-top" alt="...">
                 <div class="card-body px-0 pb-0">
                     <h5 class="card-title mb-3">21 Habits of highly productive people</h5>
@@ -193,7 +193,7 @@
         </div>
 
         <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-4 col-4 mb-3">
-            <a href="app-blog-post.html" class="card style-2 mb-md-0 mb-4">
+            <a href="app-blog-post.html" class="card mb-md-0 mb-4">
                 <img src="{{asset('gambarutama/trans/masonry-blog-style-3.jpg') }}" class="card-img-top" alt="...">
                 <div class="card-body px-0 pb-0">
                     <h5 class="card-title mb-3">9 Reasons why sugar is bad for your health</h5>
@@ -209,7 +209,7 @@
         </div>
 
         <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-4 col-4 mb-3">
-            <a href="app-blog-post.html" class="card style-2 mb-md-0 mb-4">
+            <a href="app-blog-post.html" class="card mb-md-0 mb-4">
                 <img src="{{asset('gambarutama/trans/grid-blog-style-4.jpg') }}" class="card-img-top" alt="...">
                 <div class="card-body px-0 pb-0">
                     <h5 class="card-title mb-3">7 Effective ways to instantly look more faishonable</h5>
@@ -225,7 +225,7 @@
         </div>
 
         <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-4 col-4 mb-3">
-            <a href="app-blog-post.html" class="card style-2 mb-md-0 mb-4">
+            <a href="app-blog-post.html" class="card mb-md-0 mb-4">
                 <img src="{{asset('gambarutama/trans/masonry-blog-style-4.jpg') }}" class="card-img-top" alt="...">
                 <div class="card-body px-0 pb-0">
                     <h5 class="card-title mb-3">How to plan a trip in 7 easy steps</h5>

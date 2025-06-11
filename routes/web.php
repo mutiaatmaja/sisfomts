@@ -18,6 +18,7 @@ use App\Http\Controllers\SpmbController;
 use App\Http\Controllers\Layananterpadu as LayananTerpaduController;
 use App\Http\Controllers\OsisController;
 use App\Http\Controllers\KelulusanController;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -303,3 +304,10 @@ Route::prefix('admin')
             Route::post('import', [PrestasiController::class, 'import'])->name('prestasi.import');
         });
     });
+
+Route::middleware(['auth'])->group(function () {
+    // Profile routes
+    Route::get('/profile', [UserController::class, 'profile'])->name('profile');
+    Route::get('/profile/edit', [UserController::class, 'edit'])->name('profile.edit');
+    Route::put('/profile', [UserController::class, 'update'])->name('profile.update');
+});
