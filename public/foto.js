@@ -18,26 +18,36 @@ function ambilGambar() {
     const preview = document.getElementById('preview-foto');
     const btnCapture = document.getElementById('btn-capture');
     const btnCancel = document.getElementById('btn-cancel-capture');
-    // Tampilkan video
+
+    // Ambil mode kamera dari select
+    const selectedCamera = document.getElementById('cameraSelector').value;
+
     video.style.display = 'block';
     btnCapture.style.display = 'block';
     btnCancel.style.display = 'block';
     preview.style.display = 'none';
     canvas.style.display = 'none';
 
-    // Mulai kamera dengan ukuran sedang (240x240)
+    // Start kamera
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
         navigator.mediaDevices.getUserMedia({
             video: {
+                facingMode: selectedCamera,
                 width: 240,
                 height: 240
             }
-        }).then(function (stream) {
+        })
+        .then(function(stream) {
             video.srcObject = stream;
             video.play();
+        })
+        .catch(function(err) {
+            console.error("Gagal akses kamera:", err);
+            alert("Tidak bisa mengakses kamera. Coba izinkan dari browser.");
         });
     }
 }
+
 
 function captureFoto() {
     const video = document.getElementById('video-capture');

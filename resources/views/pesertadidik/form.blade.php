@@ -58,6 +58,10 @@
                                         onclick="document.getElementById('foto').click();">
                                         Browse Foto
                                     </button>
+                                    <select id="cameraSelector" class="form-control mb-2">
+                                        <option value="user">Kamera Depan</option>
+                                        <option value="environment">Kamera Belakang</option>
+                                    </select>
                                     <button type="button" class="btn btn-info btn-block" onclick="ambilGambar()">
                                         Ambil Gambar
                                     </button>
