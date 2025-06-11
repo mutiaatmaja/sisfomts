@@ -33,18 +33,18 @@ function ambilGambar() {
         navigator.mediaDevices.getUserMedia({
             video: {
                 facingMode: selectedCamera,
-                width: 340,
+                width: 240,
                 height: 340
             }
         })
-        .then(function(stream) {
-            video.srcObject = stream;
-            video.play();
-        })
-        .catch(function(err) {
-            console.error("Gagal akses kamera:", err);
-            alert("Tidak bisa mengakses kamera. Coba izinkan dari browser.");
-        });
+            .then(function (stream) {
+                video.srcObject = stream;
+                video.play();
+            })
+            .catch(function (err) {
+                console.error("Gagal akses kamera:", err);
+                alert("Tidak bisa mengakses kamera. Coba izinkan dari browser.");
+            });
     }
 }
 
@@ -54,7 +54,23 @@ function captureFoto() {
     const canvas = document.getElementById('canvas-capture');
     const preview = document.getElementById('preview-foto');
     const context = canvas.getContext('2d');
-    context.drawImage(video, 0, 0, canvas.width, canvas.height);
+    const feedWidth = video.videoWidth;
+    const feedHeight = video.videoHeight;
+
+    // Hitung crop tengah (rasio 3:4 pada feed)
+    const targetAspect = 3 / 4;
+    let sx = 0, sy = 0, sw = feedWidth, sh = feedHeight;
+
+    // Potong sisi lebar (kalau landscape)
+    if (feedWidth / feedHeight > targetAspect) {
+        sw = feedHeight * targetAspect;
+        sx = (feedWidth - sw) / 2;
+    } else {
+        sh = feedWidth / targetAspect;
+        sy = (feedHeight - sh) / 2;
+    }
+
+    context.drawImage(video, sx, sy, sw, sh, 0, 0, canvas.width, canvas.height);
     // Stop kamera
     if (video.srcObject) {
         video.srcObject.getTracks().forEach(track => track.stop());
