@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class PesertaDidik extends Model
 {
     //fillable
-    protected $fillable = ['uuid', 'user_id', 'nisn', 'nis', 'nis_lokal'];
+    protected $fillable = ['uuid', 'user_id', 'nisn', 'nis', 'nis_lokal', 'status'];
     //relasi ke user
     public function user()
     {

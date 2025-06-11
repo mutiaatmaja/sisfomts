@@ -20,7 +20,7 @@ class SiswaController extends Controller
     public function index()
     {
         // Get all PesertaDidik records
-        $pesertaDidiks = PesertaDidik::all();
+        $pesertaDidiks = PesertaDidik::where('status', 'aktif')->get();
         $kelases = Kelas::all();
         // Pass the data to the view
         return view('pesertadidik.index', compact('pesertaDidiks', 'kelases'));

@@ -10,7 +10,7 @@
             <div class="col-12">
                 <a href="/" class="btn btn-primary mr-2">Kembali</a>
                 @role('admin')
-                <a href="/kelas/create" class="btn btn-secondary mr-2">Tambah Kelas</a>
+                <a href="{{ route('kelas.create') }}" class="btn btn-secondary mr-2">Tambah Kelas</a>
                 @endrole
                 <!-- Button trigger modal -->
             </div>

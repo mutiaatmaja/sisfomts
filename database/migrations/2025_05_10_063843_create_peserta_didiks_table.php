@@ -17,6 +17,7 @@ return new class extends Migration {
             $table->string('nisn')->nullable();
             $table->string('nis')->nullable();
             $table->string('nis_lokal')->nullable();
+            $table->string('status')->default('aktif');
             $table->timestamps();
         });
     }

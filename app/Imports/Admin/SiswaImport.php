@@ -57,6 +57,7 @@ class SiswaImport implements ToCollection, WithHeadingRow, WithChunkReading
                     'nisn' => $row['nisn'],
                     'nis' => $row['nis'],
                     'nis_lokal' => $row['nis_lokal'],
+                    'status' => strtoupper($row['nama_kelas']) === 'LULUS' ? 'LULUS' : 'aktif'
                 ]);
                 $siswa->save();
 
