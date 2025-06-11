@@ -34,7 +34,7 @@ function ambilGambar() {
             video: {
                 facingMode: selectedCamera,
                 width: 240,
-                height: 340
+                height: 240
             }
         })
         .then(function(stream) {
