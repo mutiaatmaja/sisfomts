@@ -48,8 +48,8 @@
                                 @endphp
                                 <img id="preview-foto"
                                     src="{{ $foto ? asset('storage/' . $foto) . '?v=' . filemtime(storage_path('app/public/' . $foto)) : 'https://bootdey.com/img/Content/avatar/avatar7.png' }}"
-                                    alt="Foto Peserta Didik" class="rounded mb-2" width="240" height="240"
-                                    style="object-fit:cover;">
+                                    alt="Foto Peserta Didik" class="rounded mb-2" width="450" height="660"
+                                    style="object-fit: cover; display: none;">
                                 <div class="mb-2 w-100">
                                     <input type="file" class="form-control-file @error('foto') is-invalid @enderror"
                                         id="foto" name="foto" accept="image/*" style="display:none;"
@@ -70,9 +70,10 @@
                                     @enderror
                                 </div>
                                 <!-- Video untuk kamera, hidden by default -->
-                                <video id="video-capture" width="240" height="240" autoplay
+                                <video id="video-capture" width="240" height="340" autoplay
                                     style="display:none; border-radius:8px; object-fit:cover; margin-bottom:8px;"></video>
-                                <canvas id="canvas-capture" width="240" height="240" style="display:none;"></canvas>
+                                <canvas id="canvas-capture" width="450" height="660" style="display:none;"></canvas>
+
                                 <button type="button" id="btn-capture" class="btn btn-success btn-block mb-1"
                                     style="display:none;" onclick="captureFoto()">Ambil Foto</button>
                                 <button type="button" id="btn-cancel-capture" class="btn btn-danger btn-block"
