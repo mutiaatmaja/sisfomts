@@ -1,16 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    @push('styles')
-        <style>
-            #video-capture {
-                object-fit: cover;
-                width: 240px;
-                height: 320px;
-                border-radius: 8px;
-                overflow: hidden;
-            }
-        </style>
-    @endpush
+
 
     <div class="row layout-top-spacing">
         <div class="row mb-2">
@@ -289,19 +279,13 @@
                             preview.style.display = 'none';
                             canvas.style.display = 'none';
 
-                            video.setAttribute('width', 240);
-                            video.setAttribute('height', 340);
-
+                            // Mulai kamera
                             if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
                                 navigator.mediaDevices.getUserMedia({
                                     video: {
                                         facingMode: selectedCamera,
-                                        width: {
-                                            ideal: 480
-                                        },
-                                        height: {
-                                            ideal: 720
-                                        }
+                                        width: 450,
+                                        height: 660
                                     }
                                 }).then(function(stream) {
                                     video.srcObject = stream;
@@ -312,7 +296,6 @@
                                 });
                             }
                         }
-
 
                         function captureFoto() {
                             const video = document.getElementById('video-capture');
