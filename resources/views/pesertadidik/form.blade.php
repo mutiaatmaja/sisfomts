@@ -80,29 +80,9 @@
                                     @enderror
                                 </div>
                                 <!-- Video untuk kamera, hidden by default -->
-                                <div class="position-relative mb-2" style="width: 240px; height: 340px;">
-                                    <video id="video-capture" width="240" height="340"
-                                        style="display:none; border-radius:8px; object-fit:cover; z-index:1;"
-                                        class="position-absolute top-0 start-0"></video>
-
-                                    <!-- Crop frame -->
-                                    <div id="crop-frame" class="position-absolute top-0 start-0"
-                                        style="
-                                        display: none;
-                                        width: 100%;
-                                        height: 100%;
-                                        border: 2px dashed rgba(255,255,255,0.7);
-                                        border-radius: 8px;
-                                        box-sizing: border-box;
-                                        z-index: 2;
-                                        pointer-events: none;
-                                    ">
-                                    </div>
-
-                                    <canvas id="canvas-capture" width="240" height="340"
-                                        style="display:none; position:absolute; top:0; left:0; z-index:3;"></canvas>
-                                </div>
-
+                                <video id="video-capture" width="240" height="340" autoplay
+                                    style="display:none; border-radius:8px; object-fit:cover; margin-bottom:8px;"></video>
+                                <canvas id="canvas-capture" width="240" height="340" style="display:none;"></canvas>
                                 <button type="button" id="btn-capture" class="btn btn-success btn-block mb-1"
                                     style="display:none;" onclick="captureFoto()">Ambil Foto</button>
                                 <button type="button" id="btn-cancel-capture" class="btn btn-danger btn-block"
@@ -331,8 +311,6 @@
                                     alert("Tidak bisa mengakses kamera. Coba izinkan dari browser.");
                                 });
                             }
-                            document.getElementById('crop-frame').style.display = 'block';
-
                         }
 
 
@@ -363,8 +341,6 @@
                                 dataTransfer.items.add(file);
                                 document.getElementById('foto').files = dataTransfer.files;
                             });
-                            document.getElementById('crop-frame').style.display = 'none';
-
                         }
 
                         function cancelCapture() {
@@ -382,8 +358,6 @@
                             if (video.srcObject) {
                                 video.srcObject.getTracks().forEach(track => track.stop());
                             }
-                            document.getElementById('crop-frame').style.display = 'none';
-
                         }
 
                         // Helper: convert dataURL to File
