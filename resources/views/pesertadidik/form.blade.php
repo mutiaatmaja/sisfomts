@@ -359,6 +359,7 @@
     @push('js')
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="{{ asset('foto.js') }}?v={{ filemtime(public_path('foto.js')) }}"></script>
         <script>
             function showLoading() {
                 Swal.fire({
