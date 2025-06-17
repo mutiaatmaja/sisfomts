@@ -13,6 +13,7 @@ class Osis extends Model
     protected $fillable = [
         'siswa_id',
         'jabatan',
+        'order',
         'periode'
     ];
 
