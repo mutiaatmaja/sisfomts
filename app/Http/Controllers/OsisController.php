@@ -17,7 +17,7 @@ class OsisController extends Controller
     public function update(Request $request, Osis $osis)
     {
         $request->validate([
-            'siswa_id' => 'required|exists:siswas,id',
+            'siswa_id' => 'required|exists:peserta_didiks,id',
             'jabatan' => 'required|string',
             'periode' => 'required|string'
         ]);
