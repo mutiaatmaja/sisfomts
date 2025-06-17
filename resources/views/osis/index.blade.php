@@ -19,7 +19,7 @@
                         <div class="card">
                             <div class="card-body text-center">
                                 <img src="{{ asset('storage/' . $osis->siswa->user->foto) }}" alt="{{ $osis->siswa->user->name }}"
-                                     class=" mb-3" style=" object-fit: cover;">
+                                     class="img-thumbnail mb-3" width="150px" style=" object-fit: cover;">
                                 <h5 class="card-title">{{ $osis->siswa->user->name }}</h5>
                                 <p class="card-text text-primary">{{ $osis->jabatan }}</p>
                                 <p class="card-text text-muted">{{ $osis->periode }}</p>
