@@ -22,7 +22,7 @@
                                 <div class="card">
                                     <div class="card-body text-center">
                                         <img src="{{ asset('storage/' . $osis->siswa->user->foto) }}" alt="{{ $osis->siswa->user->name }}"
-                                             class="rounded-circle mb-3" style="width: 100px; height: 100px; object-fit: cover;">
+                                             class="img-thumbnail mb-3" width="150px" >
                                         <h5 class="card-title">{{ $osis->siswa->user->name }}</h5>
                                         <p class="card-text">
                                             @php
