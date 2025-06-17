@@ -18,7 +18,7 @@
                     <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
                         <div class="card">
                             <div class="card-body text-center">
-                                <img src="{{ asset('storage/' . $osis->siswa->foto) }}" alt="{{ $osis->siswa->user->name }}"
+                                <img src="{{ asset('storage/' . $osis->siswa->user->foto) }}" alt="{{ $osis->siswa->user->name }}"
                                      class="rounded-circle mb-3" style="width: 100px; height: 100px; object-fit: cover;">
                                 <h5 class="card-title">{{ $osis->siswa->user->name }}</h5>
                                 <p class="card-text text-primary">{{ $osis->jabatan }}</p>

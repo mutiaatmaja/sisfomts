@@ -47,4 +47,17 @@ class OsisController extends Controller
         return redirect()->route('osis.index')
             ->with('success', 'Data pengurus OSIS berhasil ditambahkan');
     }
+
+    public function edit(Osis $osis)
+    {
+        $siswas = PesertaDidik::with('user')->get();
+        return view('osis.edit', compact('osis', 'siswas'));
+    }
+
+    public function destroy(Osis $osis)
+    {
+        $osis->delete();
+        return redirect()->route('osis.index')
+            ->with('success', 'Data pengurus OSIS berhasil dihapus');
+    }
 }
