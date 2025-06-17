@@ -136,8 +136,16 @@ Route::prefix('kesiswaan')->group(function () {
         Route::post('/rekam2proses', [AbsenController::class, 'rekam2proses'])->name('absen.rekam2proses');
     });
 
-    Route::prefix('osis')->group(function () {
-        Route::get('/', [OsisController::class, 'index'])->name('kesiswaan.osis.index');
+    // Public route for viewing OSIS members
+    Route::get('/osis', [OsisController::class, 'index'])->name('osis.index');
+
+    // Admin-only routes for managing OSIS
+    Route::prefix('osis')->middleware(['auth', 'role:admin'])->group(function () {
+        Route::get('/create', [OsisController::class, 'create'])->name('osis.create');
+        Route::post('/', [OsisController::class, 'store'])->name('osis.store');
+        Route::get('/{osis}/edit', [OsisController::class, 'edit'])->name('osis.edit');
+        Route::put('/{osis}', [OsisController::class, 'update'])->name('osis.update');
+        Route::delete('/{osis}', [OsisController::class, 'destroy'])->name('osis.destroy');
     });
 
     Route::prefix('kelulusan')->group(function () {

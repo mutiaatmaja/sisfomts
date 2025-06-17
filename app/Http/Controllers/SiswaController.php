@@ -47,6 +47,7 @@ class SiswaController extends Controller
             'nis' => 'nullable|string',
             'nis_lokal' => 'nullable|string',
             'kelas_id' => 'nullable|exists:kelas,id',
+            'status' => 'required|in:AKTIF,KELUAR,LULUS',
         ]);
 
         DB::beginTransaction();
@@ -76,6 +77,7 @@ class SiswaController extends Controller
                 'nisn' => $validated['nisn'],
                 'nis' => $validated['nis'] ?? null,
                 'nis_lokal' => $validated['nis_lokal'] ?? null,
+                'status' => strtoupper($validated['status']),
             ]);
             $pesertaDidik->save();
 
@@ -134,6 +136,7 @@ class SiswaController extends Controller
         $request->validate([
             'nama' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,' . $user->id,
+            'status' => 'required|in:AKTIF,KELUAR,LULUS',
             // Add other validation rules as needed
         ]);
         $user->name = $request->nama;
@@ -164,6 +167,7 @@ class SiswaController extends Controller
         $pesertaDidik->nisn = $request->nisn;
         $pesertaDidik->nis = $request->nis;
         $pesertaDidik->nis_lokal = $request->nis_lokal;
+        $pesertaDidik->status = strtoupper($request->status);
         $pesertaDidik->save();
         $anggotaRombel = AnggotaRombel::where('peserta_didik_id', $pesertaDidik->id)->first();
         $anggotaRombel->kelas_id = $request->kelas_id;

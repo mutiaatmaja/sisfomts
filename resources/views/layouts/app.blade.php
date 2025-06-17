@@ -11,7 +11,7 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('gambarutama/logomts.png') }}"/>
     <link href="{{ asset('html/layouts/modern-light-menu/css/light/loader.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('html/layouts/modern-light-menu/css/dark/loader.css') }}" rel="stylesheet" type="text/css" />
-    <script src="{{ asset('html/layouts/modern-light-menu/loader.js') }}"></script>
+    {{-- <script src="{{ asset('html/layouts/modern-light-menu/loader.js') }}"></script> --}}
 
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
@@ -32,11 +32,11 @@
 
 </head>
 <body class="layout-boxed">
-    <!-- BEGIN LOADER -->
+    {{-- <!-- BEGIN LOADER -->
     <div id="load_screen"> <div class="loader"> <div class="loader-content">
         <div class="spinner-grow align-self-center"></div>
     </div></div></div>
-    <!--  END LOADER -->
+    <!--  END LOADER --> --}}
 
     <!--  BEGIN NAVBAR  -->
     @include('layouts.navbar')

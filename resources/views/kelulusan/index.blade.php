@@ -62,7 +62,7 @@
                                         </td>
                                         <td>
                                             <p class="mb-0">{{ $pesertaDidik->nisn }}</p>
-                                            <span class="text-success">Siswa</span>
+                                            <span class="text-success">Alumni</span>
                                         </td>
                                         {{-- <td class="text-center">
                                     <span class="badge badge-light-success">Online</span>

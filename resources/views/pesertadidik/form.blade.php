@@ -179,27 +179,15 @@
                                 </div>
 
                                 <div class="row">
-                                    <!-- Email -->
                                     <div class="col-md-4 col-12 mb-3">
-                                        <label for="email" class="form-label">Email</label>
-                                        <input type="email" class="form-control @error('email') is-invalid @enderror"
-                                            id="email" name="email"
-                                            value="{{ old('email', $pesertaDidik->user->email ?? '') }}">
-                                        @error('email')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                    <!-- Password -->
-                                    <div class="col-md-4 col-12 mb-3">
-                                        <label for="password" class="form-label">Password</label>
-                                        <input type="password"
-                                            class="form-control @error('password') is-invalid @enderror" id="password"
-                                            name="password" {{ isset($pesertaDidik) ? '' : 'required' }}>
-                                        @if (isset($pesertaDidik))
-                                            <small class="form-text text-muted">Kosongkan jika tidak ingin mengubah
-                                                password.</small>
-                                        @endif
-                                        @error('password')
+                                        <label for="status" class="form-label">Status</label>
+                                        <select class="form-control @error('status') is-invalid @enderror" id="status" name="status">
+                                            <option value="">Pilih Status</option>
+                                            <option value="AKTIF" {{ old('status', strtoupper($pesertaDidik->status ?? '')) == 'AKTIF' ? 'selected' : '' }}>AKTIF</option>
+                                            <option value="KELUAR" {{ old('status', strtoupper($pesertaDidik->status ?? '')) == 'KELUAR' ? 'selected' : '' }}>KELUAR</option>
+                                            <option value="LULUS" {{ old('status', strtoupper($pesertaDidik->status ?? '')) == 'LULUS' ? 'selected' : '' }}>LULUS</option>
+                                        </select>
+                                        @error('status')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
@@ -220,6 +208,34 @@
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
+                                </div>
+
+                                <div class="row">
+                                    <!-- Email -->
+                                    <div class="col-md-6 col-12 mb-3">
+                                        <label for="email" class="form-label">Email</label>
+                                        <input type="email" class="form-control @error('email') is-invalid @enderror"
+                                            id="email" name="email"
+                                            value="{{ old('email', $pesertaDidik->user->email ?? '') }}">
+                                        @error('email')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <!-- Password -->
+                                    <div class="col-md-6 col-12 mb-3">
+                                        <label for="password" class="form-label">Password</label>
+                                        <input type="password"
+                                            class="form-control @error('password') is-invalid @enderror" id="password"
+                                            name="password" {{ isset($pesertaDidik) ? '' : 'required' }}>
+                                        @if (isset($pesertaDidik))
+                                            <small class="form-text text-muted">Kosongkan jika tidak ingin mengubah
+                                                password.</small>
+                                        @endif
+                                        @error('password')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+
                                 </div>
 
                                 <!-- No HP -->

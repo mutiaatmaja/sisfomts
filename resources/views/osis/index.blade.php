@@ -6,22 +6,37 @@
     <div class="row layout-top-spacing">
         <div class="row mb-2">
             <div class="col-12">
-                <a href="/" class="btn btn-primary mr-2">Kembali</a>
+                @role('admin')
+                    <a href="{{ route('osis.create') }}" class="btn btn-primary mr-2">Tambah Pengurus OSIS</a>
+                @endrole
             </div>
         </div>
 
-        <div id="tableCustomBasic" class="col-lg-12 col-12 layout-spacing">
-            <div class="statbox widget box box-shadow">
-                <div class="widget-header">
-                    <div class="row">
-                        <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                            <h4>OSIS</h4>
+        <div class="col-12">
+            <div class="row">
+                @foreach($oses as $osis)
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <img src="{{ asset('storage/' . $osis->siswa->foto) }}" alt="{{ $osis->siswa->user->name }}"
+                                     class="rounded-circle mb-3" style="width: 100px; height: 100px; object-fit: cover;">
+                                <h5 class="card-title">{{ $osis->siswa->user->name }}</h5>
+                                <p class="card-text text-primary">{{ $osis->jabatan }}</p>
+                                <p class="card-text text-muted">{{ $osis->periode }}</p>
+                                @role('admin')
+                                    <div >
+                                        <a href="{{ route('osis.edit', $osis->id) }}" class="btn btn-sm btn-primary mr-2">Edit</a>
+                                        <form action="{{ route('osis.destroy', $osis->id) }}" method="POST" class="d-inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</button>
+                                        </form>
+                                    </div>
+                                @endrole
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="widget-content widget-content-area">
-                    <!-- Add your content here -->
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
