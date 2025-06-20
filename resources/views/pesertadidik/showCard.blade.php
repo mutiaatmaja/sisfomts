@@ -173,7 +173,7 @@
         </div>
         <div class="idcard-content-area" style="display: flex; flex-direction: row; align-items: flex-start; height: 100%; padding-left: 8px;">
             <div style="width:5px;"></div>
-            <img src="{{ $pesertaDidik->user->foto ? asset('storage/' . $pesertaDidik->user->foto) : 'https://bootdey.com/img/Content/avatar/avatar7.png' }}" style="width: 71px; height: 87px; object-fit: cover; border-radius: 8px; border: 2px solid #fff; background: #eee; margin-right: 16px; margin-top:5px;" alt="Foto Siswa">
+            <img src="{{ $pesertaDidik->user->foto ? asset('storage/' . $pesertaDidik->user->foto) : 'https://bootdey.com/img/Content/avatar/avatar7.png' }}" style="width: 64px; height: 80px; object-fit: cover; border-radius: 8px; border: 2px solid #fff; background: #eee; margin-right: 16px; margin-top:5px;" alt="Foto Siswa">
             <div style="flex:1;">
                 <div class="idcard-nama">{{ $pesertaDidik->user->name }}</div>
                 <div class="idcard-kelas">Kelas: {{ $pesertaDidik->kelas->nama_kelas ?? '-' }}</div>

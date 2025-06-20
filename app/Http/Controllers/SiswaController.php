@@ -212,24 +212,12 @@ class SiswaController extends Controller
         $pesertaDidik = \App\Models\PesertaDidik::where('uuid', $uuid)->firstOrFail();
         return view('pesertadidik.showCard', compact('pesertaDidik'));
     }
-    private function generateRotatedBarcode($text, $width = 1, $height = 120)
-    {
-        $barcodeData = \Milon\Barcode\Facades\DNS1DFacade::getBarcodePNG($text, 'C128', $width, $height);
-        $barcodePath = storage_path('app/public/barcode_tmp_' . md5($text) . '.png');
-        file_put_contents($barcodePath, base64_decode($barcodeData));
-        // Rotate dengan GD
-        $src = imagecreatefrompng($barcodePath);
-        $rotated = imagerotate($src, 90, 0);
-        imagepng($rotated, $barcodePath);
-        imagedestroy($src);
-        imagedestroy($rotated);
-        return $barcodePath;
-    }
     public function cetakKartu($uuid)
     {
         $pesertaDidik = \App\Models\PesertaDidik::where('uuid', $uuid)->firstOrFail();
-        $barcodePath = $this->generateRotatedBarcode($pesertaDidik->nisn, 1, 120);
-        $pdf = Pdf::loadView('pesertadidik.kartu_pdf', compact('pesertaDidik', 'barcodePath'));
-        return $pdf->stream('kartu-siswa-'.$pesertaDidik->nisn.'.pdf');
+
+        // $pdf = Pdf::loadView('pesertadidik.kartu_pdf', compact('pesertaDidik'));
+        // return $pdf->stream('kartu-siswa-'.$pesertaDidik->nisn.'.pdf');
+        return view('pesertadidik.kartu_pdf', compact('pesertaDidik'));
     }
 }
