@@ -140,7 +140,7 @@
                                 <img src="{{ $barcodePath }}" style="width:20px; height:120px; display:block; margin:0 auto;" />
                             </td>
                             <td class="foto-td">
-                                <img src="{{ $pesertaDidik->user->foto ? public_path('storage/' . $pesertaDidik->user->foto) : public_path('gambarutama/avatar7.png') }}" style="width: 64px; height: 80px; border-radius: 8px; border: 2px solid #fff; background: #eee; margin-top:5px;" alt="Foto Siswa">
+                                <img src="{{ $pesertaDidik->user->foto ? public_path('storage/' . $pesertaDidik->user->foto) : public_path('gambarutama/avatar7.png') }}" style="width: 75px; border-radius: 8px; border: 2px solid #fff; background: #eee; margin-top:5px;" alt="Foto Siswa">
                             </td>
                             <td class="biodata-td">
                                 <div class="idcard-nama">{{ $pesertaDidik->user->name }}</div>
