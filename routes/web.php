@@ -77,6 +77,7 @@ Route::prefix('kesiswaan')->group(function () {
             ->middleware(['role:admin'])
             ->name('pesertadidik.create');
         Route::get('/{siswa}/show', [SiswaController::class, 'show'])->name('pesertadidik.show');
+        Route::get('/{siswa}/card', [SiswaController::class, 'showCard'])->name('pesertadidik.card');
         Route::post('/store', [SiswaController::class, 'store'])
             ->middleware(['role:admin'])
             ->name('pesertadidik.store');
@@ -89,6 +90,7 @@ Route::prefix('kesiswaan')->group(function () {
         Route::delete('/{siswa}', [SiswaController::class, 'destroy'])
             ->middleware(['role:admin'])
             ->name('pesertadidik.destroy');
+        Route::get('/{siswa}/cetak-kartu', [SiswaController::class, 'cetakKartu'])->name('pesertadidik.cetak_kartu');
     });
     //managemen kelas
     Route::prefix('kelas')->group(function () {

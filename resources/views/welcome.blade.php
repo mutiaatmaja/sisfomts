@@ -33,7 +33,7 @@
             </a>
         </div>
         <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-4 col-4 mb-3">
-            <a href="/kelas" class="card mb-md-0 mb-4">
+            <a href="{{ route('kelas.index') }}" class="card mb-md-0 mb-4">
                 <img src="{{ asset('gambarutama/trans/kelas.png') }}" class="card-img-top" alt="...">
                 {{-- <div class="card-body px-0 pb-0">
                 <h5 class="card-title mb-3">14 Tips to improve your photography</h5>
@@ -48,7 +48,7 @@
             </a>
         </div>
         <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-4 col-4 mb-3">
-            <a href="/peserta-didik" class="card mb-md-0 mb-4">
+            <a href="{{ route('pesertadidik.index') }}" class="card mb-md-0 mb-4">
                 <img src="{{ asset('gambarutama/trans/peserta_didik.png') }}" class="card-img-top" alt="...">
                 {{-- <div class="card-body px-0 pb-0">
                 <h5 class="card-title mb-3">14 Tips to improve your photography</h5>
@@ -80,7 +80,7 @@
         </div>
          --}}
         <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-4 col-4 mb-3">
-            <a href="/pendidik-tendik" class="card mb-md-0 mb-4">
+            <a href="{{ route('pendidik-tendik.index') }}" class="card mb-md-0 mb-4">
                 <img src="{{ asset('gambarutama/trans/gurudantendik.png') }}" class="card-img-top" alt="...">
                 {{-- <div class="card-body px-0 pb-0">
                 <h5 class="card-title mb-3">14 Tips to improve your photography</h5>

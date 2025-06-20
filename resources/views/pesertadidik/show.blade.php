@@ -14,12 +14,14 @@
                             <h4>{{ $pesertaDidik->user->name }} </h4>
                             <p class="text-secondary mb-1">{{ $pesertaDidik->nisn }}</p>
                             <p class="text-muted font-size-sm">Kelas {{ $pesertaDidik->kelas->nama_kelas }}</p>
+                            <a href="{{ route('pesertadidik.card', $pesertaDidik->uuid) }}" class="btn btn-info mt-2">Lihat Kartu</a>
                             {{-- <button class="btn btn-primary">Follow</button>
                             <button class="btn btn-outline-primary">Message</button> --}}
                         </div>
                     </div>
                 </div>
             </div>
+
             {{-- <div class="card mt-3">
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
@@ -81,7 +83,9 @@
                 </ul>
             </div> --}}
         </div>
+
         <div class="col-md-8">
+
             <div class="card mb-3">
                 <div class="card-body">
                     <div class="row">
@@ -258,6 +262,20 @@
 
 
 
+        </div>
+        <div class="col-12">
+            <div class="row">
+                <div class="card">
+                    @include('pesertadidik.showCard')
+                    <div class="text-center mt-3">
+                        <a href="{{ route('pesertadidik.cetak_kartu', $pesertaDidik->uuid) }}" class="btn btn-success" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="vertical-align:middle; margin-right:4px;"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 9h.01M7 13h.01M17 9h.01M17 13h.01"/></svg>
+                            Cetak Kartu
+                        </a>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
 @endsection
