@@ -122,7 +122,7 @@
             <tr>
                 <!-- Lembar Depan -->
                 <td class="idcard-cell" style="position:relative;">
-                    <div class="idcard-title">Kartu Tanda Pelajar MTs 2 Mempawah</div>
+                    <div class="idcard-title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Kartu Tanda Pelajar MTs 2 Mempawah</div>
                     <img src="{{ public_path('gambarutama/logomts.png') }}" class="logo-mts" alt="Logo Sekolah">
                     <div class="idcard-back-info">
                         Kartu ini adalah identitas resmi siswa MTs 2 Mempawah. Simpan dan jaga kartu ini dengan baik. Jika
