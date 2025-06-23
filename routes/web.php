@@ -91,6 +91,7 @@ Route::prefix('kesiswaan')->group(function () {
             ->middleware(['role:admin'])
             ->name('pesertadidik.destroy');
         Route::get('/{siswa}/cetak-kartu', [SiswaController::class, 'cetakKartu'])->name('pesertadidik.cetak_kartu');
+        Route::get('/rekap-ktp/{kelas_id}', [SiswaController::class, 'rekapKtpKelas'])->name('pesertadidik.rekap_ktp');
     });
     //managemen kelas
     Route::prefix('kelas')->group(function () {

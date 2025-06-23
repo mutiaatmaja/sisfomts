@@ -220,4 +220,20 @@ class SiswaController extends Controller
         // return $pdf->stream('kartu-siswa-'.$pesertaDidik->nisn.'.pdf');
         return view('pesertadidik.kartu_pdf', compact('pesertaDidik'));
     }
+    /**
+     * Menampilkan seluruh data siswa aktif berdasarkan kelas
+     * @param  int  $kelas_id
+     * @return \Illuminate\View\View
+     */
+    public function rekapKtpKelas($kelas_id)
+    {
+        // Ambil data kelas
+        $kelas = \App\Models\Kelas::findOrFail($kelas_id);
+        // Ambil semua siswa aktif di kelas tersebut
+        $pesertaDidiks = $kelas->peserta_didiks()->where('status', 'AKTIF')->get();
+        return view('pesertadidik.rekap_ktp', [
+            'kelas' => $kelas->nama_kelas,
+            'pesertaDidiks' => $pesertaDidiks,
+        ]);
+    }
 }
