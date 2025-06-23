@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Storage;
 use Barryvdh\DomPDF\Facade\Pdf;
-
+use Illuminate\Support\Facades\Response;
 
 
 class ManagemenKelasController extends Controller
@@ -119,72 +119,61 @@ class ManagemenKelasController extends Controller
     {
         $semuaKelas = \App\Models\Kelas::with(['wali_kelas.user', 'peserta_didiks.user'])->get();
 
-        // Path penyimpanan sementara PDF dan ZIP
         $publicPath = Storage::disk('public')->path('zipfile');
-
-        // Pastikan folder ada
         if (!file_exists($publicPath)) {
             mkdir($publicPath, 0777, true);
         }
 
-        // Pastikan folder writable
         if (!is_writable($publicPath)) {
             return response()->json(['error' => 'Direktori tidak writable: ' . $publicPath], 500);
         }
 
         $zipFileName = 'daftar_siswa_semua_kelas_' . date('Ymd_His') . '.zip';
         $zipPath = $publicPath . '/' . $zipFileName;
-
         $pdfPaths = [];
         $zip = new \ZipArchive;
 
         $openResult = $zip->open($zipPath, \ZipArchive::CREATE);
         if ($openResult !== TRUE) {
-            return response()->json(['error' => 'Gagal membuka file ZIP. Kode error: ' . $openResult], 500);
+            return response()->json(['error' => 'Gagal membuat file ZIP. Kode error: ' . $openResult], 500);
         }
 
         foreach ($semuaKelas as $kelas) {
             $pesertaDidiks = $kelas->peserta_didiks;
 
-            // Render PDF
-            $pdf = Pdf::loadView('managemen-kelas.pdfktpkelas', compact('kelas', 'pesertaDidiks'))
-                ->setPaper('a4', 'landscape');
+            try {
+                $pdf = Pdf::loadView('managemen-kelas.pdfktpkelas', compact('kelas', 'pesertaDidiks'))
+                    ->setPaper('a4', 'landscape');
 
-            // Buat nama file PDF
-            $pdfFileName = 'kelas_' . preg_replace('/[^A-Za-z0-9_\-]/', '_', $kelas->nama_kelas) . '.pdf';
-            $pdfPath = $publicPath . '/' . $pdfFileName;
+                $output = $pdf->output();
+                if (empty($output)) {
+                    continue; // Skip jika gagal render
+                }
 
-            // Simpan PDF ke file sementara
-            $writeResult = file_put_contents($pdfPath, $pdf->output());
-            if ($writeResult === false) {
-                return response()->json(['error' => 'Gagal menyimpan PDF: ' . $pdfPath], 500);
+                $pdfFileName = 'kelas_' . preg_replace('/[^A-Za-z0-9_\-]/', '_', $kelas->nama_kelas) . '.pdf';
+                $pdfPath = $publicPath . '/' . $pdfFileName;
+
+                $saved = file_put_contents($pdfPath, $output);
+                if ($saved === false) {
+                    continue; // Skip jika gagal simpan
+                }
+
+                $added = $zip->addFile($pdfPath, $pdfFileName);
+                if ($added) {
+                    $pdfPaths[] = $pdfPath;
+                }
+            } catch (\Exception $e) {
+                // Jika terjadi error pada satu kelas, lanjut ke kelas berikutnya
+                continue;
             }
-
-            // Masukkan ke dalam ZIP
-            $addResult = $zip->addFile($pdfPath, $pdfFileName);
-            if (!$addResult) {
-                return response()->json(['error' => 'Gagal menambahkan file ke ZIP: ' . $pdfFileName], 500);
-            }
-
-            $pdfPaths[] = $pdfPath;
         }
 
         $zip->close();
 
-        // Kirim file ZIP sebagai response
-        $response = response()->download($zipPath, $zipFileName, [
-            'Content-Type' => 'application/zip',
-        ]);
+        if (!file_exists($zipPath)) {
+            return response()->json(['error' => 'File ZIP tidak ditemukan setelah proses.'], 500);
+        }
 
-        // Hapus semua file PDF sementara setelah proses selesai
-        register_shutdown_function(function () use ($pdfPaths) {
-            foreach ($pdfPaths as $pdfPath) {
-                if (file_exists($pdfPath)) {
-                    @unlink($pdfPath);
-                }
-            }
-        });
-
-        return $response;
+        return Response::download($zipPath)->deleteFileAfterSend(true);
     }
 }
