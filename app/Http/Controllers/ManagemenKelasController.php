@@ -116,7 +116,7 @@ class ManagemenKelasController extends Controller
     public function exportPdfSemuaKelas()
     {
         $semuaKelas = \App\Models\Kelas::with(['wali_kelas.user', 'peserta_didiks.user'])->get();
-        $publicPath = storage_path('app/public');
+        $publicPath = storage_path('app/public/zipfile');
         if (!file_exists($publicPath)) {
             mkdir($publicPath, 0777, true);
         }
@@ -142,7 +142,7 @@ class ManagemenKelasController extends Controller
         // Hapus file PDF sementara setelah response selesai
         $response = response()->download($zipPath, $zipFileName, [
             'Content-Type' => 'application/zip',
-        ])->deleteFileAfterSend(true);
+        ]);
         // Hapus file PDF sementara setelah ZIP dikirim
         register_shutdown_function(function() use ($pdfPaths) {
             foreach ($pdfPaths as $pdfPath) {
