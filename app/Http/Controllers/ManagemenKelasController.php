@@ -81,4 +81,16 @@ class ManagemenKelasController extends Controller
         Alert::toast('Berhasil Menghapus kelas '.$kelas->nama_kelas, 'success');
         return redirect()->route('kelas.index')->with('success', 'Class deleted successfully.');
     }
+
+    /**
+     * Menampilkan seluruh siswa pada kelas tertentu
+     * @param int $kelas_id
+     * @return \Illuminate\View\View
+     */
+    public function siswaKelas($kelas_id)
+    {
+        $kelas = \App\Models\Kelas::with(['wali_kelas.user', 'peserta_didiks.user'])->findOrFail($kelas_id);
+        $pesertaDidiks = $kelas->peserta_didiks;
+        return view('managemen-kelas.siswa_kelas', compact('kelas', 'pesertaDidiks'));
+    }
 }

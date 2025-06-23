@@ -35,6 +35,7 @@
                                     <th scope="col">Nama Kelas</th>
                                     <th scope="col">Wali Kelas</th>
                                     <th scope="col">Anggota Kelas</th>
+                                    <th scope="col">Aksi</th>
                                     @role('admin')
                                     <th class="text-center" scope="col"></th>
                                     @endrole
@@ -48,6 +49,9 @@
                                         <td>
                                             {{ $k->anggota_rombels->count() }} Anggota
                                         </td>
+                                        <td>
+                                            <a href="{{ route('kelas.siswa', $k->id) }}" class="btn btn-info btn-sm">Lihat Siswa</a>
+                                        </td>
                                         @role('admin')
                                         <td class="text-center">
                                             <a href="/kelas/{{ $k->id }}/edit" class="btn btn-primary">Edit</a>
@@ -58,6 +62,7 @@
                                             </form>
                                         </td>
                                         @endrole
+                                    </tr>
                                 @endforeach
                             </tbody>
                         </table>

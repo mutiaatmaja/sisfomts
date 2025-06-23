@@ -109,6 +109,7 @@ Route::prefix('kesiswaan')->group(function () {
             ->middleware(['role:admin'])
             ->name('kelas.update');
         Route::delete('/{kelas}', [ManagemenKelasController::class, 'destroy'])->name('kelas.destroy');
+        Route::get('/{kelas}/siswa', [ManagemenKelasController::class, 'siswaKelas'])->name('kelas.siswa');
     });
     Route::prefix('prestasi')->group(function () {
         Route::get('/', [PrestasiController::class, 'index'])->name('prestasi.index');
