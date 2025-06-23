@@ -93,4 +93,18 @@ class ManagemenKelasController extends Controller
         $pesertaDidiks = $kelas->peserta_didiks;
         return view('managemen-kelas.siswa_kelas', compact('kelas', 'pesertaDidiks'));
     }
+
+    /**
+     * Export daftar siswa kelas ke PDF
+     * @param int $kelas_id
+     * @return \Illuminate\Http\Response
+     */
+    public function exportPdfSiswaKelas($kelas_id)
+    {
+
+        $kelas = \App\Models\Kelas::with(['wali_kelas.user', 'peserta_didiks.user'])->findOrFail($kelas_id);
+        $pesertaDidiks = $kelas->peserta_didiks;
+        $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('managemen-kelas.pdfktpkelas', compact('kelas', 'pesertaDidiks'));
+        return $pdf->stream('daftar_siswa_kelas_' . $kelas->nama_kelas . '.pdf');
+    }
 }

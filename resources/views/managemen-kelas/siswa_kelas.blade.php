@@ -100,6 +100,13 @@
                         className: 'btn btn-danger'
                     },
                     {
+                        text: 'Export PDF (New Page)',
+                        className: 'btn btn-warning',
+                        action: function ( e, dt, node, config ) {
+                            window.open("{{ route('kelas.siswa_pdf', $kelas->id) }}", '_blank');
+                        }
+                    },
+                    {
                         extend: 'print',
                         text: 'Print',
                         className: 'btn btn-secondary'
