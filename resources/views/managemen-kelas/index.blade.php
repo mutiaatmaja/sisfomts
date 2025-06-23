@@ -105,6 +105,13 @@
                             className: 'btn btn-danger'
                         },
                         {
+                            text: 'Export PDF Semua Kelas',
+                            className: 'btn btn-warning',
+                            action: function ( e, dt, node, config ) {
+                                window.open("{{ route('kelas.semua_siswa_pdf') }}", '_blank');
+                            }
+                        },
+                        {
                             extend: 'print',
                             text: 'Print',
                             className: 'btn btn-secondary'

@@ -108,4 +108,16 @@ class ManagemenKelasController extends Controller
             ->setPaper('a4', 'landscape');
         return $pdf->stream('daftar_siswa_kelas_' . $kelas->nama_kelas . '.pdf');
     }
+
+    /**
+     * Export semua kelas beserta anggotanya ke PDF
+     * @return \Illuminate\Http\Response
+     */
+    public function exportPdfSemuaKelas()
+    {
+        $semuaKelas = \App\Models\Kelas::with(['wali_kelas.user', 'peserta_didiks.user'])->get();
+        $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('managemen-kelas.pdfktpsemuakelas', compact('semuaKelas'))
+            ->setPaper('a4', 'landscape');
+        return $pdf->stream('daftar_siswa_semua_kelas.pdf');
+    }
 }
