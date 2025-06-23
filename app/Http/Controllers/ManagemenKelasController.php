@@ -40,7 +40,7 @@ class ManagemenKelasController extends Controller
             'nama_kelas' => $request->nama_kelas,
             'wali_kelas_id' => $request->wali_kelas,
         ]);
-        Alert::toast('Berhasil Menyimpan kelas '.$request->nama_kelas, 'success');
+        Alert::toast('Berhasil Menyimpan kelas ' . $request->nama_kelas, 'success');
 
 
         return redirect()->route('kelas.index')->with('success', 'Class created successfully.');
@@ -68,7 +68,7 @@ class ManagemenKelasController extends Controller
             'nama_kelas' => $request->nama_kelas,
             'wali_kelas_id' => $request->wali_kelas,
         ]);
-        Alert::toast('Berhasil Mengupdate kelas '.$request->nama_kelas, 'success');
+        Alert::toast('Berhasil Mengupdate kelas ' . $request->nama_kelas, 'success');
         // Logic to update the class data
         return redirect()->route('kelas.index')->with('success', 'Class updated successfully.');
     }
@@ -78,7 +78,7 @@ class ManagemenKelasController extends Controller
         // Logic to delete the class data
         $kelas = Kelas::findOrFail($id);
         //$kelas->delete();
-        Alert::toast('Berhasil Menghapus kelas '.$kelas->nama_kelas, 'success');
+        Alert::toast('Berhasil Menghapus kelas ' . $kelas->nama_kelas, 'success');
         return redirect()->route('kelas.index')->with('success', 'Class deleted successfully.');
     }
 
@@ -116,41 +116,73 @@ class ManagemenKelasController extends Controller
     public function exportPdfSemuaKelas()
     {
         $semuaKelas = \App\Models\Kelas::with(['wali_kelas.user', 'peserta_didiks.user'])->get();
-        $publicPath = storage_path('app/public/zipfile');
+
+        // Path penyimpanan sementara PDF dan ZIP
+        $publicPath = Storage::disk('public')->path('zipfile');
+
+        // Pastikan folder ada
         if (!file_exists($publicPath)) {
             mkdir($publicPath, 0777, true);
         }
+
+        // Pastikan folder writable
+        if (!is_writable($publicPath)) {
+            return response()->json(['error' => 'Direktori tidak writable: ' . $publicPath], 500);
+        }
+
         $zipFileName = 'daftar_siswa_semua_kelas_' . date('Ymd_His') . '.zip';
         $zipPath = $publicPath . '/' . $zipFileName;
+
         $pdfPaths = [];
         $zip = new \ZipArchive;
-        if ($zip->open($zipPath, \ZipArchive::CREATE) === TRUE) {
-            foreach ($semuaKelas as $kelas) {
-                $pesertaDidiks = $kelas->peserta_didiks;
-                $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('managemen-kelas.pdfktpkelas', compact('kelas', 'pesertaDidiks'))
-                    ->setPaper('a4', 'landscape');
-                $pdfFileName = 'kelas_' . preg_replace('/[^A-Za-z0-9_\-]/', '_', $kelas->nama_kelas) . '.pdf';
-                $pdfPath = $publicPath . '/' . $pdfFileName;
-                file_put_contents($pdfPath, $pdf->output());
-                $zip->addFile($pdfPath, $pdfFileName);
-                $pdfPaths[] = $pdfPath;
-            }
-            $zip->close();
-        } else {
-            return response()->json(['error' => 'Gagal membuat file ZIP'], 500);
+
+        $openResult = $zip->open($zipPath, \ZipArchive::CREATE);
+        if ($openResult !== TRUE) {
+            return response()->json(['error' => 'Gagal membuka file ZIP. Kode error: ' . $openResult], 500);
         }
-        // // Hapus file PDF sementara setelah response selesai
-        // $response = response()->download($zipPath, $zipFileName, [
-        //     'Content-Type' => 'application/zip',
-        // ]);
-        // // Hapus file PDF sementara setelah ZIP dikirim
-        // register_shutdown_function(function() use ($pdfPaths) {
-        //     foreach ($pdfPaths as $pdfPath) {
-        //         if (file_exists($pdfPath)) {
-        //             @unlink($pdfPath);
-        //         }
-        //     }
-        // });
-        // return $response;
+
+        foreach ($semuaKelas as $kelas) {
+            $pesertaDidiks = $kelas->peserta_didiks;
+
+            // Render PDF
+            $pdf = Pdf::loadView('managemen-kelas.pdfktpkelas', compact('kelas', 'pesertaDidiks'))
+                ->setPaper('a4', 'landscape');
+
+            // Buat nama file PDF
+            $pdfFileName = 'kelas_' . preg_replace('/[^A-Za-z0-9_\-]/', '_', $kelas->nama_kelas) . '.pdf';
+            $pdfPath = $publicPath . '/' . $pdfFileName;
+
+            // Simpan PDF ke file sementara
+            $writeResult = file_put_contents($pdfPath, $pdf->output());
+            if ($writeResult === false) {
+                return response()->json(['error' => 'Gagal menyimpan PDF: ' . $pdfPath], 500);
+            }
+
+            // Masukkan ke dalam ZIP
+            $addResult = $zip->addFile($pdfPath, $pdfFileName);
+            if (!$addResult) {
+                return response()->json(['error' => 'Gagal menambahkan file ke ZIP: ' . $pdfFileName], 500);
+            }
+
+            $pdfPaths[] = $pdfPath;
+        }
+
+        $zip->close();
+
+        // Kirim file ZIP sebagai response
+        $response = response()->download($zipPath, $zipFileName, [
+            'Content-Type' => 'application/zip',
+        ]);
+
+        // Hapus semua file PDF sementara setelah proses selesai
+        register_shutdown_function(function () use ($pdfPaths) {
+            foreach ($pdfPaths as $pdfPath) {
+                if (file_exists($pdfPath)) {
+                    @unlink($pdfPath);
+                }
+            }
+        });
+
+        return $response;
     }
 }
