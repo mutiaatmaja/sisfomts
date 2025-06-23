@@ -139,18 +139,18 @@ class ManagemenKelasController extends Controller
         } else {
             return response()->json(['error' => 'Gagal membuat file ZIP'], 500);
         }
-        // Hapus file PDF sementara setelah response selesai
-        $response = response()->download($zipPath, $zipFileName, [
-            'Content-Type' => 'application/zip',
-        ]);
-        // Hapus file PDF sementara setelah ZIP dikirim
-        register_shutdown_function(function() use ($pdfPaths) {
-            foreach ($pdfPaths as $pdfPath) {
-                if (file_exists($pdfPath)) {
-                    @unlink($pdfPath);
-                }
-            }
-        });
-        return $response;
+        // // Hapus file PDF sementara setelah response selesai
+        // $response = response()->download($zipPath, $zipFileName, [
+        //     'Content-Type' => 'application/zip',
+        // ]);
+        // // Hapus file PDF sementara setelah ZIP dikirim
+        // register_shutdown_function(function() use ($pdfPaths) {
+        //     foreach ($pdfPaths as $pdfPath) {
+        //         if (file_exists($pdfPath)) {
+        //             @unlink($pdfPath);
+        //         }
+        //     }
+        // });
+        // return $response;
     }
 }
