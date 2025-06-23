@@ -116,8 +116,12 @@ class ManagemenKelasController extends Controller
     public function exportPdfSemuaKelas()
     {
         $semuaKelas = \App\Models\Kelas::with(['wali_kelas.user', 'peserta_didiks.user'])->get();
+        $publicPath = storage_path('app/public');
+        if (!file_exists($publicPath)) {
+            mkdir($publicPath, 0777, true);
+        }
         $zipFileName = 'daftar_siswa_semua_kelas_' . date('Ymd_His') . '.zip';
-        $zipPath = storage_path('app/public/' . $zipFileName);
+        $zipPath = $publicPath . '/' . $zipFileName;
         $pdfPaths = [];
         $zip = new \ZipArchive;
         if ($zip->open($zipPath, \ZipArchive::CREATE) === TRUE) {
@@ -126,7 +130,7 @@ class ManagemenKelasController extends Controller
                 $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('managemen-kelas.pdfktpkelas', compact('kelas', 'pesertaDidiks'))
                     ->setPaper('a4', 'landscape');
                 $pdfFileName = 'kelas_' . preg_replace('/[^A-Za-z0-9_\-]/', '_', $kelas->nama_kelas) . '.pdf';
-                $pdfPath = storage_path('app/public/' . $pdfFileName);
+                $pdfPath = $publicPath . '/' . $pdfFileName;
                 file_put_contents($pdfPath, $pdf->output());
                 $zip->addFile($pdfPath, $pdfFileName);
                 $pdfPaths[] = $pdfPath;
