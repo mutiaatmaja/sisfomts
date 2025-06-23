@@ -118,6 +118,6 @@ class ManagemenKelasController extends Controller
         $semuaKelas = \App\Models\Kelas::with(['wali_kelas.user', 'peserta_didiks.user'])->get();
         $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('managemen-kelas.pdfktpsemuakelas', compact('semuaKelas'))
             ->setPaper('a4', 'landscape');
-        return $pdf->download('daftar_siswa_semua_kelas.pdf');
+        return $pdf->stream('daftar_siswa_semua_kelas.pdf');
     }
 }
