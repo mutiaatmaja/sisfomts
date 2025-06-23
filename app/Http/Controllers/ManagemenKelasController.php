@@ -110,14 +110,43 @@ class ManagemenKelasController extends Controller
     }
 
     /**
-     * Export semua kelas beserta anggotanya ke PDF
+     * Export semua kelas beserta anggotanya ke PDF per kelas, lalu kompres ke ZIP
      * @return \Illuminate\Http\Response
      */
     public function exportPdfSemuaKelas()
     {
         $semuaKelas = \App\Models\Kelas::with(['wali_kelas.user', 'peserta_didiks.user'])->get();
-        $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('managemen-kelas.pdfktpsemuakelas', compact('semuaKelas'))
-            ->setPaper('a4', 'landscape');
-        return $pdf->stream('daftar_siswa_semua_kelas.pdf');
+        $zipFileName = 'daftar_siswa_semua_kelas_' . date('Ymd_His') . '.zip';
+        $zipPath = storage_path('app/public/' . $zipFileName);
+        $pdfPaths = [];
+        $zip = new \ZipArchive;
+        if ($zip->open($zipPath, \ZipArchive::CREATE) === TRUE) {
+            foreach ($semuaKelas as $kelas) {
+                $pesertaDidiks = $kelas->peserta_didiks;
+                $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('managemen-kelas.pdfktpkelas', compact('kelas', 'pesertaDidiks'))
+                    ->setPaper('a4', 'landscape');
+                $pdfFileName = 'kelas_' . preg_replace('/[^A-Za-z0-9_\-]/', '_', $kelas->nama_kelas) . '.pdf';
+                $pdfPath = storage_path('app/public/' . $pdfFileName);
+                file_put_contents($pdfPath, $pdf->output());
+                $zip->addFile($pdfPath, $pdfFileName);
+                $pdfPaths[] = $pdfPath;
+            }
+            $zip->close();
+        } else {
+            return response()->json(['error' => 'Gagal membuat file ZIP'], 500);
+        }
+        // Hapus file PDF sementara setelah response selesai
+        $response = response()->download($zipPath, $zipFileName, [
+            'Content-Type' => 'application/zip',
+        ])->deleteFileAfterSend(true);
+        // Hapus file PDF sementara setelah ZIP dikirim
+        register_shutdown_function(function() use ($pdfPaths) {
+            foreach ($pdfPaths as $pdfPath) {
+                if (file_exists($pdfPath)) {
+                    @unlink($pdfPath);
+                }
+            }
+        });
+        return $response;
     }
 }
