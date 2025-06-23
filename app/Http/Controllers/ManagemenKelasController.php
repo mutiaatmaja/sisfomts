@@ -6,6 +6,8 @@ use App\Models\Kelas;
 use App\Models\PendidikTendik;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Storage;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 
 
