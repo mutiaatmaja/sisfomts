@@ -104,7 +104,8 @@ class ManagemenKelasController extends Controller
 
         $kelas = \App\Models\Kelas::with(['wali_kelas.user', 'peserta_didiks.user'])->findOrFail($kelas_id);
         $pesertaDidiks = $kelas->peserta_didiks;
-        $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('managemen-kelas.pdfktpkelas', compact('kelas', 'pesertaDidiks'));
+        $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('managemen-kelas.pdfktpkelas', compact('kelas', 'pesertaDidiks'))
+            ->setPaper('a4', 'landscape');
         return $pdf->stream('daftar_siswa_kelas_' . $kelas->nama_kelas . '.pdf');
     }
 }
