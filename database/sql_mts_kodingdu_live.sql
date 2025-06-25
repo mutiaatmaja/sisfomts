@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 23, 2025 at 05:38 PM
+-- Generation Time: Jun 25, 2025 at 04:18 PM
 -- Server version: 10.11.10-MariaDB-log
 -- PHP Version: 8.3.21
 
@@ -688,8 +688,7 @@ INSERT INTO `anggota_rombels` (`id`, `peserta_didik_id`, `kelas_id`, `created_at
 (615, 787, 13, '2025-06-11 13:05:49', '2025-06-11 13:05:49'),
 (616, 788, 13, '2025-06-11 13:05:49', '2025-06-11 13:05:49'),
 (617, 789, 13, '2025-06-11 13:05:49', '2025-06-11 13:05:49'),
-(618, 790, 13, '2025-06-11 13:05:49', '2025-06-11 13:05:49'),
-(619, 791, 13, '2025-06-12 05:21:29', '2025-06-12 05:21:29');
+(618, 790, 13, '2025-06-11 13:05:49', '2025-06-11 13:05:49');
 
 -- --------------------------------------------------------
 
@@ -870,8 +869,8 @@ CREATE TABLE `oses` (
 
 INSERT INTO `oses` (`id`, `siswa_id`, `jabatan`, `order`, `periode`, `created_at`, `updated_at`) VALUES
 (1, 326, 'Ketua OSIS', 0, '2025', '2025-06-17 10:38:48', '2025-06-17 10:46:08'),
-(2, 214, 'Ketua OSIS', 1, '2025-2026', '2025-06-17 11:03:37', '2025-06-17 11:41:12'),
-(3, 8, 'Wakil Ketua OSIS', 2, '2025-2026', '2025-06-17 11:04:11', '2025-06-17 11:04:11'),
+(2, 364, 'Ketua OSIS', 1, '2025-2026', '2025-06-17 11:03:37', '2025-06-25 02:28:40'),
+(3, 329, 'Wakil Ketua OSIS', 2, '2025-2026', '2025-06-17 11:04:11', '2025-06-25 02:27:19'),
 (4, 613, 'Sekretaris', 3, '2025-2026', '2025-06-17 11:04:58', '2025-06-17 11:04:58'),
 (6, 350, 'Bendahara', 4, '2025-2026', '2025-06-17 11:43:14', '2025-06-17 11:43:14');
 
@@ -1401,8 +1400,8 @@ INSERT INTO `peserta_didiks` (`id`, `uuid`, `user_id`, `nisn`, `nis`, `nis_lokal
 (394, '41b1d1d2-6463-4683-9be9-918d6ac413fa', 440, '0109388037', '232883', '121161020001230185', 'aktif', '2025-06-11 12:35:28', '2025-06-11 12:35:28'),
 (395, 'e4911f6b-e00a-405b-a991-ee7f6b200854', 441, '0119986044', '232884', '121161020001230186', 'aktif', '2025-06-11 12:35:28', '2025-06-11 12:35:28'),
 (396, '2f65aa7c-f5f6-4bc5-816a-2e500221adf0', 442, '0105271796', '232885', '121161020001230187', 'aktif', '2025-06-11 12:35:28', '2025-06-11 12:35:28'),
-(397, 'f19dc9d4-deea-439a-90e7-a6d0517d71cb', 443, NULL, '232886', '121161020001230188', 'aktif', '2025-06-11 12:35:28', '2025-06-11 12:35:28'),
-(398, '8ea74206-e17f-463e-a210-2738c8d33ee8', 444, NULL, '232887', '121161020001230189', 'aktif', '2025-06-11 12:35:29', '2025-06-11 12:35:29'),
+(397, 'f19dc9d4-deea-439a-90e7-a6d0517d71cb', 443, '0101052581', '232886', '121161020001230188', 'AKTIF', '2025-06-11 12:35:28', '2025-06-25 02:23:05'),
+(398, '8ea74206-e17f-463e-a210-2738c8d33ee8', 444, '0111954908', '232887', '121161020001230189', 'AKTIF', '2025-06-11 12:35:29', '2025-06-25 02:24:21'),
 (399, '4d605e47-b0bf-4171-b538-a90e23a23fd6', 445, '0119626562', '232888', '121161020001230190', 'aktif', '2025-06-11 12:35:29', '2025-06-11 12:35:29'),
 (400, '573e3b9f-0fe2-4c71-baf2-d36769bfc502', 446, '0115976179', '232889', '121161020001230191', 'aktif', '2025-06-11 12:35:29', '2025-06-11 12:35:29'),
 (401, '25336bf8-2e5d-4449-9d04-55f7990815e0', 447, '0119402692', '232890', '121161020001230192', 'aktif', '2025-06-11 12:35:29', '2025-06-11 12:35:29'),
@@ -1636,18 +1635,18 @@ INSERT INTO `peserta_didiks` (`id`, `uuid`, `user_id`, `nisn`, `nis`, `nis_lokal
 (629, '74a5dfdf-46fd-4a5c-b251-9632e9759ff7', 675, '0128565256', '222757', NULL, 'aktif', '2025-06-11 13:05:17', '2025-06-11 13:05:17'),
 (630, '94b69dfa-63c6-4d80-ab7b-2bae677d4fb9', 676, '0133497706', '222758', NULL, 'aktif', '2025-06-11 13:05:17', '2025-06-11 13:05:17'),
 (631, '7bcab42c-abc2-427b-9aba-c18162988b94', 677, '0138450314', '222759', NULL, 'aktif', '2025-06-11 13:05:17', '2025-06-11 13:05:17'),
-(632, '9e99d333-5481-4ec2-bff4-0e2343ea948c', 678, '0137182059', '222760', NULL, 'aktif', '2025-06-11 13:05:17', '2025-06-11 13:05:17'),
+(632, '9e99d333-5481-4ec2-bff4-0e2343ea948c', 678, '0137182059', '222760', NULL, 'AKTIF', '2025-06-11 13:05:17', '2025-06-25 08:17:45'),
 (633, 'd0f8f645-725d-4638-94e6-99b17fd8fb50', 679, '0123246395', '222761', NULL, 'aktif', '2025-06-11 13:05:18', '2025-06-11 13:05:18'),
 (634, 'af89d6fc-afdf-4d49-a1dd-1f1cf6f420c8', 680, '0129526597', '222762', NULL, 'aktif', '2025-06-11 13:05:18', '2025-06-11 13:05:18'),
 (635, '4fb5b2c6-8c03-4fdf-8132-13e7b06426a0', 681, '3124709030', '222763', NULL, 'aktif', '2025-06-11 13:05:18', '2025-06-11 13:05:18'),
 (636, 'f718455d-c9ec-4dd2-af78-ac4b08d1b9c0', 682, '3139627729', '222764', NULL, 'aktif', '2025-06-11 13:05:18', '2025-06-11 13:05:18'),
-(637, '1a4e7700-d32e-4b60-91ec-52c77776059a', 683, '3123250244', '222765', NULL, 'aktif', '2025-06-11 13:05:18', '2025-06-11 13:05:18'),
+(637, '1a4e7700-d32e-4b60-91ec-52c77776059a', 683, '3123250244', '222765', NULL, 'AKTIF', '2025-06-11 13:05:18', '2025-06-25 02:16:27'),
 (638, '64d57056-858b-40c8-89c6-e5a7e0525907', 684, '0123102717', '222766', NULL, 'aktif', '2025-06-11 13:05:19', '2025-06-11 13:05:19'),
 (639, '60e2f55b-4e49-405f-b064-20488fd12ec8', 685, '3126726568', '222767', NULL, 'aktif', '2025-06-11 13:05:19', '2025-06-11 13:05:19'),
 (640, '2c9a93b0-4dfb-438e-9e2a-06738c5df1aa', 686, '0126025776', '222768', NULL, 'aktif', '2025-06-11 13:05:19', '2025-06-11 13:05:19'),
 (641, '9130af86-a507-4fb3-b902-35d98e7f2b17', 687, '0129314705', '222769', NULL, 'aktif', '2025-06-11 13:05:19', '2025-06-11 13:05:19'),
 (642, 'cd788b7c-b500-410c-8d3b-ed724cc1c546', 688, '2034190317', '222770', NULL, 'aktif', '2025-06-11 13:05:19', '2025-06-11 13:05:19'),
-(643, 'd179c287-44e5-43d1-b009-65e4b1eb3b15', 689, '0127305900', '222771', NULL, 'aktif', '2025-06-11 13:05:20', '2025-06-11 13:05:20'),
+(643, 'd179c287-44e5-43d1-b009-65e4b1eb3b15', 689, '0127305900', '222771', NULL, 'AKTIF', '2025-06-11 13:05:20', '2025-06-25 08:17:07'),
 (644, '3b7e75e9-8826-4c21-b312-2eb4e86534c7', 690, '0139312457', '222772', NULL, 'aktif', '2025-06-11 13:05:20', '2025-06-11 13:05:20'),
 (645, '28e4a836-e11e-4c09-9576-5282f7412567', 691, '0127645658', '222773', NULL, 'aktif', '2025-06-11 13:05:20', '2025-06-11 13:05:20'),
 (646, '6345632f-99d1-475f-8fcd-9249e2bb4503', 692, '0124466223', '222774', NULL, 'aktif', '2025-06-11 13:05:20', '2025-06-11 13:05:20'),
@@ -1759,7 +1758,7 @@ INSERT INTO `peserta_didiks` (`id`, `uuid`, `user_id`, `nisn`, `nis`, `nis_lokal
 (751, 'e2a446f0-4ab5-414b-b95c-18a1eadaebc7', 797, '0131325369', '222879', NULL, 'aktif', '2025-06-11 13:05:41', '2025-06-11 13:05:41'),
 (752, '90173fa1-21d7-4cfb-a91a-ae387d88c5d0', 798, '0137614007', '222880', NULL, 'aktif', '2025-06-11 13:05:42', '2025-06-11 13:05:42'),
 (753, 'a845e8c4-2db5-4c03-b15b-c53225ea6c28', 799, '3132814534', '222881', NULL, 'aktif', '2025-06-11 13:05:42', '2025-06-11 13:05:42'),
-(754, '37fc0871-941e-4ec2-be09-354fe3849c1e', 800, '3333333333', '222882', NULL, 'aktif', '2025-06-11 13:05:42', '2025-06-11 13:05:42'),
+(754, '37fc0871-941e-4ec2-be09-354fe3849c1e', 800, '0129742810', '222882', NULL, 'AKTIF', '2025-06-11 13:05:42', '2025-06-25 08:17:11'),
 (755, 'f55baac9-98fe-446a-94f9-437aabd0ad79', 801, '0136499944', '222883', NULL, 'aktif', '2025-06-11 13:05:42', '2025-06-11 13:05:42'),
 (756, '6ac1f971-4b65-4437-b09e-90ac629ac9c8', 802, '0135279840', '222884', NULL, 'aktif', '2025-06-11 13:05:42', '2025-06-11 13:05:42'),
 (757, '40df1bdd-cba7-4765-8965-afeb44479828', 803, '0139707218', '222885', NULL, 'aktif', '2025-06-11 13:05:43', '2025-06-11 13:05:43'),
@@ -1776,7 +1775,7 @@ INSERT INTO `peserta_didiks` (`id`, `uuid`, `user_id`, `nisn`, `nis`, `nis_lokal
 (768, '181a9125-36be-480f-a1fe-922c18a9d3da', 814, '0135861863', '222896', NULL, 'aktif', '2025-06-11 13:05:45', '2025-06-11 13:05:45'),
 (769, '84d59d78-5c28-4844-a250-dd6f81e0eb99', 815, '0135060494', '222897', NULL, 'aktif', '2025-06-11 13:05:45', '2025-06-11 13:05:45'),
 (770, '7c7cc7ed-4ca2-4355-9fdb-bc5128a5236e', 816, '3127015515', '222898', NULL, 'aktif', '2025-06-11 13:05:45', '2025-06-11 13:05:45'),
-(771, '3525ae08-68ce-4e03-aefb-c332a5e39055', 817, '3133333333', '222899', NULL, 'aktif', '2025-06-11 13:05:45', '2025-06-11 13:05:45'),
+(771, '3525ae08-68ce-4e03-aefb-c332a5e39055', 817, '3131572377', '222899', NULL, 'AKTIF', '2025-06-11 13:05:45', '2025-06-25 08:17:27'),
 (772, '124edcb2-72c6-4d3e-bac4-df43c5ffb8dd', 818, '0128956823', '222900', NULL, 'aktif', '2025-06-11 13:05:46', '2025-06-11 13:05:46'),
 (773, '510d566a-c98d-4e4b-a94b-00c9daf4b034', 819, '3136669885', '222901', NULL, 'aktif', '2025-06-11 13:05:46', '2025-06-11 13:05:46'),
 (774, '3b582c69-418f-4c8f-9d9d-fa23239d28e2', 820, '0129771338', '222902', NULL, 'aktif', '2025-06-11 13:05:46', '2025-06-11 13:05:46'),
@@ -1795,8 +1794,7 @@ INSERT INTO `peserta_didiks` (`id`, `uuid`, `user_id`, `nisn`, `nis`, `nis_lokal
 (787, '31a327a4-c314-4dc6-9197-d76f076f4700', 833, '0126128712', '222915', NULL, 'aktif', '2025-06-11 13:05:49', '2025-06-11 13:05:49'),
 (788, '03e920db-63eb-4c30-83f1-b7d9fe6dc5f0', 834, '0128486767', '222916', NULL, 'aktif', '2025-06-11 13:05:49', '2025-06-11 13:05:49'),
 (789, '4aacf541-809e-445c-b401-fdb2c7e5f7fa', 835, '0124168542', '222917', NULL, 'aktif', '2025-06-11 13:05:49', '2025-06-11 13:05:49'),
-(790, 'fc732675-397a-4cb6-bb9c-547b1c532a1c', 836, '0133620309', '222918', NULL, 'aktif', '2025-06-11 13:05:49', '2025-06-11 13:05:49'),
-(791, 'f9f14dc2-53a9-4481-9312-53a05f13b855', 837, '9999999999a', NULL, NULL, 'aktif', '2025-06-12 05:21:29', '2025-06-12 05:21:29');
+(790, 'fc732675-397a-4cb6-bb9c-547b1c532a1c', 836, '0133620309', '222918', NULL, 'aktif', '2025-06-11 13:05:49', '2025-06-11 13:05:49');
 
 -- --------------------------------------------------------
 
@@ -2785,11 +2783,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('6MQJxSXOrynirzSNzDcYCJYMpd0VllpI2ku1momD', NULL, '15.15.15.102', 'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; GPTBot/1.2; +https://openai.com/gptbot)', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoibkhuaWdSMVl0OTJBTGhYYnZVMzdvU0JRR2ZIWm02a0lSUEY1V3J5ZSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6OTM6Imh0dHA6Ly9tdHMua29kaW5nZHVsdS5teS5pZC9rZXNpc3dhYW4vcGVzZXJ0YS1kaWRpay9iNjdmZDVjNy02YzEyLTQzZmItOTM1NC01MDcxY2RjY2M1ZDQvY2FyZCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6MTQ6ImNhcHRjaGFfYW5zd2VyIjtpOjExO3M6MTY6ImNhcHRjaGFfcXVlc3Rpb24iO3M6NToiNSArIDYiO3M6NToiYWxlcnQiO2E6MDp7fX0=', 1750627570),
-('h4dfwwZwMV3IvA0Dlvbr9ycJOXQXC1wdwuwaqMKI', NULL, '15.15.15.102', '', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiMVlMYnU1UW9aQURZNnZOYzhvaEZOVmJKWnVRS0tJdmxPOEl5dkZ0WCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly9tdHMua29kaW5nZHVsdS5teS5pZCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1750660663),
-('VGTQ6xfsktCtze2kwqXvprI7GvlVBVwF8F0RSWOM', NULL, '15.15.15.102', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiWU5PbGd6aFA2RDRybUVCOFZqRGl2blpab1FqdmFIV013YlVCbXBaciI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NjU6Imh0dHA6Ly9tdHMua29kaW5nZHVsdS5teS5pZC9rZXNpc3dhYW4va2VsYXMvY2V0YWsvc2VtdWEvc2lzd2EtcGRmIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1OiJhbGVydCI7YTowOnt9fQ==', 1750671428),
-('wCFAEp6nQxgBl9wtwYIuRbdEjvT1Bsn2S7mj058P', NULL, '15.15.15.102', 'Mozilla/5.0 (X11; Linux x86_64; rv:137.0) Gecko/20100101 Firefox/137.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiN2g3Ulh3VWJSUXZydDBUNmZjb1VEOUs3TkJOajZmemhRdXVJSmZpdiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly9tdHMua29kaW5nZHVsdS5teS5pZCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1750667493),
-('ZyMZNBd1pu0baUZC9ZwsWvggICO8aHd7NzX6OL0z', NULL, '15.15.15.102', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/601.2.4 (KHTML, like Gecko) Version/9.0.1 Safari/601.2.4 facebookexternalhit/1.1 Facebot Twitterbot/1.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoicGc4NXEwVnVWWDYwd0xib0lMV29wUU1xbTFvaEZ1VGkwOWE3WHgzYyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly9tdHMua29kaW5nZHVsdS5teS5pZCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1750654793);
+('Gnn5IDc9PRILvLN5O7OXGCmur1gt79hyvW6x7gn5', 1, '15.15.15.102', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiM3ZsZ1ZBRUxHeVdvQW52Z1FyRHpxSksyamF5MXhrRUxXdjhxWWlUayI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NTE6Imh0dHA6Ly9tdHMua29kaW5nZHVsdS5teS5pZC9rZXNpc3dhYW4vcGVzZXJ0YS1kaWRpayI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7czo0OiJhdXRoIjthOjE6e3M6MjE6InBhc3N3b3JkX2NvbmZpcm1lZF9hdCI7aToxNzUwODM5MjQxO31zOjU6ImFsZXJ0IjthOjA6e319', 1750839481);
 
 -- --------------------------------------------------------
 
@@ -3289,7 +3283,7 @@ INSERT INTO `users` (`id`, `uuid`, `name`, `email`, `email_verified_at`, `passwo
 (441, '5f734b2f-cd24-473f-a234-a5a7f914772e', 'Zahra Aulia Najwa', 'siswa232884@mts.com', NULL, '$2y$12$QzJRCp8sWfiJVdCSzBgcfOnCVnAxacVir9gmtnmGfgXCGXAJCuDnW', NULL, 'P', NULL, NULL, 'Pontianak', '2011-03-31', 'foto_siswa/e4911f6b-e00a-405b-a991-ee7f6b200854.png', NULL, '2025-06-11 12:35:28', '2025-06-12 05:03:10'),
 (442, 'cc1c0e68-5cc7-4c24-a324-c789e4603a01', 'Zakiatu Munawarah', 'siswa232885@mts.com', NULL, '$2y$12$WI6dmxAlNO6PQHQpFdofVOfq2yyaKN03i9lMf.NFdGyUKVL9Q.j5.', NULL, 'P', NULL, NULL, 'Mempawah', '2010-09-17', 'foto_siswa/2f65aa7c-f5f6-4bc5-816a-2e500221adf0.png', NULL, '2025-06-11 12:35:28', '2025-06-12 05:07:56'),
 (443, '9cc589af-78e6-454c-aac0-551fd550d092', 'Zhahirah Rachmawati', 'siswa232886@mts.com', NULL, '$2y$12$Pag5Mvqm8YaardRw5krbsO0BfiiyrkxgHz2jz2PMFTx.XVAoUXfFO', NULL, 'P', NULL, NULL, 'MEMPAWAH', '2010-12-20', 'foto_siswa/f19dc9d4-deea-439a-90e7-a6d0517d71cb.png', NULL, '2025-06-11 12:35:28', '2025-06-12 04:15:55'),
-(444, '9c435ddd-1f21-4dc0-a2bf-c87253f097f7', 'Zhiekrilah Praditya Saputra', 'siswa232887@mts.com', NULL, '$2y$12$FzqvrXSL1UMYzLUSvoxT5eIRWggJhubNpKvkGkk7Fu/1OwcJWiDTm', NULL, 'L', NULL, '', 'Mempawah', '2011-01-22', NULL, NULL, '2025-06-11 12:35:29', '2025-06-11 12:35:29'),
+(444, '9c435ddd-1f21-4dc0-a2bf-c87253f097f7', 'Zhiekrilah Praditya Saputra', 'siswa232887@mts.com', NULL, '$2y$12$FzqvrXSL1UMYzLUSvoxT5eIRWggJhubNpKvkGkk7Fu/1OwcJWiDTm', NULL, 'L', NULL, NULL, 'Mempawah', '2011-01-22', NULL, NULL, '2025-06-11 12:35:29', '2025-06-25 02:24:21'),
 (445, 'fe822cd5-12f8-4638-8533-4b016bd834a6', 'Zilbi Aulia Nurduha', 'siswa232888@mts.com', NULL, '$2y$12$3P/oeRmbcxgR3hQmNsEmauj91XadDgVjq.6a2om0BFcv8dMso4MMy', NULL, 'P', NULL, NULL, 'Sadaniang', '2011-03-22', 'foto_siswa/4d605e47-b0bf-4171-b538-a90e23a23fd6.png', NULL, '2025-06-11 12:35:29', '2025-06-12 03:48:54'),
 (446, '03ca3023-0dcc-4e7b-b37d-03fbb1f15076', 'Rasyid Naufal', 'siswa232889@mts.com', NULL, '$2y$12$.YMssJRnIZhjibprCTolye/ZELmbX2a3wMNE9l70JloJyW.RP7fQ.', NULL, 'L', NULL, NULL, 'Mempawah', '2011-01-11', 'foto_siswa/573e3b9f-0fe2-4c71-baf2-d36769bfc502.png', NULL, '2025-06-11 12:35:29', '2025-06-12 04:23:42'),
 (447, 'bd2bf2c6-5988-4b3e-820f-8529519f15b1', 'Fahri Alhi Kafianda', 'siswa232890@mts.com', NULL, '$2y$12$ONZNoMHNg8iqaVZPcgRLIO/BsaMPHbBV3G5jPi0u2SEX.a7rdP7V.', NULL, 'L', NULL, '', 'Mempawah', '2011-05-25', NULL, NULL, '2025-06-11 12:35:29', '2025-06-11 12:35:29');
@@ -3525,18 +3519,18 @@ INSERT INTO `users` (`id`, `uuid`, `name`, `email`, `email_verified_at`, `passwo
 (675, '2af0c35e-2db7-4d75-836d-7a2e4b1f9208', 'Vanisa Ayu Zanariah', 'kelas70128565256@mts.sch.id', NULL, '$2y$12$agrtzS1POXz6fuD1v/ROg.Ur477vlNgq4vrASMhxk3I9UNReW.cEu', NULL, 'P', NULL, NULL, 'Mempawah', '2012-09-25', 'foto_siswa/74a5dfdf-46fd-4a5c-b251-9632e9759ff7.png', NULL, '2025-06-11 13:05:17', '2025-06-12 03:39:02'),
 (676, 'd5b44423-011f-4664-9e2c-202dc20e73f7', 'Meisha Tri Ramadhani', 'kelas70133497706@mts.sch.id', NULL, '$2y$12$TUAD4EFjAgaCRN8Os9z8gewEARzBVOnrPgus3LbxAABg3uNHso3MC', NULL, 'P', NULL, NULL, 'Mempawah', '2013-07-11', 'foto_siswa/94b69dfa-63c6-4d80-ab7b-2bae677d4fb9.png', NULL, '2025-06-11 13:05:17', '2025-06-12 04:42:24'),
 (677, 'e305f8a1-7b32-4351-8a8c-f7bbeb92dfa6', 'Syifa Izzatun Nisa', 'kelas70138450314@mts.sch.id', NULL, '$2y$12$03.fJ05aXfHIb6RKiMq5JOi13fqlZoAyGHe08Z3Rvr.WyqF5OQ05e', NULL, 'P', NULL, NULL, 'Singkawang', '2013-06-28', 'foto_siswa/7bcab42c-abc2-427b-9aba-c18162988b94.png', NULL, '2025-06-11 13:05:17', '2025-06-12 04:16:49'),
-(678, '42de9061-a2e4-434c-80f6-1cb09a172764', 'Muhammad Ramdhan', 'kelas70137182059@mts.sch.id', NULL, '$2y$12$PwRhCKBSRPa1hZoEwGo7SuTDCgQkBq1uSki14RQKYbHv6YV/T9AaC', NULL, 'L', NULL, '', 'Mempawah', '2013-10-07', NULL, NULL, '2025-06-11 13:05:17', '2025-06-11 13:05:17'),
+(678, '42de9061-a2e4-434c-80f6-1cb09a172764', 'Muhammad Ramdhan', 'kelas70137182059@mts.sch.id', NULL, '$2y$12$PwRhCKBSRPa1hZoEwGo7SuTDCgQkBq1uSki14RQKYbHv6YV/T9AaC', NULL, 'L', NULL, NULL, 'Mempawah', '2013-10-07', NULL, NULL, '2025-06-11 13:05:17', '2025-06-25 08:17:45'),
 (679, '617d9ed4-9c4b-4046-932e-45150b46e098', 'Reya Anugerah', 'kelas70123246395@mts.sch.id', NULL, '$2y$12$vSGrkhbtTryjqv9VHpo3RO9cOm2GES00lk3KkOQBQPpWL8sHOkuNC', NULL, 'P', NULL, NULL, 'Mempawah', '2012-03-24', 'foto_siswa/d0f8f645-725d-4638-94e6-99b17fd8fb50.png', NULL, '2025-06-11 13:05:18', '2025-06-12 05:09:28'),
 (680, 'c34093b6-1841-4805-ac45-3226d62dfae5', 'Tri Salsabila', 'kelas70129526597@mts.sch.id', NULL, '$2y$12$O82BCSDstQWJxIwag8lHNu3FxiJ/J9hwJmdm9oYTvnv/ktknLl2De', NULL, 'P', NULL, NULL, 'Sengkubang', '2012-10-17', 'foto_siswa/af89d6fc-afdf-4d49-a1dd-1f1cf6f420c8.png', NULL, '2025-06-11 13:05:18', '2025-06-12 04:30:19'),
 (681, '11597e03-3cf6-41ee-938b-c2f092102d2c', 'Darrel Aydin', 'kelas73124709030@mts.sch.id', NULL, '$2y$12$/.tMyVa.ZISX4ibT.dsKh.IUnnfJYxGB8H6MMBy0RsmU2KnF.6lHW', NULL, 'L', NULL, NULL, 'Sungai Bakau Besar Laut', '2012-11-20', 'foto_siswa/4fb5b2c6-8c03-4fdf-8132-13e7b06426a0.png', NULL, '2025-06-11 13:05:18', '2025-06-12 05:48:34'),
 (682, '17ff94f7-b356-4dd4-978d-b3fcd7430cfa', 'Chelsea Aqilla Kirana', 'kelas73139627729@mts.sch.id', NULL, '$2y$12$WCJbLEzNyocX5GyJR35Z2O.VTZM5lKvM6GQkmbEFc81zz7ikHX3GK', NULL, 'P', NULL, NULL, 'Mempawah', '2013-06-04', 'foto_siswa/f718455d-c9ec-4dd2-af78-ac4b08d1b9c0.png', NULL, '2025-06-11 13:05:18', '2025-06-12 03:46:51'),
-(683, 'e3b40b1d-ac21-4b59-9d7a-356c3f181f88', 'Azmy Reyvalko', 'kelas73123250244@mts.sch.id', NULL, '$2y$12$yMeSqK6ZMMwP1BjeffnK3u/NMcVq8P4j3ANtLYO50gHNlnbHZPcHG', NULL, 'L', NULL, NULL, 'Mempawah', '2012-12-21', 'foto_siswa/1a4e7700-d32e-4b60-91ec-52c77776059a.png', NULL, '2025-06-11 13:05:18', '2025-06-12 04:04:43'),
+(683, 'e3b40b1d-ac21-4b59-9d7a-356c3f181f88', 'Azmi Reyvalko', 'kelas73123250244@mts.sch.id', NULL, '$2y$12$yMeSqK6ZMMwP1BjeffnK3u/NMcVq8P4j3ANtLYO50gHNlnbHZPcHG', NULL, 'L', NULL, NULL, 'Mempawah', '2012-12-21', 'foto_siswa/1a4e7700-d32e-4b60-91ec-52c77776059a.png', NULL, '2025-06-11 13:05:18', '2025-06-25 02:16:27'),
 (684, '84318628-2cd4-4cce-8014-57daccf721e7', 'Nida Fidiya', 'kelas70123102717@mts.sch.id', NULL, '$2y$12$BVliqxOthz9MB8RnwQGwrOQp0xNaRBdAT1BpDcM4S/KHhnLCLObcy', NULL, 'P', NULL, NULL, 'Mempawah', '2012-11-06', 'foto_siswa/64d57056-858b-40c8-89c6-e5a7e0525907.png', NULL, '2025-06-11 13:05:19', '2025-06-12 03:52:15'),
 (685, 'bed837a4-4e5e-413f-87e5-2d45ef923d10', 'Raffi Dwi Arya', 'kelas73126726568@mts.sch.id', NULL, '$2y$12$T8LOL7hth2SyGhD7KaTKreuKMcafw65pKsNfoUBzeFUQoyTyi.ccm', NULL, 'L', NULL, NULL, 'Kubu Raya', '2012-09-01', 'foto_siswa/60e2f55b-4e49-405f-b064-20488fd12ec8.png', NULL, '2025-06-11 13:05:19', '2025-06-12 05:47:25'),
 (686, 'cfcf3a37-6634-4af2-b44e-426c6552223b', 'Neysa Zia Purqania', 'kelas70126025776@mts.sch.id', NULL, '$2y$12$099mgJcA5WGFbUb8bbL8DOR3KkM5e5RNOY/Byp.wOkKFbF4oA6Ux6', NULL, 'P', NULL, NULL, 'Mempawah', '2012-10-02', 'foto_siswa/2c9a93b0-4dfb-438e-9e2a-06738c5df1aa.png', NULL, '2025-06-11 13:05:19', '2025-06-12 04:33:00'),
 (687, '1c282043-0407-4000-8b29-d9bc4e4dbc9d', 'Alsa Mikaela Nuraini', 'kelas70129314705@mts.sch.id', NULL, '$2y$12$PbUEDH0c6MQEEn9.Q5he1eTfDoOYYA/9.p8o8FwYoWJ/3n8ioFWhe', NULL, 'P', NULL, NULL, 'Tanjung Pinang', '2012-12-30', 'foto_siswa/9130af86-a507-4fb3-b902-35d98e7f2b17.png', NULL, '2025-06-11 13:05:19', '2025-06-12 03:50:45'),
 (688, 'd29569d3-6e6b-478d-af0e-ce0ea98495ed', 'Safa Filza Izzati', 'kelas72034190317@mts.sch.id', NULL, '$2y$12$82fZrovGtwH13nsFyHUR3Ok4t823AhMQAtSJF1sDPrVDYHuFC30sC', NULL, 'P', NULL, '', 'Mempawah', '2013-01-25', NULL, NULL, '2025-06-11 13:05:19', '2025-06-11 13:05:19'),
-(689, '75a115b8-146b-43cb-ba0c-c8c2cbeebcad', 'Jihan Retri Zakirah', 'kelas70127305900@mts.sch.id', NULL, '$2y$12$zsZN6jtBXatACvbBTC9LVOteSH/3.6rRK682btYzcwwucF2xE0lra', NULL, 'P', NULL, NULL, 'Bm', '2012-11-28', 'foto_siswa/d179c287-44e5-43d1-b009-65e4b1eb3b15.png', NULL, '2025-06-11 13:05:20', '2025-06-12 04:13:57'),
+(689, '75a115b8-146b-43cb-ba0c-c8c2cbeebcad', 'Jihan Retri Zakirah', 'kelas70127305900@mts.sch.id', NULL, '$2y$12$zsZN6jtBXatACvbBTC9LVOteSH/3.6rRK682btYzcwwucF2xE0lra', NULL, 'P', NULL, NULL, 'Mempawah', '2012-11-28', 'foto_siswa/d179c287-44e5-43d1-b009-65e4b1eb3b15.png', NULL, '2025-06-11 13:05:20', '2025-06-25 08:17:07'),
 (690, '370da157-1af5-40f4-aa4a-bb8cb66ca8ec', 'Anindy Shidqiyah Dzahin', 'kelas70139312457@mts.sch.id', NULL, '$2y$12$5DG.XUfbpK6zqT9XEu/JgOFZoL1jLMevU8G1GfmkFDgqlW9AA4yDq', NULL, 'P', NULL, NULL, 'Mempawah', '2013-06-22', 'foto_siswa/3b7e75e9-8826-4c21-b312-2eb4e86534c7.png', NULL, '2025-06-11 13:05:20', '2025-06-12 04:01:39'),
 (691, 'f5c1c80a-0051-439e-adea-dbd89aae0040', 'Daeng Alya Fartika', 'kelas70127645658@mts.sch.id', NULL, '$2y$12$MRw/xelm7HvrDd.oaJ8yhOtcWs6ReBHd8MOq6NOUEr5aiNaT.7O2i', NULL, 'P', NULL, NULL, 'Sungai Pinyuh', '2012-12-26', 'foto_siswa/28e4a836-e11e-4c09-9576-5282f7412567.png', NULL, '2025-06-11 13:05:20', '2025-06-12 04:48:02'),
 (692, '1a0199f8-ba2b-41ee-84dc-9727fedc8b22', 'Zakiya Hanifa Hermawan', 'kelas70124466223@mts.sch.id', NULL, '$2y$12$qwzknqPK.iEu6Tz9N3tegev.UFs7NCoPjDTw106FyWJgLrd83xxZO', NULL, 'P', NULL, NULL, 'Mempawah', '2012-12-05', 'foto_siswa/6345632f-99d1-475f-8fcd-9249e2bb4503.png', NULL, '2025-06-11 13:05:20', '2025-06-12 05:07:00'),
@@ -3684,8 +3678,7 @@ INSERT INTO `users` (`id`, `uuid`, `name`, `email`, `email_verified_at`, `passwo
 (833, 'daf40c6c-4427-4bc9-9292-34a7a9fbd5fb', 'Andika Saputra', 'kelas70126128712@mts.sch.id', NULL, '$2y$12$zSM3ppoQQlZnNPgNm80hiuA7L5NwpYXXUCGPQd6BFCJzHMtGx7dai', NULL, 'L', NULL, NULL, 'Mempawah', '2012-11-25', 'foto_siswa/31a327a4-c314-4dc6-9197-d76f076f4700.png', NULL, '2025-06-11 13:05:49', '2025-06-12 05:34:31'),
 (834, 'f334f14c-95a0-40d4-a946-4a3b7e5ea9bf', 'Nur Rifqi Zahin', 'kelas70128486767@mts.sch.id', NULL, '$2y$12$TVsvKybhWYGvY5Ck9h3DnejE6F6DB4i1mYt4NUG20WJq.You8C5ca', NULL, 'L', NULL, NULL, 'Mempawah', '2012-12-17', 'foto_siswa/03e920db-63eb-4c30-83f1-b7d9fe6dc5f0.png', NULL, '2025-06-11 13:05:49', '2025-06-12 04:01:29'),
 (835, 'bbbfd3ed-c38c-4ae4-bbab-62f49d80f452', 'Naura Halifa Alya', 'kelas70124168542@mts.sch.id', NULL, '$2y$12$YV0cVGv1DvdymiX2R9rw8eX8caZgF8Ssh/z8kn9RlAqF2/rT7P3Xi', NULL, 'P', NULL, NULL, 'Mempawah', '2012-03-03', 'foto_siswa/4aacf541-809e-445c-b401-fdb2c7e5f7fa.png', NULL, '2025-06-11 13:05:49', '2025-06-12 04:44:59'),
-(836, 'fed50eb2-dd7c-4c7b-ab04-2a808781ab45', 'Soni Rauf Azim', 'kelas70133620309@mts.sch.id', NULL, '$2y$12$u7gUWAzceqs1kdx4DC3Saen0L3fJksMsBsAi2AKK4NyzemFHxRNFe', NULL, 'L', NULL, NULL, 'Mempawah', '2013-04-30', 'foto_siswa/fc732675-397a-4cb6-bb9c-547b1c532a1c.png', NULL, '2025-06-11 13:05:49', '2025-06-12 05:07:54'),
-(837, '41f05d3b-04ab-4131-9171-2b830d3b0b56', 'Muhammad Ramadhan', 'kelas79999999999@mts.com', NULL, '$2y$12$mHgxqDN9dwlrxeahMGxe.u0dOcCSPwfiaV5EXFcUaHGtmSKZK/SCi', NULL, 'L', NULL, NULL, 'Mempawah', '2013-07-10', 'foto_siswa/f9f14dc2-53a9-4481-9312-53a05f13b855.png', NULL, '2025-06-12 05:21:29', '2025-06-12 05:23:01');
+(836, 'fed50eb2-dd7c-4c7b-ab04-2a808781ab45', 'Soni Rauf Azim', 'kelas70133620309@mts.sch.id', NULL, '$2y$12$u7gUWAzceqs1kdx4DC3Saen0L3fJksMsBsAi2AKK4NyzemFHxRNFe', NULL, 'L', NULL, NULL, 'Mempawah', '2013-04-30', 'foto_siswa/fc732675-397a-4cb6-bb9c-547b1c532a1c.png', NULL, '2025-06-11 13:05:49', '2025-06-12 05:07:54');
 
 --
 -- Indexes for dumped tables

@@ -30,7 +30,7 @@
                 </td>
                 <td>
                     @if($siswa->user->foto)
-                        <img src="{{ asset('storage/' . $siswa->user->foto) }}" alt="Foto" width="100">
+                        <img src="{{ asset('storage/' . $siswa->user->foto) }}" alt="Foto" width="70">
                     @else
                         -
                     @endif
