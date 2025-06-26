@@ -15,6 +15,7 @@ class Rekamabsen extends Component
     public $nisn;
     public $pesan;
 
+
     public function cekNisn()
     {
         $siswa = Siswa::where('nisn', $this->nisn)->first();

@@ -23,4 +23,9 @@ class PesertaDidik extends Model
     {
         return $this->hasOneThrough(Kelas::class, AnggotaRombel::class, 'peserta_didik_id', 'id', 'id', 'kelas_id');
     }
+    //relasi ke absensi
+    public function absensi()
+    {
+        return $this->hasMany(Absensi::class);
+    }
 }

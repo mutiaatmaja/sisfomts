@@ -140,6 +140,9 @@ Route::prefix('kesiswaan')->group(function () {
             ->middleware(['role:admin'])
             ->name('absen.rekam2');
         Route::post('/rekam2proses', [AbsenController::class, 'rekam2proses'])->name('absen.rekam2proses');
+        Route::get('/lihat-absen-kelas', [AbsenController::class, 'lihatAbsenKelas'])
+            ->middleware(['role:admin'])
+            ->name('absen.lihat-absen-kelas');
     });
 
     // Public route for viewing OSIS members

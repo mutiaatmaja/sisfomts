@@ -16,6 +16,9 @@ class AbsenController extends Controller
         $absensi = Absensi::latest()->whereDate('created_at', now())->get();
         return view('absen.index', compact('absensi'));
     }
+    public function lihatAbsenKelas(){
+        return view('absen.lihatAbsenKelas');
+    }
     public function rekam()
     {
         return view('absen.rekam');

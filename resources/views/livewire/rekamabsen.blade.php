@@ -56,7 +56,10 @@
             </div>
         @endif
     </div>
-    <div id="tableCustomBasic" class="col-lg-12 col-12 layout-spacing">
+    <div id="tableCustomBasic" class="col-lg-12 col-12 layout-spacing" style="position:relative;">
+        <div wire:loading.flex wire:target="cekNisn" class="loading-overlay">
+            <div class="spinner"></div>
+        </div>
         <div class="statbox widget box box-shadow">
             <div class="widget-header">
                 <div class="row">

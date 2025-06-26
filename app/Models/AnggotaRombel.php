@@ -17,4 +17,9 @@ class AnggotaRombel extends Model
     {
         return $this->belongsTo(PesertaDidik::class);
     }
+    //relasi ke kelas
+    public function kelas()
+    {
+        return $this->belongsTo(Kelas::class);
+    }
 }
