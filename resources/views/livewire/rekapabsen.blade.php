@@ -257,7 +257,7 @@
                                                     $hadir = $absensi->where('status', 'hadir')->count();
                                                     $ijin = $absensi->where('status', 'ijin')->count();
                                                     $sakit = $absensi->where('status', 'sakit')->count();
-                                                    $alpa = $absensi->where('status', 'alpa')->count();
+                                                    $alpa = $absensi->where('status', 'alpha')->count();
                                                 @endphp
 
                                                 <tr>
