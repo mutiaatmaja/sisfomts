@@ -118,7 +118,7 @@
                                             @if ($absen->keterangan == 'terlambat')
                                             <span class="badge badge-light-danger">TERLAMBAT</span>
                                             @else
-                                            <span class="badge badge-light-primary">Tepat Waktu</span>
+                                            <span class="badge badge-light-primary">{{ $absen->keterangan }}</span>
                                         @endif
                                             {{ $absen->created_at->format('H:i:s') }}
                                         </td>

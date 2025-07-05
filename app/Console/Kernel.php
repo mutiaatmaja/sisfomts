@@ -14,7 +14,7 @@ class Kernel extends ConsoleKernel
     {
         // Jalankan pengecekan absensi otomatis setiap hari jam 8:00 pagi
         $schedule->command('attendance:mark-absent')
-            ->dailyAt('08:00')
+            ->dailyAt('09:00')
             ->withoutOverlapping()
             ->runInBackground()
             ->appendOutputTo(storage_path('logs/attendance-automatic.log'));
