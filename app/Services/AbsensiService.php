@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 
 class AbsensiService
 {
-    /**
+        /**
      * Menandai siswa yang belum absen sebagai alpa
      */
     public function markAbsentStudents($date = null)
@@ -24,11 +24,43 @@ class AbsensiService
             ->with(['anggotaRombel.kelas', 'user'])
             ->get();
 
+        $totalStudents = $activeStudents->count();
+
+        // Hitung yang sudah absen hari ini
+        $sudahAbsen = Absensi::whereDate('tanggal', $date->toDateString())->distinct('peserta_didik_id')->count('peserta_didik_id');
+
+        // Hitung persentase yang belum absen
+        $belumAbsen = $totalStudents - $sudahAbsen;
+        $persenBelumAbsen = $totalStudents > 0 ? ($belumAbsen / $totalStudents) * 100 : 0;
+
+        // Jika lebih dari 80% belum absen, anggap hari libur
+        if ($persenBelumAbsen >= 80) {
+            Log::info("Absensi otomatis DIBATALKAN karena {$persenBelumAbsen}% siswa belum absen. Hari dianggap libur.", [
+                'date' => $date->format('Y-m-d'),
+                'total_students' => $totalStudents,
+                'sudah_absen' => $sudahAbsen,
+                'belum_absen' => $belumAbsen,
+                'persen_belum_absen' => round($persenBelumAbsen, 2)
+            ]);
+
+            return [
+                'total_students' => $totalStudents,
+                'marked_absent' => 0,
+                'already_absent' => $sudahAbsen,
+                'errors' => [],
+                'holiday' => true,
+                'holiday_reason' => "Lebih dari 80% siswa belum absen ({$persenBelumAbsen}%), hari dianggap libur",
+                'persen_belum_absen' => round($persenBelumAbsen, 2)
+            ];
+        }
+
         $results = [
-            'total_students' => $activeStudents->count(),
+            'total_students' => $totalStudents,
             'marked_absent' => 0,
             'already_absent' => 0,
-            'errors' => []
+            'errors' => [],
+            'holiday' => false,
+            'persen_belum_absen' => round($persenBelumAbsen, 2)
         ];
 
         DB::beginTransaction();
@@ -50,7 +82,7 @@ class AbsensiService
                     Absensi::create([
                         'uuid' => Str::uuid(),
                         'peserta_didik_id' => $student->id,
-                        'tanggal' => $date->copy()->setTime(8, 0, 0), // Set jam 8:00
+                        'tanggal' => $date->copy()->setTime(9, 0, 0), // Set jam 9:00
                         'status' => 'alpha',
                         'keterangan' => 'Otomatis ditandai alpa - belum scan absen',
                     ]);

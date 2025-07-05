@@ -24,6 +24,19 @@
                     </div>
                 </div>
                 <div class="widget-content widget-content-area">
+                    @php
+                        $persenBelumAbsen = $stats['total_students'] > 0 ? ($stats['belum_absen'] / $stats['total_students']) * 100 : 0;
+                        $isHoliday = $persenBelumAbsen >= 80;
+                    @endphp
+
+                    @if($isHoliday)
+                        <div class="alert alert-warning" role="alert">
+                            <h5 class="alert-heading">⚠️ HARI LIBUR OTOMATIS</h5>
+                            <p>Lebih dari 80% siswa belum absen ({{ number_format($persenBelumAbsen, 1) }}%), hari ini dianggap libur otomatis.</p>
+                            <p class="mb-0">Sistem tidak akan menandai siswa sebagai alpa.</p>
+                        </div>
+                    @endif
+
                     <div class="row">
                         <div class="col-md-2">
                             <div class="text-center">
@@ -58,7 +71,7 @@
                         <div class="col-md-2">
                             <div class="text-center">
                                 <h5 class="text-secondary">{{ $stats['belum_absen'] }}</h5>
-                                <p class="text-muted">Belum Absen</p>
+                                <p class="text-muted">Belum Absen ({{ number_format($persenBelumAbsen, 1) }}%)</p>
                             </div>
                         </div>
                     </div>

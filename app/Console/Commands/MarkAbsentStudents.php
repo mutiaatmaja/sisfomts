@@ -31,13 +31,20 @@ class MarkAbsentStudents extends Command
 
         $this->info("Memulai pengecekan absensi untuk tanggal: " . $date->format('Y-m-d'));
 
-        try {
+                try {
             $results = $absensiService->markAbsentStudents($date);
 
             $this->info("\nRingkasan:");
             $this->info("- Total siswa: " . $results['total_students']);
             $this->info("- Sudah absen: " . $results['already_absent']);
             $this->info("- Ditandai alpa: " . $results['marked_absent']);
+            $this->info("- Persen belum absen: " . $results['persen_belum_absen'] . "%");
+
+            if (isset($results['holiday']) && $results['holiday']) {
+                $this->warn("\n⚠️  HARI LIBUR OTOMATIS:");
+                $this->warn("- Alasan: " . $results['holiday_reason']);
+                $this->warn("- Tidak ada siswa yang ditandai alpa");
+            }
 
             if (!empty($results['errors'])) {
                 $this->warn("\nError yang terjadi:");

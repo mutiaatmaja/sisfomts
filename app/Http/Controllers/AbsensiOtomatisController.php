@@ -31,7 +31,7 @@ class AbsensiOtomatisController extends Controller
         return view('absen.otomatis', compact('stats', 'studentsWithoutAbsence', 'studentsWithAbsence', 'today'));
     }
 
-    /**
+        /**
      * Menjalankan pengecekan absensi otomatis secara manual
      */
     public function runManual(Request $request)
@@ -55,16 +55,28 @@ class AbsensiOtomatisController extends Controller
                 // Jalankan langsung
                 $results = $this->absensiService->markAbsentStudents($date);
 
-                $message = "Pengecekan absensi selesai. ";
-                $message .= "Total siswa: {$results['total_students']}, ";
-                $message .= "Sudah absen: {$results['already_absent']}, ";
-                $message .= "Ditandai alpa: {$results['marked_absent']}";
+                if (isset($results['holiday']) && $results['holiday']) {
+                    $message = "⚠️ HARI LIBUR OTOMATIS! ";
+                    $message .= $results['holiday_reason'] . ". ";
+                    $message .= "Total siswa: {$results['total_students']}, ";
+                    $message .= "Sudah absen: {$results['already_absent']}, ";
+                    $message .= "Persen belum absen: {$results['persen_belum_absen']}%";
 
-                if (!empty($results['errors'])) {
-                    $message .= ". Terjadi " . count($results['errors']) . " error.";
+                    Alert::warning('Hari Libur Otomatis', $message);
+                } else {
+                    $message = "Pengecekan absensi selesai. ";
+                    $message .= "Total siswa: {$results['total_students']}, ";
+                    $message .= "Sudah absen: {$results['already_absent']}, ";
+                    $message .= "Ditandai alpa: {$results['marked_absent']}, ";
+                    $message .= "Persen belum absen: {$results['persen_belum_absen']}%";
+
+                    if (!empty($results['errors'])) {
+                        $message .= ". Terjadi " . count($results['errors']) . " error.";
+                    }
+
+                    Alert::success('Berhasil', $message);
                 }
 
-                Alert::success('Berhasil', $message);
                 Log::info("Pengecekan absensi otomatis manual selesai", ['results' => $results]);
             }
 

@@ -63,6 +63,15 @@ try {
     echo "   - Total siswa: {$results['total_students']}\n";
     echo "   - Sudah absen: {$results['already_absent']}\n";
     echo "   - Ditandai alpa: {$results['marked_absent']}\n";
+    echo "   - Persen belum absen: {$results['persen_belum_absen']}%\n";
+
+    if (isset($results['holiday']) && $results['holiday']) {
+        echo "   - Status: HARI LIBUR OTOMATIS\n";
+        echo "   - Alasan: {$results['holiday_reason']}\n";
+    } else {
+        echo "   - Status: NORMAL\n";
+    }
+
     if (!empty($results['errors'])) {
         echo "   - Error: " . count($results['errors']) . "\n";
     }

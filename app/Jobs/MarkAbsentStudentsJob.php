@@ -38,10 +38,18 @@ class MarkAbsentStudentsJob implements ShouldQueue
 
             $results = $absensiService->markAbsentStudents($this->date);
 
-            Log::info("Job pengecekan absensi otomatis selesai", [
-                'results' => $results,
-                'job_id' => $this->job->getJobId()
-            ]);
+            if (isset($results['holiday']) && $results['holiday']) {
+                Log::info("Job pengecekan absensi otomatis - HARI LIBUR", [
+                    'results' => $results,
+                    'job_id' => $this->job->getJobId(),
+                    'holiday_reason' => $results['holiday_reason']
+                ]);
+            } else {
+                Log::info("Job pengecekan absensi otomatis selesai", [
+                    'results' => $results,
+                    'job_id' => $this->job->getJobId()
+                ]);
+            }
 
         } catch (\Exception $e) {
             Log::error("Error dalam job pengecekan absensi otomatis", [

@@ -6,12 +6,15 @@ Sistem absensi otomatis adalah fitur yang secara otomatis menandai siswa sebagai
 ## Fitur Utama
 
 ### 1. Pengecekan Otomatis
-- **Waktu**: Setiap hari jam 8:00 pagi
+- **Waktu**: Setiap hari kerja (Senin-Jumat) jam 9:00 pagi
 - **Logika**: Jika siswa belum melakukan scan absen, sistem akan otomatis menandai sebagai 'alpa'
 - **Status**: Ditandai dengan keterangan "Otomatis ditandai alpa - belum scan absen"
+- **Hari Libur Otomatis**: Jika lebih dari 80% siswa belum absen, hari dianggap libur dan tidak ada siswa yang ditandai alpa
 
 ### 2. Dashboard Monitoring
 - **Statistik Real-time**: Menampilkan jumlah siswa hadir, sakit, izin, alpa, dan belum absen
+- **Persentase Belum Absen**: Menampilkan persentase siswa yang belum absen
+- **Alert Hari Libur**: Otomatis menampilkan peringatan jika hari dianggap libur (≥80% belum absen)
 - **Daftar Siswa**: Menampilkan siswa yang belum absen dan sudah absen
 - **Auto-refresh**: Halaman otomatis refresh setiap 30 detik
 
