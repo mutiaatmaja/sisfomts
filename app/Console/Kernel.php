@@ -12,9 +12,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        // Jalankan pengecekan absensi otomatis setiap hari jam 8:00 pagi
+        // Jalankan pengecekan absensi otomatis setiap hari kerja jam 9:00 pagi
         $schedule->command('attendance:mark-absent')
-            ->dailyAt('09:00')
+            ->weekdays()  // ← Hanya hari Senin-Jumat
+            ->at('09:00')
             ->withoutOverlapping()
             ->runInBackground()
             ->appendOutputTo(storage_path('logs/attendance-automatic.log'));
