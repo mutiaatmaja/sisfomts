@@ -1,14 +1,14 @@
 @extends('errors.layout')
 
-@section('title', '402 Payment Required')
+@section('title', '400 Bad Request')
 
 @section('content')
-    <div class="error-code">402</div>
-    <div class="error-icon">💳</div>
-    <h1 class="error-title">Payment Required</h1>
+    <div class="error-code">400</div>
+    <div class="error-icon">⚠️</div>
+    <h1 class="error-title">Bad Request</h1>
     <p class="error-message">
-        Maaf, akses ke halaman ini memerlukan pembayaran terlebih dahulu.
-        Silakan selesaikan proses pembayaran untuk melanjutkan.
+        Maaf, permintaan yang Anda kirim tidak valid atau tidak dapat diproses oleh server.
+        Silakan periksa kembali data yang Anda masukkan dan coba lagi.
     </p>
     <div class="error-actions">
         <a href="{{ url('/') }}" class="btn-error btn-primary-error">Kembali ke Beranda</a>

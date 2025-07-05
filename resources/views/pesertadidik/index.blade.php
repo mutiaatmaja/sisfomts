@@ -95,11 +95,16 @@
                                                 <div class="avatar me-2">
                                                     <img alt="avatar"
                                                         src="{{ $pesertaDidik->user->foto
+                                                            ? asset('storage/' . $pesertaDidik->user->foto)
+                                                            : asset('src/assets/img/profile-7.png') }}"
+                                                        class="rounded-circle" />
+                                                        {{-- <img alt="avatar"
+                                                        src="{{ $pesertaDidik->user->foto
                                                             ? asset('storage/' . $pesertaDidik->user->foto) .
                                                                 '?v=' .
                                                                 filemtime(storage_path('app/public/' . $pesertaDidik->user->foto))
                                                             : asset('src/assets/img/profile-7.png') }}"
-                                                        class="rounded-circle" />
+                                                        class="rounded-circle" /> --}}
 
                                                 </div>
                                                 <div class="media-body align-self-center">

@@ -1,14 +1,14 @@
 @extends('errors.layout')
 
-@section('title', '402 Payment Required')
+@section('title', '405 Method Not Allowed')
 
 @section('content')
-    <div class="error-code">402</div>
-    <div class="error-icon">💳</div>
-    <h1 class="error-title">Payment Required</h1>
+    <div class="error-code">405</div>
+    <div class="error-icon">❌</div>
+    <h1 class="error-title">Method Not Allowed</h1>
     <p class="error-message">
-        Maaf, akses ke halaman ini memerlukan pembayaran terlebih dahulu.
-        Silakan selesaikan proses pembayaran untuk melanjutkan.
+        Maaf, metode HTTP yang digunakan tidak diizinkan untuk halaman ini.
+        Silakan gunakan metode yang sesuai atau hubungi administrator.
     </p>
     <div class="error-actions">
         <a href="{{ url('/') }}" class="btn-error btn-primary-error">Kembali ke Beranda</a>

@@ -189,9 +189,11 @@
                     <li class="{{ request()->is('kesiswaan/absen') ? 'active' : '' }}"">
                         <a href="/kesiswaan/absen"> Absensi </a>
                     </li>
+                    @role('admin')
                     <li class="{{ request()->is('kesiswaan/absen/otomatis*') ? 'active' : '' }}"">
                         <a href="/kesiswaan/absen/otomatis"> Absensi Otomatis </a>
                     </li>
+                    @endrole
                     <li class="{{ request()->is('kesiswaan/prestasi') ? 'active' : '' }}"">
                         <a href="/kesiswaan/prestasi"> Prestasi </a>
                     </li>

@@ -1,14 +1,14 @@
 @extends('errors.layout')
 
-@section('title', '500 Internal Server Error')
+@section('title', '502 Bad Gateway')
 
 @section('content')
-    <div class="error-code">500</div>
-    <div class="error-icon">🔧</div>
-    <h1 class="error-title">Kesalahan Server</h1>
+    <div class="error-code">502</div>
+    <div class="error-icon">🌐</div>
+    <h1 class="error-title">Bad Gateway</h1>
     <p class="error-message">
-        Maaf, terjadi kesalahan internal pada server.
-        Tim kami sedang bekerja untuk memperbaiki masalah ini. Silakan coba lagi nanti.
+        Maaf, server gateway mengalami masalah sementara.
+        Ini biasanya terjadi karena server sedang dalam pemeliharaan atau overload.
     </p>
     <div class="error-actions">
         <a href="javascript:location.reload()" class="btn-error btn-primary-error">Coba Lagi</a>
