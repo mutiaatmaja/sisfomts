@@ -143,6 +143,16 @@ Route::prefix('kesiswaan')->group(function () {
         Route::get('/lihat-absen-kelas', [AbsenController::class, 'lihatAbsenKelas'])
             ->middleware(['role:admin'])
             ->name('absen.lihat-absen-kelas');
+
+        // Absensi Otomatis Routes
+        Route::prefix('otomatis')->middleware(['role:admin'])->group(function () {
+            Route::get('/', [App\Http\Controllers\AbsensiOtomatisController::class, 'index'])->name('absen.otomatis.index');
+            Route::post('/run', [App\Http\Controllers\AbsensiOtomatisController::class, 'runManual'])->name('absen.otomatis.run');
+            Route::get('/logs', [App\Http\Controllers\AbsensiOtomatisController::class, 'logs'])->name('absen.otomatis.logs');
+            Route::get('/stats', [App\Http\Controllers\AbsensiOtomatisController::class, 'getStats'])->name('absen.otomatis.stats');
+            Route::get('/students-without-absence', [App\Http\Controllers\AbsensiOtomatisController::class, 'getStudentsWithoutAbsence'])->name('absen.otomatis.students-without-absence');
+            Route::get('/students-with-absence', [App\Http\Controllers\AbsensiOtomatisController::class, 'getStudentsWithAbsence'])->name('absen.otomatis.students-with-absence');
+        });
     });
 
     // Public route for viewing OSIS members

@@ -67,7 +67,7 @@
                                                     <td>{{ $absen->pesertaDidik->nis ?? '' }}</td>
                                                     <td>{{ $absen->pesertaDidik->nisn ?? '' }}</td>
                                                     <td>{{ $absen->kelas->nama_kelas }}</td>
-                                                    <td>
+                                                    <td class="p-1">
                                                         @php
                                                             $absensi = $absen->pesertaDidik->absensi->first();
                                                             $status = $absensi->status ?? null;
@@ -75,17 +75,34 @@
                                                             $badgeText = $status ?? '-';
                                                             if ($status === 'hadir') {
                                                                 $badgeClass = 'success';
-                                                            } elseif ($status === 'alpa') {
+                                                            } elseif ($status === 'alpha') {
                                                                 $badgeClass = 'danger';
                                                             } elseif ($status === 'ijin') {
-                                                                $badgeClass = 'warning';
-                                                            } elseif ($status === 'info') {
                                                                 $badgeClass = 'info';
+                                                            } elseif ($status === 'sakit') {
+                                                                $badgeClass = 'warning';
                                                             }
                                                         @endphp
-                                                        <span class="badge bg-{{ $badgeClass }}">
+                                                        <button
+                                                            class="btn bg-{{ $badgeClass }}  px-2 py-1 dropdown-toggle"
+                                                            type="button" data-bs-toggle="dropdown"
+                                                            aria-expanded="false">
                                                             {{ ucfirst($badgeText) }}
-                                                        </span>
+                                                        </button>
+                                                        <ul class="dropdown-menu p-2">
+                                                            <li><button class="dropdown-item my-1 badge bg-success"
+                                                                    wire:click="updateStatus('hadir', '{{ $absensi->uuid ?? 'null' }}', {{ $absen->pesertaDidik->id ?? 'null' }})">Hadir</button>
+                                                            </li>
+                                                            <li><button class="dropdown-item my-1 bg-warning badge"
+                                                                    wire:click="updateStatus('sakit', '{{ $absensi->uuid ?? 'null' }}', {{ $absen->pesertaDidik->id ?? 'null' }})">Sakit</button>
+                                                            </li>
+                                                            <li><button class="dropdown-item my-1 bg-info badge"
+                                                                    wire:click="updateStatus('ijin', '{{ $absensi->uuid ?? 'null' }}', {{ $absen->pesertaDidik->id ?? 'null' }})">Ijin</button>
+                                                            </li>
+                                                            <li><button class="dropdown-item my-1 bg-danger badge"
+                                                                    wire:click="updateStatus('alpha', '{{ $absensi->uuid ?? 'null' }}', {{ $absen->pesertaDidik->id ?? 'null' }})">Alpa</button>
+                                                            </li>
+                                                        </ul>
                                                         -
                                                         {{ $absensi?->tanggal ? \Carbon\Carbon::parse($absensi->tanggal)->format('H:i') : '-' }}
                                                     </td>
@@ -140,7 +157,7 @@
                                                     <td>{{ $absen->pesertaDidik->nis ?? '' }}</td>
                                                     <td>{{ $absen->pesertaDidik->nisn ?? '' }}</td>
                                                     <td>{{ $absen->kelas->nama_kelas }}</td>
-                                                    <td>
+                                                    <td class="p-1">
                                                         @php
                                                             $absensi = $absen->pesertaDidik->absensi->first();
                                                             $status = $absensi->status ?? null;
@@ -148,17 +165,34 @@
                                                             $badgeText = $status ?? '-';
                                                             if ($status === 'hadir') {
                                                                 $badgeClass = 'success';
-                                                            } elseif ($status === 'alpa') {
+                                                            } elseif ($status === 'alpha') {
                                                                 $badgeClass = 'danger';
                                                             } elseif ($status === 'ijin') {
-                                                                $badgeClass = 'warning';
-                                                            } elseif ($status === 'info') {
                                                                 $badgeClass = 'info';
+                                                            } elseif ($status === 'sakit') {
+                                                                $badgeClass = 'warning';
                                                             }
                                                         @endphp
-                                                        <span class="badge bg-{{ $badgeClass }}">
+                                                        <button
+                                                            class="btn bg-{{ $badgeClass }}  px-2 py-1 dropdown-toggle"
+                                                            type="button" data-bs-toggle="dropdown"
+                                                            aria-expanded="false">
                                                             {{ ucfirst($badgeText) }}
-                                                        </span>
+                                                        </button>
+                                                        <ul class="dropdown-menu p-2">
+                                                            <li><button class="dropdown-item my-1 badge bg-success"
+                                                                    wire:click="updateStatus('hadir', '{{ $absensi->uuid ?? 'null' }}', {{ $absen->pesertaDidik->id ?? 'null' }})">Hadir</button>
+                                                            </li>
+                                                            <li><button class="dropdown-item my-1 bg-warning badge"
+                                                                    wire:click="updateStatus('sakit', '{{ $absensi->uuid ?? 'null' }}', {{ $absen->pesertaDidik->id ?? 'null' }})">Sakit</button>
+                                                            </li>
+                                                            <li><button class="dropdown-item my-1 bg-info badge"
+                                                                    wire:click="updateStatus('ijin', '{{ $absensi->uuid ?? 'null' }}', {{ $absen->pesertaDidik->id ?? 'null' }})">Ijin</button>
+                                                            </li>
+                                                            <li><button class="dropdown-item my-1 bg-danger badge"
+                                                                    wire:click="updateStatus('alpha', '{{ $absensi->uuid ?? 'null' }}', {{ $absen->pesertaDidik->id ?? 'null' }})">Alpa</button>
+                                                            </li>
+                                                        </ul>
                                                         -
                                                         @if ($absensi?->tanggal)
                                                             {{ \Carbon\Carbon::parse($absensi->tanggal)->isoFormat('dddd, D MMMM Y') }}

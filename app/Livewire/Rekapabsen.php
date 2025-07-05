@@ -8,6 +8,8 @@ use Livewire\Component;
 use Livewire\Attributes\On;
 use App\Models\AnggotaRombel;
 use Carbon\Carbon;
+use Jantinnerezo\LivewireAlert\Facades\LivewireAlert;
+use Ramsey\Uuid\Uuid;
 
 class Rekapabsen extends Component
 {
@@ -28,6 +30,35 @@ class Rekapabsen extends Component
                 }
             ])
             ->get();
+    }
+    public function updateStatus($status, $uuid, $siswaId)
+    {
+
+        // Validasi input
+        if (!in_array($status, ['hadir', 'ijin', 'sakit', 'alpha'])) {
+            LivewireAlert::title('Error')->text('Status tidak valid.')->error()->toast()->position('top-end')->show();
+            return;
+        }
+
+        // Cek apakah UUID sudah ada
+        $absensi = Absensi::where('uuid', $uuid)->first();
+
+        if ($absensi) {
+
+            // Jika sudah ada, update status
+            $absensi->status = $status;
+            $absensi->save();
+        } else {
+            // Jika belum ada, buat record baru
+            Absensi::create([
+                'uuid' => Uuid::uuid4(),
+                'peserta_didik_id' => $siswaId,
+                'status' => $status,
+                'tanggal' => Carbon::now(),
+                'keterangan' => 'OVERRIDE',
+                // Tambahkan field lain yang diperlukan sesuai model Absensi
+            ]);
+        }
     }
     public function pilihWaktuDitekan($waktu)
     {

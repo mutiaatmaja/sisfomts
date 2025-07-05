@@ -13,7 +13,7 @@ class AbsenController extends Controller
 {
     public function index()
     {
-        $absensi = Absensi::latest()->whereDate('created_at', now())->get();
+        $absensi = Absensi::latest()->whereDate('tanggal', now())->get();
         return view('absen.index', compact('absensi'));
     }
     public function lihatAbsenKelas(){
