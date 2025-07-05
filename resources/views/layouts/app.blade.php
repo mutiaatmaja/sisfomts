@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<!-- Mirrored from designreset.com/cork/html/modern-light-menu/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 May 2025 05:23:09 GMT -->
 <head>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta charset="utf-8">
@@ -992,6 +990,4 @@
     @stack('js')
 
 </body>
-
-<!-- Mirrored from designreset.com/cork/html/modern-light-menu/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 May 2025 05:23:47 GMT -->
 </html>
