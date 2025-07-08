@@ -9,7 +9,7 @@
     <div class="row layout-top-spacing">
         <div class="row mb-2">
             <div class="col-12">
-                <a href="/kelas" class="btn btn-primary mr-2">Kembali</a>
+                <a href="{{ route('prestasi.index') }}" class="btn btn-primary mr-2">Kembali</a>
                 <!-- Button trigger modal -->
 
             </div>
