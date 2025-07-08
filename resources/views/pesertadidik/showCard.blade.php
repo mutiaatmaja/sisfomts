@@ -204,7 +204,7 @@
             </div>
         </div>
         <div class="idcard-qrcode">
-            {!! Quar::generate('Quar package create qr code'); !!}
+            {!! Quar::generate(route('verval.nisn',[$pesertaDidik->nisn])); !!}
         </div>
     </div>
 </div>
