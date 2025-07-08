@@ -15,7 +15,9 @@ class Prestasi extends Model
         'peringkat',
         'tanggal',
         'deskripsi',
-        'peserta_didik_id'
+        'peserta_didik_id',
+        'kategori',
+        'foto'
     ];
     public function pesertaDidik()
     {

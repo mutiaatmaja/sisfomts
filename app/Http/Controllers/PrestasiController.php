@@ -54,11 +54,21 @@ class PrestasiController extends Controller
             'jenjang' => 'nullable|string|max:255',
             'prestasi' => 'nullable|string|max:255',
             'tingkat' => 'nullable|string|max:255',
+            'kategori' => 'nullable|string|max:255',
             'peringkat' => 'nullable|string|max:255',
             'tanggal' => 'nullable|date',
             'deskripsi' => 'nullable|string',
             'peserta_didik_id' => 'nullable|exists:peserta_didiks,id',
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
+
+        if ($request->hasFile('foto')) {
+            $foto = $request->file('foto');
+            $fotoName = time().'_'.uniqid().'.'.$foto->getClientOriginalExtension();
+
+            $foto->storeAs('prestasi', $fotoName, 'public');
+            $validated['foto'] = $fotoName;
+        }
 
         // Simpan data
         Prestasi::create($validated);
@@ -69,9 +79,10 @@ class PrestasiController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $prestasi = Prestasi::with('pesertaDidik.user')->findOrFail($id);
+        return view('prestasi.show', compact('prestasi'));
     }
 
     /**
@@ -95,11 +106,20 @@ class PrestasiController extends Controller
         'jenjang' => 'nullable|string|max:255',
         'prestasi' => 'nullable|string|max:255',
         'tingkat' => 'nullable|string|max:255',
+        'kategori' => 'nullable|string|max:255',
         'peringkat' => 'nullable|string|max:255',
         'tanggal' => 'nullable|date',
         'deskripsi' => 'nullable|string',
         'peserta_didik_id' => 'nullable|exists:peserta_didiks,id',
+        'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
     ]);
+
+    if ($request->hasFile('foto')) {
+        $foto = $request->file('foto');
+        $fotoName = time().'_'.uniqid().'.'.$foto->getClientOriginalExtension();
+        $foto->storeAs('prestasi', $fotoName, 'public');
+        $validated['foto'] = $fotoName;
+    }
 
     $prestasi->update($validated);
 

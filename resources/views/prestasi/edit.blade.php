@@ -27,7 +27,7 @@
                 </div>
                 <div class="widget-content widget-content-area">
 
-                    <form action="{{ route('prestasi.update', $prestasi->id) }}" method="POST">
+                    <form action="{{ route('prestasi.update', $prestasi->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
 
@@ -41,14 +41,41 @@
                             <input type="text" name="prestasi" class="form-control" value="{{ old('prestasi', $prestasi->prestasi) }}">
                         </div>
 
-                        <div class="mb-3">
-                            <label for="tingkat" class="form-label">Tingkat</label>
-                            <input type="text" name="tingkat" class="form-control" value="{{ old('tingkat', $prestasi->tingkat) }}">
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="peringkat" class="form-label">Peringkat</label>
-                            <input type="text" name="peringkat" class="form-control" value="{{ old('peringkat', $prestasi->peringkat) }}">
+                        <div class="mb-3 d-flex gap-3">
+                            <div class="flex-fill">
+                                <label for="tingkat" class="form-label">Tingkat</label>
+                                <select name="tingkat" class="form-select">
+                                    <option value="">-- Pilih Tingkat --</option>
+                                    <option value="Sekolah" {{ old('tingkat', $prestasi->tingkat) == 'Sekolah' ? 'selected' : '' }}>Sekolah</option>
+                                    <option value="Kota" {{ old('tingkat', $prestasi->tingkat) == 'Kota' ? 'selected' : '' }}>Kota</option>
+                                    <option value="Kabupaten" {{ old('tingkat', $prestasi->tingkat) == 'Kabupaten' ? 'selected' : '' }}>Kabupaten</option>
+                                    <option value="Provinsi" {{ old('tingkat', $prestasi->tingkat) == 'Provinsi' ? 'selected' : '' }}>Provinsi</option>
+                                    <option value="Internasional" {{ old('tingkat', $prestasi->tingkat) == 'Internasional' ? 'selected' : '' }}>Internasional</option>
+                                    <option value="Lainnya" {{ old('tingkat', $prestasi->tingkat) == 'Lainnya' ? 'selected' : '' }}>Lainnya</option>
+                                </select>
+                            </div>
+                            <div class="flex-fill">
+                                <label for="kategori" class="form-label">Kategori</label>
+                                <select name="kategori" class="form-select">
+                                    <option value="">-- Pilih Kategori --</option>
+                                    <option value="Individu" {{ old('kategori', $prestasi->kategori ?? '') == 'Individu' ? 'selected' : '' }}>Individu</option>
+                                    <option value="Kelompok" {{ old('kategori', $prestasi->kategori ?? '') == 'Kelompok' ? 'selected' : '' }}>Kelompok</option>
+                                    <option value="Lainnya" {{ old('kategori', $prestasi->kategori ?? '') == 'Lainnya' ? 'selected' : '' }}>Lainnya</option>
+                                </select>
+                            </div>
+                            <div class="flex-fill">
+                                <label for="peringkat" class="form-label">Peringkat</label>
+                                <select name="peringkat" class="form-select">
+                                    <option value="">-- Pilih Peringkat --</option>
+                                    <option value="Peserta" {{ old('peringkat', $prestasi->peringkat) == 'Peserta' ? 'selected' : '' }}>Peserta</option>
+                                    <option value="Juara 1" {{ old('peringkat', $prestasi->peringkat) == 'Juara 1' ? 'selected' : '' }}>Juara 1</option>
+                                    <option value="Juara 2" {{ old('peringkat', $prestasi->peringkat) == 'Juara 2' ? 'selected' : '' }}>Juara 2</option>
+                                    <option value="Juara 3" {{ old('peringkat', $prestasi->peringkat) == 'Juara 3' ? 'selected' : '' }}>Juara 3</option>
+                                    <option value="Finalis" {{ old('peringkat', $prestasi->peringkat) == 'Finalis' ? 'selected' : '' }}>Finalis</option>
+                                    <option value="Juara Harapan" {{ old('peringkat', $prestasi->peringkat) == 'Juara Harapan' ? 'selected' : '' }}>Juara Harapan</option>
+                                    <option value="Lainnya" {{ old('peringkat', $prestasi->peringkat) == 'Lainnya' ? 'selected' : '' }}>Lainnya</option>
+                                </select>
+                            </div>
                         </div>
 
                         <div class="mb-3">
@@ -71,6 +98,17 @@
                                     </option>
                                 @endforeach
                             </select>
+                        </div>
+
+                        @if($prestasi->foto)
+                            <div class="mb-3">
+                                <label class="form-label">Foto Saat Ini</label><br>
+                                <img src="{{ asset('storage/prestasi/' . $prestasi->foto) }}" alt="Foto Prestasi" style="max-width: 200px; height: auto;">
+                            </div>
+                        @endif
+                        <div class="mb-3">
+                            <label for="foto" class="form-label">Upload Foto Prestasi</label>
+                            <input type="file" name="foto" id="foto" class="form-control" accept="image/*">
                         </div>
 
                         <button type="submit" class="btn btn-success">Update</button>

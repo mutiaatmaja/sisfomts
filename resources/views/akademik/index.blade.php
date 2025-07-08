@@ -9,8 +9,8 @@
                     <img src="{{ asset('gambarutama/Elearning.png') }}"  class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title mb-3">E-Learning</h5>
-                        <p class="card-text">GERBANG DATA PENDIDIKAN KEMENTERIAN AGAMA</p>
-                        <a href="https://simpatika.kemenag.go.id/" target="_blank" class="btn btn-secondary mt-3">Ke Aplikasi</a>
+                        <p class="card-text">Pembelajaran dengan Teknologi</p>
+                        <a href="#" target="_blank" class="btn btn-secondary mt-3 w-100 disabled">Dalam Pengembangan</a>
                     </div>
                 </div>
             </div>
@@ -21,7 +21,7 @@
                         <h5 class="card-title mb-3">CBT</h5>
                         <p class="card-text">
                             Computer Base Test</p>
-                        <a href="https://cbt.mtsn1mempawah.sch.id/" target="_blank" class="btn btn-secondary mt-3">Ke Aplikasi</a>
+                        <a href="https://cbt.mtsn1mempawah.sch.id/" target="_blank" class="btn btn-secondary mt-3 w-100">Ke Aplikasi</a>
                     </div>
                 </div>
             </div>
@@ -31,7 +31,7 @@
                     <div class="card-body">
                         <h5 class="card-title mb-3">RDM</h5>
                         <p class="card-text">Rapor Digital Madrasah</p>
-                        <a href="https://rdm.mtsn1mempawah.sch.id/" target="_blank" class="btn btn-secondary mt-3">Ke Aplikasi</a>
+                        <a href="https://rdm.mtsn1mempawah.sch.id/" target="_blank" class="btn btn-secondary mt-3 w-100">Ke Aplikasi</a>
                     </div>
                 </div>
             </div>
@@ -41,7 +41,7 @@
                     <div class="card-body">
                         <h5 class="card-title mb-3">AKMI</h5>
                         <p class="card-text">Asesmen Kompetensi Madrasah Indonesia<br /><br /></p>
-                        <a href="https://portal-akmi.kemenag.go.id/" target="_blank" class="btn btn-secondary mt-3">Ke Aplikasi</a>
+                        <a href="https://portal-akmi.kemenag.go.id/" target="_blank" class="btn btn-secondary mt-3 w-100">Ke Aplikasi</a>
                     </div>
                 </div>
             </div>

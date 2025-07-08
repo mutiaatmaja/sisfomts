@@ -40,14 +40,42 @@
                             <input type="text" name="prestasi" id="prestasi" class="form-control" value="{{ old('prestasi') }}" placeholder="Isikan Nama Prestasi (Lomba......)">
                         </div>
 
-                        <div class="mb-3">
-                            <label for="tingkat" class="form-label">Tingkat</label>
-                            <input type="text" name="tingkat" id="tingkat" class="form-control" value="{{ old('tingkat') }}" placeholder="Isikan Tingkat (Kota, Kabupaten, Provinsi, Nasional)">
+                        <div class="mb-3 d-flex gap-3">
+                            <div class="flex-fill">
+                                <label for="tingkat" class="form-label">Tingkat</label>
+                                <select name="tingkat" id="tingkat" class="form-select">
+                                    <option value="">-- Pilih Tingkat --</option>
+                                    <option value="Sekolah" {{ old('tingkat') == 'Sekolah' ? 'selected' : '' }}>Sekolah</option>
+                                    <option value="Kota" {{ old('tingkat') == 'Kota' ? 'selected' : '' }}>Kota</option>
+                                    <option value="Kabupaten" {{ old('tingkat') == 'Kabupaten' ? 'selected' : '' }}>Kabupaten</option>
+                                    <option value="Provinsi" {{ old('tingkat') == 'Provinsi' ? 'selected' : '' }}>Provinsi</option>
+                                    <option value="Internasional" {{ old('tingkat') == 'Internasional' ? 'selected' : '' }}>Internasional</option>
+                                    <option value="Lainnya" {{ old('tingkat') == 'Lainnya' ? 'selected' : '' }}>Lainnya</option>
+                                </select>
+                            </div>
+                            <div class="flex-fill">
+                                <label for="kategori" class="form-label">Kategori</label>
+                                <select name="kategori" id="kategori" class="form-select">
+                                    <option value="">-- Pilih Kategori --</option>
+                                    <option value="Individu" {{ old('kategori') == 'Individu' ? 'selected' : '' }}>Individu</option>
+                                    <option value="Kelompok" {{ old('kategori') == 'Kelompok' ? 'selected' : '' }}>Kelompok</option>
+                                    <option value="Lainnya" {{ old('kategori') == 'Lainnya' ? 'selected' : '' }}>Lainnya</option>
+                                </select>
+                            </div>
                         </div>
 
                         <div class="mb-3">
                             <label for="peringkat" class="form-label">Peringkat</label>
-                            <input type="text" name="peringkat" id="peringkat" class="form-control" value="{{ old('peringkat') }}" placeholder="Isikan Peringkat (Juara 1, 2, 3, Finalis, dsb)">
+                            <select name="peringkat" id="peringkat" class="form-select">
+                                <option value="">-- Pilih Peringkat --</option>
+                                <option value="Peserta" {{ old('peringkat') == 'Peserta' ? 'selected' : '' }}>Peserta</option>
+                                <option value="Juara 1" {{ old('peringkat') == 'Juara 1' ? 'selected' : '' }}>Juara 1</option>
+                                <option value="Juara 2" {{ old('peringkat') == 'Juara 2' ? 'selected' : '' }}>Juara 2</option>
+                                <option value="Juara 3" {{ old('peringkat') == 'Juara 3' ? 'selected' : '' }}>Juara 3</option>
+                                <option value="Finalis" {{ old('peringkat') == 'Finalis' ? 'selected' : '' }}>Finalis</option>
+                                <option value="Juara Harapan" {{ old('peringkat') == 'Juara Harapan' ? 'selected' : '' }}>Juara Harapan</option>
+                                <option value="Lainnya" {{ old('peringkat') == 'Lainnya' ? 'selected' : '' }}>Lainnya</option>
+                            </select>
                         </div>
 
                         <div class="mb-3">
@@ -58,6 +86,11 @@
                         <div class="mb-3">
                             <label for="deskripsi" class="form-label">Deskripsi</label>
                             <textarea name="deskripsi" id="deskripsi" class="form-control" rows="3">{{ old('deskripsi') }}</textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="foto" class="form-label">Upload Foto Prestasi</label>
+                            <input type="file" name="foto" id="foto" class="form-control" accept="image/*">
                         </div>
 
                         <div class="mb-3">

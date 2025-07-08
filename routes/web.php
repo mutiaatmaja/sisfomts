@@ -19,6 +19,7 @@ use App\Http\Controllers\Layananterpadu as LayananTerpaduController;
 use App\Http\Controllers\OsisController;
 use App\Http\Controllers\KelulusanController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\VervalController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -113,7 +114,7 @@ Route::prefix('kesiswaan')->group(function () {
         Route::get('/{kelas}/siswa-pdf', [ManagemenKelasController::class, 'exportPdfSiswaKelas'])->name('kelas.siswa_pdf');
         Route::get('/cetak/semua/siswa-pdf', [ManagemenKelasController::class, 'exportPdfSemuaKelas'])->name('kelas.semua_siswa_pdf');
     });
-    Route::prefix('prestasi')->group(function () {
+Route::prefix('prestasi')->group(function () {
         Route::get('/', [PrestasiController::class, 'index'])->name('prestasi.index');
         Route::get('/create', [PrestasiController::class, 'create'])
             ->middleware(['role:admin'])
@@ -130,6 +131,7 @@ Route::prefix('kesiswaan')->group(function () {
         Route::delete('/{prestasi}', [PrestasiController::class, 'destroy'])
             ->middleware(['role:admin'])
             ->name('prestasi.destroy');
+        Route::get('/{prestasi}', [PrestasiController::class, 'show'])->name('prestasi.show');
     });
     Route::prefix('absen')->group(function () {
         Route::get('/', [AbsenController::class, 'index'])->name('absen.index');
@@ -337,4 +339,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [UserController::class, 'profile'])->name('profile');
     Route::get('/profile/edit', [UserController::class, 'edit'])->name('profile.edit');
     Route::put('/profile', [UserController::class, 'update'])->name('profile.update');
+});
+Route::prefix('verval')->group(function () {
+    Route::get('/nisn/{nonisn}', [VervalController::class, 'vervalNisn'])->name('verval.nisn');
+    // Tambahkan route verval lain di sini jika diperlukan
 });

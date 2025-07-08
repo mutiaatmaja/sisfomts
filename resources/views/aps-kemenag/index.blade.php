@@ -10,7 +10,7 @@
                     <div class="card-body">
                         <h5 class="card-title mb-3">EMIS</h5>
                         <p class="card-text">GERBANG DATA PENDIDIKAN KEMENTERIAN AGAMA</p>
-                        <a href="https://simpatika.kemenag.go.id/" target="_blank" class="btn btn-secondary mt-3">Ke Aplikasi</a>
+                        <a href="https://emis.kemenag.go.id/" target="_blank" class="btn btn-secondary mt-3 w-100">Ke Aplikasi</a>
                     </div>
                 </div>
             </div>
@@ -21,7 +21,7 @@
                         <h5 class="card-title mb-3">SIMPATIKA</h5>
                         <p class="card-text">
                             Pusat Informasi Layanan PTK Kemenag</p>
-                        <a href="https://simpatika.kemenag.go.id/" target="_blank" class="btn btn-secondary mt-3">Ke Aplikasi</a>
+                        <a href="https://simpatika.kemenag.go.id/" target="_blank" class="btn btn-secondary mt-3 w-100">Ke Aplikasi</a>
                     </div>
                 </div>
             </div>
@@ -31,7 +31,7 @@
                     <div class="card-body">
                         <h5 class="card-title mb-3">PDUM</h5>
                         <p class="card-text">Pangkalan Data Ujian Madrasah<br /><br /></p>
-                        <a href="https://simpatika.kemenag.go.id/" target="_blank" class="btn btn-secondary mt-3">Ke Aplikasi</a>
+                        <a href="https://pdum.kemenag.go.id/" target="_blank" class="btn btn-secondary mt-3 w-100">Ke Aplikasi</a>
                     </div>
                 </div>
             </div>
@@ -41,7 +41,7 @@
                     <div class="card-body">
                         <h5 class="card-title mb-3">Pusaka</h5>
                         <p class="card-text">Pusaka Kemenag Super Apps<br /><br /></p>
-                        <a href="https://simpatika.kemenag.go.id/" target="_blank" class="btn btn-secondary mt-3">Ke Aplikasi</a>
+                        <a href="https://pusaka-v3.kemenag.go.id/" target="_blank" class="btn btn-secondary mt-3 w-100">Ke Aplikasi</a>
                     </div>
                 </div>
             </div>
@@ -51,7 +51,7 @@
                     <div class="card-body">
                         <h5 class="card-title mb-3">Absensi Kemenag</h5>
                         <p class="card-text">Laman Absensi Kemenag<br /><br /></p>
-                        <a href="https://absensi.kemenag.go.id/" target="_blank" class="btn btn-secondary mt-3">Ke Aplikasi</a>
+                        <a href="https://absensi.kemenag.go.id/" target="_blank" class="btn btn-secondary mt-3 w-100">Ke Aplikasi</a>
                     </div>
                 </div>
             </div>

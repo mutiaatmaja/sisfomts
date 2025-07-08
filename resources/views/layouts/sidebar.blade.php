@@ -10,7 +10,7 @@
                     </a>
                 </div>
                 <div class="nav-item theme-text">
-                    <a href="{{ url('/') }}" class="nav-link"> Mts </a>
+                    <a href="{{ url('/') }}" class="nav-link"> SIMANIS </a>
                 </div>
             </div>
             <div class="nav-item sidebar-toggle">
@@ -183,10 +183,10 @@
                     <li class="{{ request()->is('kesiswaan/peserta-didik*') ? 'active' : '' }}"">
                         <a href="/kesiswaan/peserta-didik"> Peserta Didik </a>
                     </li>
-                    <li class="{{ request()->is('kesiswaan/kelas') ? 'active' : '' }}"">
+                    <li class="{{ request()->is('kesiswaan/kelas*') ? 'active' : '' }}"">
                         <a href="/kesiswaan/kelas"> Kelas </a>
                     </li>
-                    <li class="{{ request()->is('kesiswaan/absen') ? 'active' : '' }}"">
+                    <li class="{{ request()->is('kesiswaan/absen*') ? 'active' : '' }}"">
                         <a href="/kesiswaan/absen"> Absensi </a>
                     </li>
                     @role('admin')
@@ -194,7 +194,7 @@
                         <a href="/kesiswaan/absen/otomatis"> Absensi Otomatis </a>
                     </li>
                     @endrole
-                    <li class="{{ request()->is('kesiswaan/prestasi') ? 'active' : '' }}"">
+                    <li class="{{ request()->is('kesiswaan/prestasi*') ? 'active' : '' }}"">
                         <a href="/kesiswaan/prestasi"> Prestasi </a>
                     </li>
                     <li class="{{ request()->is('kesiswaan/osis') ? 'active' : '' }}"">

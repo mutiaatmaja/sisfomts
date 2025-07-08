@@ -2,14 +2,28 @@
 <style>
     .idcard-row {
         display: flex;
-        justify-content: center;
+        flex-direction: column;
+        align-items: center;
         gap: 32px;
         margin: 40px 0;
     }
     .idcard-container, .idcard-back {
         width: 336px;
         height: 204px;
-        background: url('{{ asset('gambarutama/bg2.png') }}') no-repeat center center;
+        background: url('{{ asset('gambarutama/card/back2.png') }}') no-repeat center center;
+        background-size: cover;
+        border-radius: 12px;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+        position: relative;
+        overflow: hidden;
+        padding: 0;
+        display: flex;
+        flex-direction: row;
+    }
+    .idcard-container-front, .idcard-front {
+        width: 336px;
+        height: 204px;
+        background: url('{{ asset('gambarutama/card/front2.png') }}') no-repeat center center;
         background-size: cover;
         border-radius: 12px;
         box-shadow: 0 4px 16px rgba(0,0,0,0.15);
@@ -90,17 +104,28 @@
         z-index: 3;
     }
     .idcard-nama {
-        font-size: 1.1em;
+        font-size: 0.95em;
         font-weight: bold;
+        margin-top: 25px;
+        margin-left: 20px;
         margin-bottom: 2px;
         text-transform: uppercase;
         letter-spacing: 0.5px;
     }
-    .idcard-kelas {
+    .idcard-tempat {
         font-size: 0.95em;
-        margin-bottom: 2px;
+        margin-left: 19px;
+        margin-top: 24px;
     }
-    .idcard-nisn, .idcard-nis {
+    .idcard-nisn {
+        margin-left: 20px;
+        margin-top: 35px;
+        font-size: 0.9em;
+        margin-bottom: 1px;
+    }
+    .idcard-tanggal {
+        margin-left: 20px;
+        margin-top: 26px;
         font-size: 0.9em;
         margin-bottom: 1px;
     }
@@ -116,7 +141,7 @@
     }
     .idcard-qrcode {
         position: absolute;
-        right: 12px;
+        right: 241px;
         bottom: 12px;
         width: 54px;
         height: 54px;
@@ -151,18 +176,13 @@
         z-index: 3;
     }
 </style>
-<div class="idcard-row">
+<div class="idcard-row" style="flex-direction: column;">
     <!-- Lembar Depan -->
-    <div class="idcard-back">
+    <div class="idcard-front">
         <div class="idcard-content-area">
-            <div class="idcard-title">Kartu Tanda Pelajar MTs 2 Mempawah</div>
-            <img src="{{ asset('gambarutama/logomts.png') }}" class="idcard-logo" alt="Logo Sekolah">
+            <div class="idcard-title"></div>
             <br />
             <div class="idcard-back-info">
-                Kartu ini adalah identitas resmi siswa MTs 2 Mempawah. Simpan dan jaga kartu ini dengan baik. Jika hilang, segera lapor ke pihak sekolah.
-            </div>
-            <div class="idcard-qrcode">
-                {{-- {!! Quar::qr(url('/verval/nisn/' . $pesertaDidik->nisn))->size(50)->margin(0) !!} --}}
             </div>
         </div>
     </div>
@@ -175,14 +195,16 @@
             <div style="width:5px;"></div>
             <img src="{{ $pesertaDidik->user->foto ? asset('storage/' . $pesertaDidik->user->foto) : 'https://bootdey.com/img/Content/avatar/avatar7.png' }}" style="width: 64px; height: 80px; object-fit: cover; border-radius: 8px; border: 2px solid #fff; background: #eee; margin-right: 16px; margin-top:5px;" alt="Foto Siswa">
             <div style="flex:1;">
+                <div class="idcard-nisn">{{ $pesertaDidik->nisn }}</div>
                 <div class="idcard-nama">{{ $pesertaDidik->user->name }}</div>
-                <div class="idcard-kelas">Kelas: {{ $pesertaDidik->kelas->nama_kelas ?? '-' }}</div>
-                <div class="idcard-nisn">NISN: {{ $pesertaDidik->nisn }}</div>
-                <div class="idcard-nis">NIS: {{ $pesertaDidik->nis ?? '-' }}</div>
-                <div class="idcard-footer">
-                    <span>ID Card Siswa</span>
-                </div>
+                <div class="idcard-tempat">{{ $pesertaDidik->user->tempat_lahir ?? '-' }}</div>
+
+                <div class="idcard-tanggal">{{ \Carbon\Carbon::parse($pesertaDidik->user->tanggal_lahir)->translatedFormat('d F Y') ?? '-' }}</div>
+
             </div>
+        </div>
+        <div class="idcard-qrcode">
+            {!! Quar::generate('Quar package create qr code'); !!}
         </div>
     </div>
 </div>
