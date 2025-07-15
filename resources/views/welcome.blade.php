@@ -110,7 +110,7 @@
             </a>
         </div> --}}
         <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-4 col-4 mb-3">
-            <a href="{{ url('/prestasi') }}" class="card mb-md-0 mb-4">
+            <a href="{{ route('prestasi.index') }}" class="card mb-md-0 mb-4">
                 <img src="{{ asset('gambarutama/trans/prestasi.png') }}" class="card-img-top" alt="...">
                 {{-- <div class="card-body px-0 pb-0">
                 <h5 class="card-title mb-3">14 Tips to improve your photography</h5>

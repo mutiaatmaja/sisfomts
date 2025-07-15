@@ -10,6 +10,22 @@
                 <line x1="3" y1="18" x2="21" y2="18"></line>
             </svg>
         </a>
+        <div class="ms-3">
+            <span class="navbar-brand mb-0 h1" style="font-weight: bold; font-size: 1.1rem;">
+                <span class="d-none d-lg-inline" style="font-size: 1.5rem;">Sistem Informasi Madrasah Inovatif dan Simpatik</span>
+                <span class="d-inline d-lg-none" style="font-size: 1.5rem;">SIMANIS</span>
+            </span>
+        </div>
+        {{-- <div class="d-none d-sm-block ms-3">
+            <span class="navbar-brand mb-0 h1" style="font-weight: bold; font-size: 1.1rem;">
+                <span style="font-size: 1.5rem;">Sistem Informasi Madrasah Inovatif dan Simpatik</span>
+            </span>
+        </div>
+        <div class="d-block d-sm-none ms-3">
+            <span class="navbar-brand mb-0 h1" style="font-weight: bold; font-size: 1.1rem;">
+                <span style="font-size: 1.5rem;">SIMANIS</span>
+            </span>
+        </div> --}}
 
         {{--
         <div class="search-animated toggle-search">
