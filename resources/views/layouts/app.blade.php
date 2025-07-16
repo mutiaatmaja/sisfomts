@@ -247,7 +247,7 @@
     <!--  END NAVBAR  -->
 
     <!--  BEGIN MAIN CONTAINER  -->
-    <div class="main-container" id="container" style="background-image: url('{{ asset('gambarutama/bg2.png') }}'); background-size: cover; background-repeat: no-repeat; background-position: center;">
+    {{-- <div class="main-container" id="container" style="background-image: url('{{ asset('gambarutama/bg2.png') }}'); background-size: cover; background-repeat: no-repeat; background-position: center;"> --}}
 
         <div class="overlay"></div>
         <div class="search-overlay"></div>
