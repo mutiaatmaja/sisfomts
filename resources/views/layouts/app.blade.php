@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
     <title>Sistem Informasi Mts </title>
-    <link rel="icon" type="image/x-icon" href="{{ asset('gambarutama/logomts.png') }}"/>
+    <link rel="icon" type="image/x-icon" href="{{ asset('gambarutama/logomts.png') }}" />
     <link href="{{ asset('html/layouts/modern-light-menu/css/light/loader.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('html/layouts/modern-light-menu/css/dark/loader.css') }}" rel="stylesheet" type="text/css" />
     {{-- <script src="{{ asset('html/layouts/modern-light-menu/loader.js') }}"></script> --}}
@@ -26,9 +27,14 @@
     <link href="{{ asset('html/src/assets/css/light/components/carousel.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('html/src/assets/css/light/components/modal.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('html/src/assets/css/light/components/tabs.css') }}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{{ asset('vendor/livewire-tables/thirdparty.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendor/livewire-tables/core.min.css') }}">
+    <script src="{{ asset('vendor/livewire-tables/thirdparty.min.js') }}"></script>
+    <script src="{{ asset('vendor/livewire-tables/core.min.js') }}"></script>
     @stack('styles')
 
 </head>
+
 <body class="layout-boxed">
     {{-- <!-- BEGIN LOADER -->
     <div id="load_screen"> <div class="loader"> <div class="loader-content">
@@ -246,7 +252,8 @@
     <!--  END NAVBAR  -->
 
     <!--  BEGIN MAIN CONTAINER  -->
-    <div class="main-container" id="container" style="background-image: url('{{ asset('gambarutama/bg2.png') }}'); background-size: cover; background-repeat: no-repeat; background-position: center;">
+    <div class="main-container" id="container"
+        style="background-image: url('{{ asset('gambarutama/bg2.png') }}'); background-size: cover; background-repeat: no-repeat; background-position: center;">
 
         <div class="overlay"></div>
         <div class="search-overlay"></div>
@@ -944,10 +951,10 @@
             <div class="layout-px-spacing">
 
                 {{-- <div class="middle-content container-xxl p-0"> --}}
-                    @isset($slot)
-                        {{ $slot }}
-                    @endisset
-                    @yield('content')
+                @isset($slot)
+                    {{ $slot }}
+                @endisset
+                @yield('content')
 
                 {{-- </div> --}}
 
@@ -958,7 +965,13 @@
                     <p class="">Copyright EduTech@xeizer</p>
                 </div>
                 <div class="footer-section f-section-2 badge badge-primary">
-                    <p class="text-white">Coded with <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>EduTech@xeizer</p>
+                    <p class="text-white">Coded with <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart">
+                            <path
+                                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                            </path>
+                        </svg>EduTech@xeizer</p>
                 </div>
             </div>
             <!--  END FOOTER  -->
@@ -975,11 +988,11 @@
             light: "{{ asset('gambarutama/logomts.png') }}"
         };
     </script>
-    <script src="{{asset('html/src/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{asset('html/src/plugins/src/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
-    <script src="{{asset('html/src/plugins/src/mousetrap/mousetrap.min.js') }}"></script>
-    <script src="{{asset('html/src/plugins/src/waves/waves.min.js') }}"></script>
-    <script src="{{asset('html/layouts/modern-light-menu/app.js') }}"></script>
+    <script src="{{ asset('html/src/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('html/src/plugins/src/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
+    <script src="{{ asset('html/src/plugins/src/mousetrap/mousetrap.min.js') }}"></script>
+    <script src="{{ asset('html/src/plugins/src/waves/waves.min.js') }}"></script>
+    <script src="{{ asset('html/layouts/modern-light-menu/app.js') }}"></script>
     <!-- END GLOBAL MANDATORY SCRIPTS -->
 
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
@@ -990,4 +1003,5 @@
     @stack('js')
 
 </body>
+
 </html>
