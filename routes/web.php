@@ -20,6 +20,7 @@ use App\Http\Controllers\OsisController;
 use App\Http\Controllers\KelulusanController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VervalController;
+use App\Livewire\Batchsiswakelas;
 
 Route::get('/', function () {
     return view('welcome');
@@ -113,6 +114,7 @@ Route::prefix('kesiswaan')->group(function () {
         Route::get('/{kelas}/siswa', [ManagemenKelasController::class, 'siswaKelas'])->name('kelas.siswa');
         Route::get('/{kelas}/siswa-pdf', [ManagemenKelasController::class, 'exportPdfSiswaKelas'])->name('kelas.siswa_pdf');
         Route::get('/cetak/semua/siswa-pdf', [ManagemenKelasController::class, 'exportPdfSemuaKelas'])->name('kelas.semua_siswa_pdf');
+
     });
 Route::prefix('prestasi')->group(function () {
         Route::get('/', [PrestasiController::class, 'index'])->name('prestasi.index');
@@ -343,4 +345,7 @@ Route::middleware(['auth'])->group(function () {
 Route::prefix('verval')->group(function () {
     Route::get('/nisn/{nonisn}', [VervalController::class, 'vervalNisn'])->name('verval.nisn');
     // Tambahkan route verval lain di sini jika diperlukan
+});
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/sandbox/batchsiswakelas', Batchsiswakelas::class)->name('kelas.sandbox.batchsiswakelas');
 });
