@@ -8,6 +8,10 @@ use App\Models\PesertaDidik;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 use Yajra\DataTables\Facades\DataTables;
+use App\Models\AnggotaRombel;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\AbsensiExport;
 
 class AbsenController extends Controller
 {
@@ -55,5 +59,50 @@ class AbsenController extends Controller
             ], 500);
         }
 
+    }
+    public function cetakrekap($kelas, $waktu, $jenis, Request $request)
+    {
+        $customDate = $request->query('custom_date');
+
+        $seluruhAbsensi = AnggotaRombel::where('kelas_id', $kelas)
+            ->when($waktu === 'hari_ini', function ($query) {
+                $query->with(['pesertaDidik.absensi' => function ($query) {
+                    $query->whereDate('tanggal', Carbon::today());
+                }]);
+            })
+            ->when($waktu === 'kemarin', function ($query) {
+                $query->with(['pesertaDidik.absensi' => function ($query) {
+                    $query->whereDate('tanggal', Carbon::yesterday());
+                }]);
+            })
+            ->when($waktu === 'minggu_ini', function ($query) {
+                $query->with(['pesertaDidik.absensi' => function ($query) {
+                    $query->whereBetween('tanggal', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()]);
+                }]);
+            })
+            ->when($waktu === 'bulan_ini', function ($query) {
+                $query->with(['pesertaDidik.absensi' => function ($query) {
+                    $query->whereMonth('tanggal', Carbon::now()->month)
+                        ->whereYear('tanggal', Carbon::now()->year);
+                }]);
+            })
+            ->when($waktu === 'custom_date', function ($query) use ($customDate) {
+                $query->with(['pesertaDidik.absensi' => function ($query) use ($customDate) {
+                    $query->whereDate('tanggal', Carbon::parse($customDate));
+                }]);
+            })
+            ->get();
+
+        // Get kelas name
+        $kelasName = $seluruhAbsensi->first()->kelas->nama_kelas ?? '';
+
+        if ($jenis === 'pdf') {
+            $pdf = Pdf::loadView('absen.cetakrekap', compact('seluruhAbsensi', 'kelas', 'waktu', 'jenis', 'kelasName', 'customDate'));
+            return $pdf->download('rekap_absensi_' . $kelasName . '_' . $waktu . '.pdf');
+        } elseif ($jenis === 'excel') {
+            return Excel::download(new AbsensiExport($seluruhAbsensi, $waktu, $kelasName, $customDate), 'rekap_absensi_' . $kelasName . '_' . $waktu . '.xlsx');
+        }
+
+        return view('absen.cetakrekap', compact('seluruhAbsensi', 'kelas', 'waktu', 'jenis', 'kelasName', 'customDate'));
     }
 }

@@ -147,6 +147,9 @@ Route::prefix('prestasi')->group(function () {
         Route::get('/lihat-absen-kelas', [AbsenController::class, 'lihatAbsenKelas'])
             ->middleware(['role:admin'])
             ->name('absen.lihat-absen-kelas');
+        Route::get('/cetak-rekap-absen/{kelas}/{waktu}/{jenis}', [AbsenController::class, 'cetakrekap'])
+            ->middleware(['role:admin'])
+            ->name('absen.cetakrekap');
 
         // Absensi Otomatis Routes
         Route::prefix('otomatis')->middleware(['role:admin'])->group(function () {

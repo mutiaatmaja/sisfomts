@@ -18,6 +18,12 @@ class Rekapabsen extends Component
     public $selectedKelasName;
     public $selectedWaktu = 'hari_ini';
     public $seluruhAbsensi;
+    public $customDate;
+
+    public function mount()
+    {
+        $this->customDate = Carbon::today()->format('Y-m-d');
+    }
 
 
     public function updatedSelectedKelas()
@@ -30,6 +36,25 @@ class Rekapabsen extends Component
                 }
             ])
             ->get();
+    }
+
+    public function updatedCustomDate()
+    {
+        // Validate that the date is not in the future
+        if ($this->customDate && Carbon::parse($this->customDate)->isFuture()) {
+            $this->customDate = Carbon::today()->format('Y-m-d');
+            LivewireAlert::title('Error')->text('Tanggal tidak boleh di masa depan.')->error()->toast()->position('top-end')->show();
+            return;
+        }
+
+        if ($this->customDate && $this->selectedKelas) {
+            $this->selectedWaktu = 'custom_date';
+            $this->seluruhAbsensi = AnggotaRombel::where('kelas_id', $this->selectedKelas)
+                ->with(['pesertaDidik.absensi' => function ($query) {
+                    $query->whereDate('tanggal', Carbon::parse($this->customDate));
+                }])
+                ->get();
+        }
     }
     public function updateStatus($status, $uuid, $siswaId)
     {
@@ -85,6 +110,13 @@ class Rekapabsen extends Component
                     $query->whereMonth('tanggal', Carbon::now()->month)
                         ->whereYear('tanggal', Carbon::now()->year);
                 }]);
+            })
+            ->when($waktu === 'custom_date', function ($query) {
+                if ($this->customDate) {
+                    $query->with(['pesertaDidik.absensi' => function ($query) {
+                        $query->whereDate('tanggal', Carbon::parse($this->customDate));
+                    }]);
+                }
             })
 
             ->get();

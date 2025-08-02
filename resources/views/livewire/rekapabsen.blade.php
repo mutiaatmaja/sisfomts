@@ -24,6 +24,39 @@
                         <button class="btn {{ $selectedWaktu == 'bulan_ini' ? 'btn-primary' : 'btn-dark' }}"
                             wire:click="pilihWaktuDitekan('bulan_ini')">Bulan Ini</button>
 
+                        {{-- Custom Date Picker --}}
+                        <button class="btn {{ $selectedWaktu == 'custom_date' ? 'btn-primary' : 'btn-dark' }}"
+                                type="button"
+                                data-bs-toggle="modal"
+                                data-bs-target="#datePickerModal">
+                            {{ $selectedWaktu == 'custom_date' && $customDate ? \Carbon\Carbon::parse($customDate)->format('d/m/Y') : 'Pilih Tanggal' }}
+                        </button>
+
+                        <a href="{{ route('absen.cetakrekap', ['kelas'=>$selectedKelas, 'waktu'=>$selectedWaktu,'jenis'=>'pdf']) }}{{ $selectedWaktu == 'custom_date' && $customDate ? '?custom_date=' . $customDate : '' }}" target="_blank" class="btn btn-info" wire:loading.remove>PDF/{{ $selectedKelasName }}/{{ $selectedWaktu }}</a>
+                        <a href="{{ route('absen.cetakrekap', ['kelas'=>$selectedKelas, 'waktu'=>$selectedWaktu,'jenis'=>'excel']) }}{{ $selectedWaktu == 'custom_date' && $customDate ? '?custom_date=' . $customDate : '' }}" target="_blank" class="btn btn-info" wire:loading.remove>EXCEL</a>
+
+                    </div>
+
+                    {{-- Date Picker Modal --}}
+                    <div class="modal fade" id="datePickerModal" tabindex="-1" aria-labelledby="datePickerModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="datePickerModalLabel">Pilih Tanggal Rekap</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="mb-3">
+                                        <label for="customDate" class="form-label">Tanggal:</label>
+                                        <input type="date" class="form-control" id="customDate" wire:model="customDate" max="{{ date('Y-m-d') }}">
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                    <button type="button" class="btn btn-primary" wire:click="pilihWaktuDitekan('custom_date')" data-bs-dismiss="modal">Pilih</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 @endif
             </div>
@@ -132,6 +165,102 @@
                             <div class="row">
                                 <div class="col-xl-12 col-md-12 col-sm-12 col-12">
                                     <h4>Rekap Absen {{ $selectedKelasName }}</h4>
+                                </div>
+
+                            </div>
+                        </div>
+                        @if ($seluruhAbsensi)
+                            <div class="widget-content widget-content-area">
+
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="tablepesertaDidik" style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Nama</th>
+                                                <th scope="col">NIS</th>
+                                                <th scope="col">NISN</th>
+                                                <th scope="col">Kelas</th>
+                                                <th scope="col">Waktu</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($seluruhAbsensi as $absen)
+                                                <tr>
+                                                    <td>{{ $absen->pesertaDidik->user->name ?? '' }}</td>
+                                                    <td>{{ $absen->pesertaDidik->nis ?? '' }}</td>
+                                                    <td>{{ $absen->pesertaDidik->nisn ?? '' }}</td>
+                                                    <td>{{ $absen->kelas->nama_kelas }}</td>
+                                                    <td class="p-1">
+                                                        @php
+                                                            $absensi = $absen->pesertaDidik->absensi->first();
+                                                            $status = $absensi->status ?? null;
+                                                            $badgeClass = 'secondary';
+                                                            $badgeText = $status ?? '-';
+                                                            if ($status === 'hadir') {
+                                                                $badgeClass = 'success';
+                                                            } elseif ($status === 'alpha') {
+                                                                $badgeClass = 'danger';
+                                                            } elseif ($status === 'ijin') {
+                                                                $badgeClass = 'info';
+                                                            } elseif ($status === 'sakit') {
+                                                                $badgeClass = 'warning';
+                                                            }
+                                                        @endphp
+                                                        <button
+                                                            class="btn bg-{{ $badgeClass }}  px-2 py-1 dropdown-toggle"
+                                                            type="button" data-bs-toggle="dropdown"
+                                                            aria-expanded="false">
+                                                            {{ ucfirst($badgeText) }}
+                                                        </button>
+                                                        <ul class="dropdown-menu p-2">
+                                                            <li><button class="dropdown-item my-1 badge bg-success"
+                                                                    wire:click="updateStatus('hadir', '{{ $absensi->uuid ?? 'null' }}', {{ $absen->pesertaDidik->id ?? 'null' }})">Hadir</button>
+                                                            </li>
+                                                            <li><button class="dropdown-item my-1 bg-warning badge"
+                                                                    wire:click="updateStatus('sakit', '{{ $absensi->uuid ?? 'null' }}', {{ $absen->pesertaDidik->id ?? 'null' }})">Sakit</button>
+                                                            </li>
+                                                            <li><button class="dropdown-item my-1 bg-info badge"
+                                                                    wire:click="updateStatus('ijin', '{{ $absensi->uuid ?? 'null' }}', {{ $absen->pesertaDidik->id ?? 'null' }})">Ijin</button>
+                                                            </li>
+                                                            <li><button class="dropdown-item my-1 bg-danger badge"
+                                                                    wire:click="updateStatus('alpha', '{{ $absensi->uuid ?? 'null' }}', {{ $absen->pesertaDidik->id ?? 'null' }})">Alpa</button>
+                                                            </li>
+                                                        </ul>
+                                                        -
+                                                        @if ($absensi?->tanggal)
+                                                            {{ \Carbon\Carbon::parse($absensi->tanggal)->isoFormat('dddd, D MMMM Y') }}
+                                                            <br>
+                                                            {{ \Carbon\Carbon::parse($absensi->tanggal)->format('H:i') }}
+                                                        @else
+                                                            -
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+
+                            </div>
+                        @endif
+                    @else
+                        <div class="widget-content widget-content-area">
+                            <div class="alert alert-warning" role="alert">
+                                Silakan pilih kelas untuk melihat absensi.
+                            </div>
+                        </div>
+                    @endif
+
+                </div>
+            @elseif($selectedWaktu == 'custom_date')
+                <div class="statbox widget box box-shadow box">
+                    @if ($selectedKelas)
+                        <div class="widget-header">
+                            <div class="row">
+                                <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                                    <h4>Rekap Absen {{ $selectedKelasName }} - {{ $customDate ? \Carbon\Carbon::parse($customDate)->isoFormat('dddd, D MMMM Y') : 'Tanggal Belum Dipilih' }}</h4>
                                 </div>
 
                             </div>
