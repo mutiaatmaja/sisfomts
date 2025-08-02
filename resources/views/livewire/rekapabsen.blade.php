@@ -32,7 +32,7 @@
                             {{ $selectedWaktu == 'custom_date' && $customDate ? \Carbon\Carbon::parse($customDate)->format('d/m/Y') : 'Pilih Tanggal' }}
                         </button>
 
-                        <a href="{{ route('absen.cetakrekap', ['kelas'=>$selectedKelas, 'waktu'=>$selectedWaktu,'jenis'=>'pdf']) }}{{ $selectedWaktu == 'custom_date' && $customDate ? '?custom_date=' . $customDate : '' }}" target="_blank" class="btn btn-info" wire:loading.remove>PDF/{{ $selectedKelasName }}/{{ $selectedWaktu }}</a>
+                        <a href="{{ route('absen.cetakrekap', ['kelas'=>$selectedKelas, 'waktu'=>$selectedWaktu,'jenis'=>'pdf']) }}{{ $selectedWaktu == 'custom_date' && $customDate ? '?custom_date=' . $customDate : '' }}" target="_blank" class="btn btn-info" wire:loading.remove>PDF</a>
                         <a href="{{ route('absen.cetakrekap', ['kelas'=>$selectedKelas, 'waktu'=>$selectedWaktu,'jenis'=>'excel']) }}{{ $selectedWaktu == 'custom_date' && $customDate ? '?custom_date=' . $customDate : '' }}" target="_blank" class="btn btn-info" wire:loading.remove>EXCEL</a>
 
                     </div>
