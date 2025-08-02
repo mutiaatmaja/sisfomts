@@ -11,6 +11,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class PendidikTendikController extends Controller
 {
@@ -35,6 +36,7 @@ class PendidikTendikController extends Controller
             'nik' => 'nullable|unique:users,nik',
             'nip' => 'nullable|unique:pendidik_tendiks,nip',
             'nuptk' => 'nullable|unique:pendidik_tendiks,nuptk',
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         DB::beginTransaction();
@@ -56,12 +58,24 @@ class PendidikTendikController extends Controller
             $user->syncRoles(['guru']); // atau role sesuai kebutuhan
 
             // 2. Simpan ke pendidik tendik
-            PendidikTendik::create([
+            $pendidikTendik = PendidikTendik::create([
                 'uuid' => (string) Str::uuid(),
                 'user_id' => $user->id,
                 'nip' => $request->nip,
                 'nuptk' => $request->nuptk,
             ]);
+
+            // Handle foto upload
+            if ($request->hasFile('foto')) {
+                $fotoFile = $request->file('foto');
+                $extension = $fotoFile->getClientOriginalExtension();
+                $filename = $pendidikTendik->uuid . '.' . $extension;
+                $filenamebackup = $pendidikTendik->nip . '_' . $user->name . '_.' . $extension;
+                $fotoPath = $fotoFile->storeAs('foto_pendidik', $filename, 'public');
+                $fotoPathbackup = $fotoFile->storeAs('foto_pendidik_nip', $filenamebackup, 'public');
+                $user->foto = $fotoPath;
+                $user->save();
+            }
 
             DB::commit();
             return redirect()->route('pendidik-tendik.index')->with('success', 'Data berhasil disimpan!');
@@ -110,6 +124,7 @@ class PendidikTendikController extends Controller
             'tanggal_lahir' => 'nullable|date',
             'nip' => 'nullable|unique:pendidik_tendiks,nip,' . $pendidik->id,
             'nuptk' => 'nullable|unique:pendidik_tendiks,nuptk,' . $pendidik->id,
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         DB::beginTransaction();
@@ -126,6 +141,22 @@ class PendidikTendikController extends Controller
                 'tempat_lahir' => $request->tempat_lahir,
                 'tanggal_lahir' => $request->tanggal_lahir,
             ]);
+
+            // Handle foto upload
+            if ($request->hasFile('foto')) {
+                // Hapus foto lama jika ada
+                if ($user->foto && Storage::disk('public')->exists($user->foto)) {
+                    Storage::disk('public')->delete($user->foto);
+                }
+                $fotoFile = $request->file('foto');
+                $extension = $fotoFile->getClientOriginalExtension();
+                $filename = $pendidik->uuid . '.' . $extension;
+                $filenamebackup = $pendidik->nip . '_' . $user->name . '_.' . $extension;
+                $fotoPath = $fotoFile->storeAs('foto_pendidik', $filename, 'public');
+                $fotoPathbackup = $fotoFile->storeAs('foto_pendidik_nip', $filenamebackup, 'public');
+                $user->foto = $fotoPath;
+                $user->save();
+            }
 
             // Update pendidik
             $pendidik->update([
@@ -168,8 +199,11 @@ class PendidikTendikController extends Controller
         // Redirect back with success message
         return redirect()->route('pendidik-tendik.index')->with('success', 'Pendidik/Tendik deleted successfully.');
     }
-    public function show(PendidikTendik $pendidik)
+    public function show($uuid)
     {
+
+        // Find the pendidik tendik by UUID
+        $pendidik = PendidikTendik::where('uuid', $uuid)->firstOrFail();
         // Show the details of the PendidikTendik
         return view('pendidik-tendik.show', compact('pendidik'));
     }

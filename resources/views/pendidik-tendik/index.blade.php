@@ -95,7 +95,11 @@
                                         <td>
                                             <div class="media">
                                                 <div class="avatar me-2">
-                                                    <img alt="avatar" src="../src/assets/img/profile-7.png"
+                                                    @php
+                                                        $foto = $pendidikTendik->user->foto ?? null;
+                                                    @endphp
+                                                    <img alt="avatar"
+                                                        src="{{ $foto ? asset('storage/' . $foto) : '../src/assets/img/profile-7.png' }}"
                                                         class="rounded-circle" />
                                                 </div>
                                                 <div class="media-body align-self-center">
@@ -115,11 +119,10 @@
                                         {{-- <td class="text-center">
                                         <span class="badge badge-light-success">Online</span>
                                         </td> --}}
-                                        @role('admin')
                                         <td class="text-center">
                                             <div class="action-btns">
 
-                                                {{-- <a href="javascript:void(0);" class="action-btn btn-view bs-tooltip me-2"
+                                                <a href="{{ route('pendidik-tendik.show', $pendidikTendik->uuid) }}" class="action-btn btn-view bs-tooltip me-2"
                                                     data-toggle="tooltip" data-placement="top" title="View">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                         viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -128,7 +131,8 @@
                                                         <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                                         <circle cx="12" cy="12" r="3"></circle>
                                                     </svg>
-                                                </a> --}}
+                                                </a>
+                                                @role('admin')
                                                 <a href="{{ route('pendidik-tendik.edit', $pendidikTendik->uuid) }}" class="action-btn btn-edit bs-tooltip me-2"
                                                     data-toggle="tooltip" data-placement="top" title="Edit">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
