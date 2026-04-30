@@ -7,7 +7,7 @@
         <div class="row mb-2">
             <div class="col-12">
                 @role('admin')
-                    <a href="{{ route('osis.create') }}" class="btn btn-primary mr-2">Tambah Pengurus OSIS</a>
+                    <a href="{{ route('osis.create') }}" class="btn btn-primary mr-2">Tambah Pengurus OSIM</a>
                 @endrole
             </div>
         </div>

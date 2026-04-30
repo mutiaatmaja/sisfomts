@@ -71,15 +71,15 @@
 
 
             @role('admin')
-            <li class="menu menu-heading">
-                <div class="heading">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" class="feather feather-minus">
-                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                    </svg><span>ADMIN</span>
-                </div>
-            </li>
+                <li class="menu menu-heading">
+                    <div class="heading">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" class="feather feather-minus">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg><span>ADMIN</span>
+                    </div>
+                </li>
                 <li class="menu {{ request()->is('sandbox/batchsiswakelas') ? 'active' : '' }}">
                     <a href="{{ route('kelas.sandbox.batchsiswakelas') }}" aria-expanded="false" class="dropdown-toggle">
                         <div class="">
@@ -193,25 +193,33 @@
                 </a>
                 <ul class="collapse submenu list-unstyled {{ request()->is('kesiswaan*') ? 'show' : '' }}"
                     id="kesiswaan" data-bs-parent="#accordionExample">
-                    <li class="{{ request()->is('kesiswaan/peserta-didik*') ? 'active' : '' }}"">
+                    <li class="{{ request()->is('kesiswaan/peserta-didik*') ? 'active' : '' }}">
                         <a href="/kesiswaan/peserta-didik"> Peserta Didik </a>
                     </li>
-                    <li class="{{ request()->is('kesiswaan/kelas*') ? 'active' : '' }}"">
+                    <li class="{{ request()->is('kesiswaan/kelas*') ? 'active' : '' }}">
                         <a href="/kesiswaan/kelas"> Kelas </a>
                     </li>
-                    <li class="{{ request()->is('kesiswaan/absen*') ? 'active' : '' }}"">
+                    <li class="{{ request()->is('kesiswaan/absen*') ? 'active' : '' }}">
                         <a href="/kesiswaan/absen"> Absensi </a>
                     </li>
+                    <li class="{{ request()->is('kesiswaan/absen/sholat*') ? 'active' : '' }}">
+                        <a href="{{ route('absen.sholat.index') }}" wire:navigate> Absensi Sholat </a>
+                    </li>
                     @role('admin')
-                        <li class="{{ request()->is('kesiswaan/absen/otomatis*') ? 'active' : '' }}"">
+                        <li class="{{ request()->is('kesiswaan/absen/sholat/pengaturan*') ? 'active' : '' }}">
+                            <a href="{{ route('absen.sholat.pengaturan.index') }}" wire:navigate> Pengaturan Sholat </a>
+                        </li>
+                    @endrole
+                    @role('admin')
+                        <li class="{{ request()->is('kesiswaan/absen/otomatis*') ? 'active' : '' }}">
                             <a href="/kesiswaan/absen/otomatis"> Absensi Otomatis </a>
                         </li>
                     @endrole
-                    <li class="{{ request()->is('kesiswaan/prestasi*') ? 'active' : '' }}"">
+                    <li class="{{ request()->is('kesiswaan/prestasi*') ? 'active' : '' }}">
                         <a href="/kesiswaan/prestasi"> Prestasi </a>
                     </li>
                     <li class="{{ request()->is('kesiswaan/osis') ? 'active' : '' }}"">
-                        <a href="/kesiswaan/osis"> OSIS </a>
+                        <a href="/kesiswaan/osis"> OSIM </a>
                     </li>
                     <li class="{{ request()->is('kesiswaan/kelulusan') ? 'active' : '' }}"">
                         <a href="/kesiswaan/kelulusan"> Pengumuman Kelulusan </a>
@@ -265,7 +273,7 @@
                             stroke-linejoin="round" class="feather feather-square">
                             <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
                         </svg>
-                        <span>Suara Madrasah</span>
+                        <span>Pengaduan</span>
                     </div>
                 </a>
             </li>

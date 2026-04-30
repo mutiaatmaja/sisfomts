@@ -104,8 +104,8 @@
 
                                                 </div>
                                                 <div class="media-body align-self-center">
-                                                    <h6 class="mb-0">{{ $prestasi->user->name }}</h6>
-                                                    <span>{{ $prestasi->pesertaDidik->nisn }}</span>
+                                                    <h6 class="mb-0">{{ $prestasi->user->name ?? 'Siswa tidak ditemukan' }}</h6>
+                                                    <span>{{ $prestasi->pesertaDidik->nisn ?? 'silahkan diedit' }}</span>
                                                 </div>
                                             </div>
                                         </td>

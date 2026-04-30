@@ -18,6 +18,7 @@ use App\Http\Controllers\SpmbController;
 use App\Http\Controllers\Layananterpadu as LayananTerpaduController;
 use App\Http\Controllers\OsisController;
 use App\Http\Controllers\KelulusanController;
+use App\Http\Controllers\SholatSettingController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VervalController;
 use App\Livewire\Batchsiswakelas;
@@ -56,7 +57,7 @@ Route::prefix('kepegawaian')->group(function () {
     });
 });
 
-Route::prefix('suara-madrasah')->group(function () {
+Route::prefix('pengaduan')->group(function () {
     Route::get('/', [SuaramadrasahController::class, 'index'])->name('suara-madrasah.index');
     Route::post('/store', [SuaramadrasahController::class, 'store'])->name('suara-madrasah.store');
     Route::get('/semua-lapopran', [SuaramadrasahController::class, 'semuaLaporan'])
@@ -137,6 +138,20 @@ Route::prefix('prestasi')->group(function () {
     });
     Route::prefix('absen')->group(function () {
         Route::get('/', [AbsenController::class, 'index'])->name('absen.index');
+        Route::prefix('sholat')->group(function () {
+            Route::get('/', function () {
+                return view('absen-sholat.index');
+            })->name('absen.sholat.index');
+
+            Route::prefix('pengaturan')->middleware(['role:admin'])->group(function () {
+                Route::get('/', [SholatSettingController::class, 'index'])->name('absen.sholat.pengaturan.index');
+                Route::get('/create', [SholatSettingController::class, 'create'])->name('absen.sholat.pengaturan.create');
+                Route::post('/store', [SholatSettingController::class, 'store'])->name('absen.sholat.pengaturan.store');
+                Route::get('/{sholatSetting}/edit', [SholatSettingController::class, 'edit'])->name('absen.sholat.pengaturan.edit');
+                Route::put('/{sholatSetting}', [SholatSettingController::class, 'update'])->name('absen.sholat.pengaturan.update');
+                Route::delete('/{sholatSetting}', [SholatSettingController::class, 'destroy'])->name('absen.sholat.pengaturan.destroy');
+            });
+        });
         Route::get('/rekam', [AbsenController::class, 'rekam'])
             ->middleware(['role:admin'])
             ->name('absen.rekam');

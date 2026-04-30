@@ -16,7 +16,7 @@ class InforsekolahController extends Controller
     public function index()
     {
         $jumlah=[
-            'siswa' => PesertaDidik::count(),
+            'siswa' => PesertaDidik::whereStatus('aktif')->count(),
             'kelas' => Kelas::count(),
             'pendidik' => PendidikTendik::count(),
             'prestasi' => Prestasi::count(),

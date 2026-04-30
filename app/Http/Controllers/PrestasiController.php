@@ -28,10 +28,20 @@ class PrestasiController extends Controller
         ]);
 
         // menjalankan import
-        $file = $request->file('file');
-        $import = new PrestasiImport();
-        Excel::import($import, $file);
-        return redirect()->back()->with('success', 'File imported successfully.');
+        try {
+
+        Excel::import(new PrestasiImport, $request->file('file'));
+
+        return redirect()
+            ->route('prestasi.index')
+            ->with('success', 'Data prestasi berhasil diperbarui.');
+
+    } catch (\Exception $e) {
+
+        return redirect()
+            ->back()
+            ->with('error', 'Import gagal: ' . $e->getMessage());
+    }
     }
 
     /**

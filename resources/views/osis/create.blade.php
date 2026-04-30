@@ -18,7 +18,7 @@
                 <div class="widget-header">
                     <div class="row">
                         <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                            <h4>Tambah Pengurus OSIS</h4>
+                            <h4>Tambah Pengurus OSIM</h4>
                         </div>
                     </div>
                 </div>
@@ -29,7 +29,7 @@
                             <div class="col-md-6">
                                 <label for="siswa_id" class="form-label">Siswa</label>
                                 <select class="form-control-lg" id="siswa_id" name="siswa_id">
-                                    <option value="">Pilih Siswa</option>
+                                    <option value="">Pilih Siswa / Ketik nama siswa</option>
                                     @foreach ($siswas as $siswa)
                                         <option value="{{ $siswa->id }}">{{ $siswa->user->name }}</option>
                                     @endforeach
@@ -42,8 +42,8 @@
                                 <label for="jabatan" class="form-label">Jabatan</label>
                                 <select class="form-control" id="jabatan" name="jabatan" required>
                                     <option value="">Pilih Jabatan</option>
-                                    <option value="Ketua OSIS">Ketua OSIS</option>
-                                    <option value="Wakil Ketua OSIS">Wakil Ketua OSIS</option>
+                                    <option value="Ketua OSIM">Ketua OSIM</option>
+                                    <option value="Wakil Ketua OSIM">Wakil Ketua OSIM</option>
                                     <option value="Sekretaris">Sekretaris</option>
                                     <option value="Bendahara">Bendahara</option>
                                     <option value="Anggota">Anggota</option>

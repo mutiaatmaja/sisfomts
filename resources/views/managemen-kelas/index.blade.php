@@ -54,8 +54,8 @@
                                         </td>
                                         @role('admin')
                                         <td class="text-center">
-                                            <a href="/kelas/{{ $k->id }}/edit" class="btn btn-primary">Edit</a>
-                                            <form action="/kelas/{{ $k->id }}" method="POST" class="d-inline">
+                                            <a href="/kesiswaan/kelas/{{ $k->id }}/edit" class="btn btn-primary">Edit</a>
+                                            <form action="kesiswaan/kelas/{{ $k->id }}" method="POST" class="d-inline">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="button" class="btn btn-danger confirm-delete">Hapus</button>
