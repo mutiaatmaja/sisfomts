@@ -23,9 +23,7 @@
                     </div>
                 </div>
                 <div class="widget-content widget-content-area">
-                    <div class="alert alert-light-primary border border-primary" role="alert">
-                        Under Development.
-                    </div>
+                    @livewire('rekam-absen-sholat')
                 </div>
             </div>
         </div>
