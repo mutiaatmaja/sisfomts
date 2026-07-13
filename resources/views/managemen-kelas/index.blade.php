@@ -10,7 +10,7 @@
             <div class="col-12">
                 <a href="/" class="btn btn-primary mr-2">Kembali</a>
                 @role('admin')
-                <a href="{{ route('kelas.create') }}" class="btn btn-secondary mr-2">Tambah Kelas</a>
+                    <a href="{{ route('kelas.create') }}" class="btn btn-secondary mr-2">Tambah Kelas</a>
                 @endrole
                 <!-- Button trigger modal -->
             </div>
@@ -37,7 +37,7 @@
                                     <th scope="col">Anggota Kelas</th>
                                     <th scope="col">Aksi</th>
                                     @role('admin')
-                                    <th class="text-center" scope="col"></th>
+                                        <th class="text-center" scope="col"></th>
                                     @endrole
                                 </tr>
                             </thead>
@@ -50,17 +50,26 @@
                                             {{ $k->anggota_rombels->count() }} Anggota
                                         </td>
                                         <td>
-                                            <a href="{{ route('kelas.siswa', $k->id) }}" class="btn btn-info btn-sm">Lihat Siswa</a>
+                                            <a href="{{ route('kelas.siswa', $k->id) }}" class="btn btn-info btn-sm">Lihat
+                                                Siswa</a>
                                         </td>
                                         @role('admin')
-                                        <td class="text-center">
-                                            <a href="/kesiswaan/kelas/{{ $k->id }}/edit" class="btn btn-primary">Edit</a>
-                                            <form action="kesiswaan/kelas/{{ $k->id }}" method="POST" class="d-inline">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="button" class="btn btn-danger confirm-delete">Hapus</button>
-                                            </form>
-                                        </td>
+                                            <td class="text-center">
+                                                <a href="/kesiswaan/kelas/{{ $k->id }}/edit"
+                                                    class="btn btn-primary">Edit</a>
+                                                <form action="{{ route('kelas.luluskan', $k->id) }}" method="POST"
+                                                    class="d-inline">
+                                                    @csrf
+                                                    <button type="button"
+                                                        class="btn btn-success confirm-lulus">Luluskan</button>
+                                                </form>
+                                                <form action="kesiswaan/kelas/{{ $k->id }}" method="POST"
+                                                    class="d-inline">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="button" class="btn btn-danger confirm-delete">Hapus</button>
+                                                </form>
+                                            </td>
                                         @endrole
                                     </tr>
                                 @endforeach
@@ -107,7 +116,7 @@
                         {
                             text: 'Export PDF Semua Kelas',
                             className: 'btn btn-warning',
-                            action: function ( e, dt, node, config ) {
+                            action: function(e, dt, node, config) {
                                 window.open("{{ route('kelas.semua_siswa_pdf') }}", '_blank');
                             }
                         },
@@ -135,6 +144,23 @@
                         $(this).parent('form').trigger('submit')
                     } else if (result.isDenied) {
                         Swal.fire('dibatalkan', '', 'info')
+                    }
+                });
+            });
+
+            $(document).on('click', 'button.confirm-lulus', function() {
+                Swal.fire({
+                    title: 'Luluskan kelas ini?',
+                    text: "Nama kelas akan diubah menjadi format LULUS-... dan semua anggota jadi status LULUS.",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#1abc9c',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ya, luluskan',
+                    cancelButtonText: 'Batal'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $(this).parent('form').trigger('submit')
                     }
                 });
             });

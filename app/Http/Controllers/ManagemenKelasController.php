@@ -9,6 +9,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Storage;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\DB;
 
 
 class ManagemenKelasController extends Controller
@@ -82,6 +83,48 @@ class ManagemenKelasController extends Controller
         //$kelas->delete();
         Alert::toast('Berhasil Menghapus kelas ' . $kelas->nama_kelas, 'success');
         return redirect()->route('kelas.index')->with('success', 'Class deleted successfully.');
+    }
+
+    /**
+     * Ubah kelas menjadi kelas lulus dan ubah semua anggota menjadi status LULUS.
+     */
+    public function luluskan($id)
+    {
+        $kelas = Kelas::findOrFail($id);
+
+        DB::transaction(function () use ($kelas) {
+            $namaBaru = str_starts_with($kelas->nama_kelas, 'LULUS-')
+                ? $kelas->nama_kelas
+                : 'LULUS-' . $kelas->nama_kelas;
+
+            // Pastikan nama kelas baru unik.
+            if ($namaBaru !== $kelas->nama_kelas) {
+                $counter = 1;
+                $namaKelasFinal = $namaBaru;
+
+                while (DB::table('kelas')->where('nama_kelas', $namaKelasFinal)->where('id', '<>', $kelas->id)->exists()) {
+                    $counter++;
+                    $namaKelasFinal = $namaBaru . '-' . $counter;
+                }
+
+                $kelas->update([
+                    'nama_kelas' => $namaKelasFinal,
+                ]);
+            }
+
+            // Ubah seluruh anggota kelas menjadi LULUS.
+            DB::table('peserta_didiks')
+                ->join('anggota_rombels', 'peserta_didiks.id', '=', 'anggota_rombels.peserta_didik_id')
+                ->where('anggota_rombels.kelas_id', $kelas->id)
+                ->update([
+                    'peserta_didiks.status' => 'LULUS',
+                    'peserta_didiks.updated_at' => now(),
+                ]);
+        });
+
+        Alert::toast('Berhasil meluluskan kelas dan memperbarui status seluruh anggota menjadi LULUS.', 'success');
+
+        return redirect()->route('kelas.index')->with('success', 'Kelas berhasil diluluskan.');
     }
 
     /**
