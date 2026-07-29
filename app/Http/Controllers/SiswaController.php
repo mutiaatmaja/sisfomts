@@ -203,9 +203,12 @@ class SiswaController extends Controller
             'file' => 'required|mimes:xlsx,xls,csv',
         ]);
 
-        Excel::import(new SiswaImport(), $request->file('file'));
+        $import = new SiswaImport();
+        Excel::import($import, $request->file('file'));
 
-        return redirect()->back()->with('success', 'Data siswa berhasil diimport');
+        return redirect()->back()
+            ->with('success', 'Proses import siswa selesai.')
+            ->with('import_summary', $import->summary);
     }
     public function showCard($uuid)
     {

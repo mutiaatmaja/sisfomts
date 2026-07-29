@@ -12,7 +12,7 @@
                 @role('admin')
                     <a href="{{ route('pesertadidik.create') }}" class="btn btn-secondary mr-2">Tambah Peserta Didik</a>
                 @endrole
-                <a href="{{ route('kelas.index')}}" class="btn btn-warning mr-2">Rombongan Belajar</a>
+                <a href="{{ route('kelas.index') }}" class="btn btn-warning mr-2">Rombongan Belajar</a>
                 @role('admin')
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#imporPesertaDidik">
@@ -75,6 +75,37 @@
                     </div>
                 </div>
                 <div class="widget-content widget-content-area">
+                    @if (session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+
+                    @if (session('import_summary'))
+                        @php($summary = session('import_summary'))
+                        <div class="alert alert-info">
+                            <strong>Ringkasan Import:</strong>
+                            Total baris: {{ $summary['total_rows'] ?? 0 }} |
+                            Diproses: {{ $summary['processed'] ?? 0 }} |
+                            User baru: {{ $summary['created_users'] ?? 0 }} |
+                            User diperbarui: {{ $summary['updated_users'] ?? 0 }} |
+                            Gagal: {{ $summary['failed'] ?? 0 }}
+                        </div>
+
+                        @if (!empty($summary['errors']))
+                            <div class="alert alert-warning">
+                                <strong>Detail Baris Bermasalah:</strong>
+                                <ul class="mb-0 mt-2">
+                                    @foreach ($summary['errors'] as $err)
+                                        <li>
+                                            Baris {{ $err['row'] ?? '-' }} ({{ $err['email'] ?? '-' }}):
+                                            {{ $err['message'] ?? '-' }}
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                    @endif
 
                     <div class="table-responsive">
                         <table class="table table-bordered" id="tablepesertaDidik" style="width:100%">
@@ -98,7 +129,7 @@
                                                             ? asset('storage/' . $pesertaDidik->user->foto)
                                                             : asset('src/assets/img/profile-7.png') }}"
                                                         class="rounded-circle" />
-                                                        {{-- <img alt="avatar"
+                                                    {{-- <img alt="avatar"
                                                         src="{{ $pesertaDidik->user->foto
                                                             ? asset('storage/' . $pesertaDidik->user->foto) .
                                                                 '?v=' .
@@ -177,8 +208,6 @@
                                                             </svg>
                                                         </button>
                                                     </form>
-
-
                                                 @endrole
                                             </div>
                                         </td>
