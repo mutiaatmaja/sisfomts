@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
@@ -31,18 +32,51 @@ class SiswaImport implements ToCollection, WithHeadingRow, WithChunkReading
     public function collection(Collection $rows)
     {
         $this->summary['total_rows'] += $rows->count();
+        if ($rows->isEmpty()) {
+            return;
+        }
+
+        $rows = $rows->map(function ($row) {
+            return collect($row)->map(function ($value) {
+                return is_string($value) ? trim($value) : $value;
+            })->toArray();
+        });
+
+        $emails = $rows->pluck('email')
+            ->filter()
+            ->map(fn ($email) => trim((string) $email))
+            ->unique()
+            ->values();
+
+        $kelasList = DB::table('kelas')->get()->keyBy('nama_kelas');
+        $roleIdSiswa = DB::table('roles')->where('name', 'siswa')->value('id');
+
+        $usersByEmail = DB::table('users')
+            ->whereIn('email', $emails)
+            ->get()
+            ->keyBy('email');
+
+        $existingUserIds = $usersByEmail->pluck('id')->all();
+
+        $siswaByUserId = DB::table('peserta_didiks')
+            ->whereIn('user_id', $existingUserIds)
+            ->get()
+            ->keyBy('user_id');
+
+        $kelasIds = $kelasList->pluck('id')->all();
+        $existingAnggota = DB::table('anggota_rombels')
+            ->whereIn('kelas_id', $kelasIds)
+            ->get()
+            ->keyBy(function ($item) {
+                return $item->peserta_didik_id . '-' . $item->kelas_id;
+            });
+
         DB::beginTransaction();
 
         try {
-            // Preload semua data yang mungkin digunakan
-            $emails = $rows->pluck('email')->unique()->filter()->all();
-            $existingUsers = User::whereIn('email', $emails)->get()->keyBy('email');
-
-            $kelasList = Kelas::all()->keyBy('nama_kelas');
-
             foreach ($rows as $index => $row) {
                 $rowNumber = $index + 2; // heading row + 1
-                $rowArray = $row->toArray();
+                $rowArray = $row;
 
                 $validator = Validator::make($rowArray, [
                     'email' => 'required|email',
@@ -81,8 +115,9 @@ class SiswaImport implements ToCollection, WithHeadingRow, WithChunkReading
                 }
 
                 // USER
-                $user = $existingUsers[$email] ?? new User(['email' => $email]);
-                $isNewUser = !$user->exists;
+                $userRecord = $usersByEmail->get($email);
+                $user = $userRecord ? $this->hydrateUser($userRecord) : new User(['email' => $email]);
+                $isNewUser = !$userRecord;
 
                 if ($isNewUser) {
                     $user->uuid = (string) Str::uuid();
@@ -110,7 +145,19 @@ class SiswaImport implements ToCollection, WithHeadingRow, WithChunkReading
                     'tanggal_lahir' => $row['tanggal_lahir'] ?? null,
                 ]);
                 $user->save();
-                $user->syncRoles(['siswa']);
+
+                $usersByEmail->put($email, (object) [
+                    'id' => $user->id,
+                    'email' => $user->email,
+                ]);
+
+                if ($roleIdSiswa) {
+                    DB::table('role_user')->insertOrIgnore([
+                        'role_id' => $roleIdSiswa,
+                        'user_id' => $user->id,
+                        'user_type' => User::class,
+                    ]);
+                }
 
                 if ($isNewUser) {
                     $this->summary['created_users']++;
@@ -119,8 +166,9 @@ class SiswaImport implements ToCollection, WithHeadingRow, WithChunkReading
                 }
 
                 // SISWA
-                $siswa = Siswa::firstOrNew(['user_id' => $user->id]);
-                if (!$siswa->exists) {
+                $siswaRecord = $siswaByUserId->get($user->id);
+                $siswa = $siswaRecord ? $this->hydrateSiswa($siswaRecord) : new Siswa(['user_id' => $user->id]);
+                if (!$siswaRecord) {
                     $siswa->uuid = (string) Str::uuid();
                 }
 
@@ -132,20 +180,26 @@ class SiswaImport implements ToCollection, WithHeadingRow, WithChunkReading
                 ]);
                 $siswa->save();
 
+                $siswaByUserId->put($user->id, (object) [
+                    'id' => $siswa->id,
+                    'user_id' => $siswa->user_id,
+                ]);
+
                 // ANGGOTA ROMBEL
                 $namaKelas = $row['nama_kelas'] ?? null;
                 $kelas = $kelasList[$namaKelas] ?? null;
 
                 if ($kelas) {
-                    $sudahTerdaftar = AnggotaRombel::where('peserta_didik_id', $siswa->id)
-                        ->where('kelas_id', $kelas->id)
-                        ->exists();
+                    $anggotaKey = $siswa->id . '-' . $kelas->id;
+                    $sudahTerdaftar = $existingAnggota->has($anggotaKey);
 
                     if (!$sudahTerdaftar) {
                         AnggotaRombel::create([
                             'peserta_didik_id' => $siswa->id,
                             'kelas_id' => $kelas->id,
                         ]);
+
+                        $existingAnggota->put($anggotaKey, true);
                     }
                 } elseif (!empty($namaKelas) && strtoupper((string) $namaKelas) !== 'LULUS') {
                     $this->summary['errors'][] = [
@@ -162,8 +216,27 @@ class SiswaImport implements ToCollection, WithHeadingRow, WithChunkReading
         } catch (\Throwable $e) {
             DB::rollBack();
             report($e);
+            Log::error('Gagal import siswa', ['message' => $e->getMessage()]);
             throw $e;
         }
+    }
+
+    private function hydrateUser(object $record): User
+    {
+        $user = new User();
+        $user->forceFill((array) $record);
+        $user->exists = true;
+
+        return $user;
+    }
+
+    private function hydrateSiswa(object $record): Siswa
+    {
+        $siswa = new Siswa();
+        $siswa->forceFill((array) $record);
+        $siswa->exists = true;
+
+        return $siswa;
     }
 
     public function chunkSize(): int
