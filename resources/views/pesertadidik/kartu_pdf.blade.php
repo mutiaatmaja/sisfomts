@@ -7,32 +7,37 @@
         gap: 32px;
         margin: 40px 0;
     }
-    .idcard-container, .idcard-back {
+
+    .idcard-container,
+    .idcard-back {
         width: 336px;
         height: 204px;
         background: url('{{ asset('gambarutama/card/back2.png') }}') no-repeat center center;
         background-size: cover;
         border-radius: 12px;
-        box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
         position: relative;
         overflow: hidden;
         padding: 0;
         display: flex;
         flex-direction: row;
     }
-    .idcard-container-front, .idcard-front {
+
+    .idcard-container-front,
+    .idcard-front {
         width: 336px;
         height: 204px;
         background: url('{{ asset('gambarutama/card/front2.png') }}') no-repeat center center;
         background-size: cover;
         border-radius: 12px;
-        box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
         position: relative;
         overflow: hidden;
         padding: 0;
         display: flex;
         flex-direction: row;
     }
+
     .barcode-vertical {
         width: 20px;
         height: 100%;
@@ -43,6 +48,7 @@
         position: relative;
         z-index: 2;
     }
+
     .barcode-vertical img {
         width: 20px;
         height: 180px;
@@ -51,6 +57,7 @@
         margin-left: -10px;
         transform: rotate(180deg);
     }
+
     .idcard-content-area {
         flex: 1;
         position: relative;
@@ -61,6 +68,7 @@
         flex-direction: column;
         justify-content: flex-start;
     }
+
     .idcard-logo {
         position: absolute;
         top: 12px;
@@ -70,6 +78,7 @@
         object-fit: contain;
         z-index: 3;
     }
+
     .idcard-foto {
         position: absolute;
         top: 24px;
@@ -82,6 +91,7 @@
         background: #eee;
         z-index: 3;
     }
+
     .idcard-content {
         position: absolute;
         left: 90px;
@@ -91,6 +101,7 @@
         font-family: 'Arial', sans-serif;
         z-index: 3;
     }
+
     .idcard-title {
         position: absolute;
         top: 10px;
@@ -104,32 +115,41 @@
         text-shadow: 0 1px 2px #fff;
         z-index: 3;
     }
+
     .idcard-nama {
-        font-size: 0.95em;
+        font-size: 0.82em;
+        line-height: 1.2;
         font-weight: bold;
         margin-top: 30px;
         margin-left: 15px;
         margin-bottom: 2px;
         text-transform: uppercase;
         letter-spacing: 0.5px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
+
     .idcard-tempat {
         font-size: 0.95em;
         margin-left: 15px;
         margin-top: 24px;
     }
+
     .idcard-nisn {
         margin-left: 15px;
         margin-top: 35px;
         font-size: 0.9em;
         margin-bottom: 1px;
     }
+
     .idcard-tanggal {
         margin-left: 15px;
         margin-top: 30px;
         font-size: 0.9em;
         margin-bottom: 1px;
     }
+
     .idcard-footer {
         position: absolute;
         bottom: 10px;
@@ -140,6 +160,7 @@
         text-align: right;
         z-index: 3;
     }
+
     .idcard-qrcode {
         position: absolute;
         right: 241px;
@@ -149,12 +170,13 @@
         background: #fff;
         border-radius: 6px;
         padding: 2px;
-        box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
         display: flex;
         align-items: center;
         justify-content: center;
         z-index: 3;
     }
+
     .idcard-back-content {
         position: absolute;
         left: 90px;
@@ -165,6 +187,7 @@
         font-size: 0.98em;
         z-index: 3;
     }
+
     .idcard-back-info {
         position: absolute;
         top: 20px;
@@ -190,22 +213,28 @@
     <!-- Lembar Belakang -->
     <div class="idcard-container">
         <div class="barcode-vertical">
-            <img src="data:image/png;base64,{{ DNS1D::getBarcodePNG($pesertaDidik->nisn, 'C128', 2, 60) }}" alt="Barcode NISN" style="transform: rotate(-90deg); width: 180px; height: 40px;" />
+            <img src="data:image/png;base64,{{ DNS1D::getBarcodePNG($pesertaDidik->nisn, 'C128', 2, 60) }}"
+                alt="Barcode NISN" style="transform: rotate(-90deg); width: 180px; height: 40px;" />
         </div>
-        <div class="idcard-content-area" style="display: flex; flex-direction: row; align-items: flex-start; height: 100%; padding-left: 8px;">
+        <div class="idcard-content-area"
+            style="display: flex; flex-direction: row; align-items: flex-start; height: 100%; padding-left: 8px;">
             <div style="width:5px;"></div>
-            <img src="{{ $pesertaDidik->user->foto ? asset('storage/' . $pesertaDidik->user->foto) : 'https://bootdey.com/img/Content/avatar/avatar7.png' }}" style="width: 64px; height: 80px; object-fit: cover; border-radius: 8px; border: 2px solid #fff; background: #eee; margin-right: 16px; margin-top:5px;" alt="Foto Siswa">
-            <div style="flex:1;">
+            <img src="{{ $pesertaDidik->user->foto ? asset('storage/' . $pesertaDidik->user->foto) : 'https://bootdey.com/img/Content/avatar/avatar7.png' }}"
+                style="width: 64px; height: 80px; object-fit: cover; border-radius: 8px; border: 2px solid #fff; background: #eee; margin-right: 16px; margin-top:5px;"
+                alt="Foto Siswa">
+            <div style="flex:1; min-width:0;">
                 <div class="idcard-nisn">{{ $pesertaDidik->nisn }}</div>
                 <div class="idcard-nama">{{ $pesertaDidik->user->name }}</div>
                 <div class="idcard-tempat">{{ $pesertaDidik->user->tempat_lahir ?? '-' }}</div>
 
-                <div class="idcard-tanggal">{{ \Carbon\Carbon::parse($pesertaDidik->user->tanggal_lahir)->translatedFormat('d F Y') ?? '-' }}</div>
+                <div class="idcard-tanggal">
+                    {{ \Carbon\Carbon::parse($pesertaDidik->user->tanggal_lahir)->translatedFormat('d F Y') ?? '-' }}
+                </div>
 
             </div>
         </div>
         <div class="idcard-qrcode">
-            {!! Quar::generate(route('verval.nisn',[$pesertaDidik->nisn])); !!}
+            {!! Quar::generate(route('verval.nisn', [$pesertaDidik->nisn])) !!}
         </div>
     </div>
 </div>
